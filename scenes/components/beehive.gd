@@ -28,6 +28,7 @@ func on_day_change():
 	if current_honey >= new_bee_cost:
 		var possible_new_bees: int = floor(current_honey / new_bee_cost)
 		var bees_to_create: int
+		# Make sure the bees we add don't exceed the maximum we can store
 		if possible_new_bees + current_bees > max_bees:
 			bees_to_create = max_bees - current_bees
 		else:
@@ -42,5 +43,11 @@ func on_day_change():
 	# TODO spawn available bees into the world
 
 # TODO signal receiver from bee when bee reaches home
-func on_bee_return():
-	pass
+func on_bee_return(incoming_pollen):
+	# Add pollen to hive if possible
+	var pollen_to_add
+	if (incoming_pollen + current_pollen + current_honey) > max_storage:
+		pollen_to_add = max_storage - (current_pollen + current_honey)
+	else:
+		pollen_to_add = incoming_pollen
+	current_pollen = current_pollen + pollen_to_add
