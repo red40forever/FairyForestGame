@@ -1,11 +1,63 @@
 extends Camera2D
 
+@export_group("Zoom")
+@export var zoom_levels: PackedInt32Array
+@export var zoom_animation_time: float = 0.2
 
-# Called when the node enters the scene tree for the first time.
+@export_group("Panning")
+@export var pan_decceleration: float = 0.0
+
+var zoom_magnitude: int:
+	set(value):
+		return
+	get:
+		return zoom_levels[zoom_level_index]
+var zoom_level_index: int = 0
+
+var is_dragging: bool = false
+
+
 func _ready():
-	pass # Replace with function body.
+	set_zoom_level(0, false)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _process(_delta):
+	if Input.is_action_just_pressed("zoom_in"):
+		zoom_in()
+	elif Input.is_action_just_pressed("zoom_out"):
+		zoom_out()
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			is_dragging = true
+		else:
+			is_dragging = false
+	elif event is InputEventMouseMotion and is_dragging:
+		offset -= event.relative / zoom
+
+
+func zoom_in():
+	if zoom_level_index < zoom_levels.size() - 1:
+		print(zoom_level_index)
+		set_zoom_level(zoom_level_index + 1)
+
+
+func zoom_out():
+	if zoom_level_index > 0:
+		print(zoom_level_index)
+		set_zoom_level(zoom_level_index - 1)
+
+
+func set_zoom_level(new_magnitude: int, should_animate: bool = true):
+	zoom_level_index = new_magnitude
+	var new_zoom = Vector2.ONE * zoom_magnitude
+	
+	if should_animate:
+		var tween = get_tree().create_tween()
+		tween.set_ease(Tween.EASE_OUT)
+		tween.set_trans(Tween.TRANS_QUAD)
+		tween.tween_property(self, "zoom", new_zoom, zoom_animation_time)
+	else:
+		zoom = new_zoom

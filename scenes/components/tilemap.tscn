@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=4 uid="uid://b573p5aulkgpe"]
+
+[ext_resource type="Script" path="res://scripts/TilemapManager.gd" id="1_yheyg"]
+[ext_resource type="TileSet" uid="uid://dw7bpr6aqttif" path="res://textures/tileset_ground.tres" id="2_mglfb"]
+
+[node name="Tilemap" type="Node" node_paths=PackedStringArray("ground_layer")]
+script = ExtResource("1_yheyg")
+ground_layer = NodePath("GroundLayer")
+
+[node name="GroundLayer" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+tile_map_data = PackedByteArray("AAABAAkAAQAAAAAAAAACAAgAAQAAAAAAAAACAAoAAQABAAAAAAACAAkAAQABAAAAAAADAAoAAQABAAAAAAADAAwAAQABAAAAAAADAAsAAQAAAAAAAAACAAsAAQABAAAAAAA=")
+tile_set = ExtResource("2_mglfb")

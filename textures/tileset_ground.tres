@@ -1,0 +1,16 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dw7bpr6aqttif"]
+
+[ext_resource type="Texture2D" uid="uid://dohsd0dp1k1qe" path="res://textures/tilemap_ground.png" id="1_flnia"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dndls"]
+texture = ExtResource("1_flnia")
+texture_region_size = Vector2i(64, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 41)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 41)
+
+[resource]
+tile_shape = 1
+tile_size = Vector2i(64, 32)
+sources/1 = SubResource("TileSetAtlasSource_dndls")
