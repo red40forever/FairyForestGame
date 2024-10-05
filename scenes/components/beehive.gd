@@ -8,8 +8,7 @@ extends Node2D
 # Pollen and honey share the same resource cap in beehives
 var current_pollen: int = 0
 var current_honey: int = 0
-var current_bees_total: int = 0 # how many bees belong to this hive
-var current_bees_at_home: int = 0 # how many bees are at home, aka not assigned to a task
+var current_bees: int = 0 # how many bees belong to this hive
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,8 +26,21 @@ func _input(event: InputEvent) -> void:
 func on_day_change():
 	# New bees created if possible
 	if current_honey >= new_bee_cost:
-		var bees_sum: int = current_bees_total + floor(current_honey / new_bee_cost)
+		var possible_new_bees: int = floor(current_honey / new_bee_cost)
+		var bees_to_create: int
+		if possible_new_bees + current_bees > max_bees:
+			bees_to_create = max_bees - current_bees
+		else:
+			bees_to_create = possible_new_bees
+		current_bees = current_bees + bees_to_create
+		current_honey = current_honey - (bees_to_create * new_bee_cost)
 	
 	# New honey created by consuming pollen if possible
 	current_honey += current_pollen
 	current_pollen = 0
+	
+	# TODO spawn available bees into the world
+
+# TODO signal receiver from bee when bee reaches home
+func on_bee_return():
+	pass
