@@ -18,7 +18,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-# TODO input events for managing beehives
+# TODO input events for managing beehives (?)
 func _input(event: InputEvent) -> void:
 	pass
 
