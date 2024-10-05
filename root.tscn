@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://du0w06g8tdhrv"]
+
+[ext_resource type="Script" path="res://camera_2d.gd" id="1_dho6t"]
+[ext_resource type="Texture2D" path="res://background.png" id="2_a8nwi"]
+
+[node name="Root" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_dho6t")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(-18, 1)
+texture = ExtResource("2_a8nwi")

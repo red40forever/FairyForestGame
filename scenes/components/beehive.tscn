@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5f5qimwanrq6"]
+
+[ext_resource type="Script" path="res://scenes/components/beehive.gd" id="1_2lwvp"]
+[ext_resource type="Texture2D" uid="uid://cxe8lt87mig1a" path="res://textures/hexbug.png" id="1_rltou"]
+
+[node name="Beehive" type="Node2D"]
+script = ExtResource("1_2lwvp")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_rltou")

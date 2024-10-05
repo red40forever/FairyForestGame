@@ -10,4 +10,3 @@
 [node name="Camera2D" parent="." instance=ExtResource("2_abeom")]
 zoom_levels = PackedInt32Array(2, 3, 5, 8)
 zoom_animation_time = 0.1
-pan_decceleration = 0.5
