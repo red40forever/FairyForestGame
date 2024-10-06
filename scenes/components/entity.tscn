@@ -1,10 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://f0jw4rowgxdq"]
 
-[ext_resource type="Script" path="res://entity.gd" id="1_13b8u"]
+[ext_resource type="Script" path="res://scripts/Entity.gd" id="1_13b8u"]
 
 [node name="Entity" type="CharacterBody2D"]
 script = ExtResource("1_13b8u")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
