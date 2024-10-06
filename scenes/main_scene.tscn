@@ -4,9 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://b035nlib0i5rc" path="res://scenes/components/camera.tscn" id="2_abeom"]
 
 [node name="MainScene" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Tilemap" parent="." instance=ExtResource("1_51j67")]
+unique_name_in_owner = true
 
-[node name="Camera2D" parent="." instance=ExtResource("2_abeom")]
+[node name="MainCamera" parent="." instance=ExtResource("2_abeom")]
+unique_name_in_owner = true
 zoom_levels = PackedInt32Array(2, 3, 5, 8)
 zoom_animation_time = 0.1

@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://qkfy6damforr"]
+
+[ext_resource type="Shader" path="res://materials/shaders/shader_sprite_shadowed.gdshader" id="1_u5p2n"]
+
+[resource]
+shader = ExtResource("1_u5p2n")
+shader_parameter/shadow_color = Color(0, 0, 0, 0.352941)
+shader_parameter/shadow_scale = Vector2(1, 1)
+shader_parameter/shadow_skew = Vector2(0, 0)
+shader_parameter/skew_offset = Vector2(0, 0)

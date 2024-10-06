@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GridObjectAttributes" load_steps=3 format=3 uid="uid://diuoimdxcbjow"]
+
+[ext_resource type="Script" path="res://scripts/GridObjectAttributes.gd" id="1_1ey8v"]
+[ext_resource type="Texture2D" uid="uid://sg7qy2g1mwot" path="res://textures/placeholder_tile.png" id="2_rdvl1"]
+
+[resource]
+script = ExtResource("1_1ey8v")
+id = "test_object"
+name = "Test Object"
+texture = ExtResource("2_rdvl1")

@@ -1,14 +1,26 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dw7bpr6aqttif"]
 
-[ext_resource type="Texture2D" uid="uid://dohsd0dp1k1qe" path="res://textures/tilemap_ground.png" id="1_flnia"]
+[ext_resource type="Texture2D" uid="uid://dohsd0dp1k1qe" path="res://textures/tilemap_ground.png" id="1_je5f7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dndls"]
-texture = ExtResource("1_flnia")
+texture = ExtResource("1_je5f7")
 texture_region_size = Vector2i(64, 128)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 41)
 1:0/0 = 0
 1:0/0/texture_origin = Vector2i(0, 41)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 41)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 41)
+4:0/0 = 0
+4:0/0/texture_origin = Vector2i(0, 41)
+5:0/0 = 0
+5:0/0/texture_origin = Vector2i(0, 41)
+6:0/0 = 0
+6:0/0/texture_origin = Vector2i(0, 41)
+7:0/0 = 0
+7:0/0/texture_origin = Vector2i(0, 41)
 
 [resource]
 tile_shape = 1

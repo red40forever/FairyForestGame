@@ -7,6 +7,8 @@ extends Camera2D
 @export_group("Panning")
 @export var pan_decceleration: float = 0.0
 
+var control_mode: CameraControlMode = CameraControlMode.SELECT
+
 var zoom_magnitude: int:
 	set(value):
 		return
@@ -15,6 +17,7 @@ var zoom_magnitude: int:
 var zoom_level_index: int = 0
 
 var is_dragging: bool = false
+var drag_start_pos: Vector2 = Vector2.ZERO
 
 
 func _ready():
@@ -29,11 +32,18 @@ func _process(_delta):
 
 
 func _input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed():
 			is_dragging = true
+			drag_start_pos = event.position
 		else:
 			is_dragging = false
+			# If the mouse didn't move, it's not a drag, so we can place an object
+			if event.position == drag_start_pos:
+				var tilemap_manager = GameManager.tilemap_manager
+				var global_pos = get_global_mouse_position()
+				var coords = tilemap_manager.ground_layer.local_to_map(global_pos)
+				tilemap_manager.placement_helper.place_at_coords(coords)
 	elif event is InputEventMouseMotion and is_dragging:
 		offset -= event.relative / zoom
 
@@ -61,3 +71,9 @@ func set_zoom_level(new_magnitude: int, should_animate: bool = true):
 		tween.tween_property(self, "zoom", new_zoom, zoom_animation_time)
 	else:
 		zoom = new_zoom
+
+
+enum CameraControlMode {
+	SELECT,
+	PLACE
+}

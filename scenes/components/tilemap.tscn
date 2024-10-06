@@ -1,14 +1,40 @@
-[gd_scene load_steps=3 format=4 uid="uid://b573p5aulkgpe"]
+[gd_scene load_steps=8 format=4 uid="uid://b573p5aulkgpe"]
 
 [ext_resource type="Script" path="res://scripts/TilemapManager.gd" id="1_yheyg"]
+[ext_resource type="Material" uid="uid://qkfy6damforr" path="res://materials/mat_sprite_shadowed.tres" id="2_87clq"]
+[ext_resource type="Script" path="res://scripts/TilePlacementHelper.gd" id="2_fx0ts"]
 [ext_resource type="TileSet" uid="uid://dw7bpr6aqttif" path="res://textures/tileset_ground.tres" id="2_mglfb"]
+[ext_resource type="Resource" uid="uid://diuoimdxcbjow" path="res://objects/obj_test.tres" id="5_cg2jh"]
+[ext_resource type="Texture2D" uid="uid://c68k1b54y31vc" path="res://textures/tile_selection.png" id="6_ourvx"]
+[ext_resource type="Script" path="res://scripts/PlacementIndicator.gd" id="7_grrs5"]
 
-[node name="Tilemap" type="Node" node_paths=PackedStringArray("ground_layer")]
+[node name="Tilemap" type="Node2D" node_paths=PackedStringArray("ground_layer", "grid_object_container", "placement_helper")]
+texture_filter = 1
 script = ExtResource("1_yheyg")
 ground_layer = NodePath("GroundLayer")
+grid_object_container = NodePath("GridObjectContainer")
+placement_helper = NodePath("TilePlacementHelper")
 
 [node name="GroundLayer" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
 y_sort_enabled = true
-texture_filter = 1
-tile_map_data = PackedByteArray("AAABAAkAAQAAAAAAAAACAAgAAQAAAAAAAAACAAoAAQABAAAAAAACAAkAAQABAAAAAAADAAoAAQABAAAAAAADAAwAAQABAAAAAAADAAsAAQAAAAAAAAACAAsAAQABAAAAAAADAAkAAQABAAAAAAAEAAkAAQABAAAAAAAEAAoAAQAAAAAAAAAEAAgAAQAAAAAAAAACAAQAAQAAAAAAAAAEAAQAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAAkAAQAEAAAAAAACAAgAAQAHAAAAAAACAAoAAQAGAAAAAAACAAkAAQAFAAAAAAADAAoAAQAGAAAAAAADAAwAAQAHAAAAAAADAAsAAQAHAAAAAAACAAsAAQAEAAAAAAACAAcAAQAHAAAAAAADAAgAAQAEAAAAAAADAAkAAQAFAAAAAAAEAAoAAQAHAAAAAAAEAAkAAQAHAAAAAAAEAAgAAQAGAAAAAAADAAcAAQAEAAAAAAADAAYAAQAGAAAAAAADAAUAAQAFAAAAAAAEAAYAAQAHAAAAAAAEAAcAAQAHAAAAAAAFAAgAAQAGAAAAAAAFAAkAAQAEAAAAAAAFAAoAAQAFAAAAAAAEAAsAAQAHAAAAAAAEAAwAAQAEAAAAAAADAA0AAQAFAAAAAAAEAA4AAQAHAAAAAAAEAA0AAQAHAAAAAAAFAAwAAQAHAAAAAAAFAAsAAQAHAAAAAAAGAAoAAQAHAAAAAAAGAAgAAQAHAAAAAAAGAAkAAQAEAAAAAAAFAAcAAQAHAAAAAAAFAAYAAQAHAAAAAAAEAAUAAQAHAAAAAAAEAAQAAQAEAAAAAAA=")
 tile_set = ExtResource("2_mglfb")
+
+[node name="GridObjectContainer" type="Node2D" parent="."]
+unique_name_in_owner = true
+y_sort_enabled = true
+material = ExtResource("2_87clq")
+
+[node name="TilePlacementHelper" type="Node2D" parent="." node_paths=PackedStringArray("tilemap_manager", "placement_indicator")]
+unique_name_in_owner = true
+script = ExtResource("2_fx0ts")
+tilemap_manager = NodePath("..")
+placement_indicator = NodePath("PlacementIndicator")
+selected_object = ExtResource("5_cg2jh")
+
+[node name="PlacementIndicator" type="Sprite2D" parent="TilePlacementHelper"]
+modulate = Color(1, 1, 1, 0.235294)
+texture = ExtResource("6_ourvx")
+script = ExtResource("7_grrs5")
+animation_speed = 0.05
