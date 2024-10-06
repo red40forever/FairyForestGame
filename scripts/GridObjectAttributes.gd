@@ -3,7 +3,7 @@ extends Resource
 
 @export var id: String
 @export var name: String
-@export var texture: Texture2D
+@export var node: PackedScene
 
 func has_title() -> bool:
 	return (name != "")
