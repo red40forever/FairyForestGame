@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b573p5aulkgpe" path="res://scenes/components/tilemap.tscn" id="1_51j67"]
 [ext_resource type="PackedScene" uid="uid://b035nlib0i5rc" path="res://scenes/components/player.tscn" id="2_abeom"]
-[ext_resource type="Resource" uid="uid://2qarxujqm4m3" path="res://objects/beehive_obj.tres" id="3_d4fbc"]
+[ext_resource type="Resource" uid="uid://bl65q2tthfpjv" path="res://objects/bee_obj.tres" id="3_471do"]
 
 [node name="MainScene" type="Node2D"]
 y_sort_enabled = true
@@ -12,4 +12,4 @@ unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("2_abeom")]
 unique_name_in_owner = true
-resource = ExtResource("3_d4fbc")
+resource = ExtResource("3_471do")
