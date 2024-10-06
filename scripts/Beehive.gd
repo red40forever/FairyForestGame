@@ -1,5 +1,9 @@
 extends Node2D
 
+@export_group("Resources")
+@export var grid_object_attributes: GridObjectAttributes
+# TODO resource for creature home attributes?
+
 @export_group("Constraints")
 @export var max_bees: int = 3
 @export var max_storage: int = 5
