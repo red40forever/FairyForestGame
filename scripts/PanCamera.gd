@@ -18,7 +18,6 @@ var zoom_magnitude: int:
 var zoom_level_index: int = 0
 
 var is_dragging: bool = false
-var drag_start_pos: Vector2 = Vector2.ZERO
 
 
 func _ready():
@@ -33,18 +32,20 @@ func _process(_delta):
 
 
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE:
-		if event.is_pressed():
-			is_dragging = true
-			drag_start_pos = event.position
-		else:
-			is_dragging = false
-			# If the mouse didn't move, it's not a drag, so we can place an object
-			if event.position == drag_start_pos:
-				var tilemap_manager = GameManager.tilemap_manager
-				var global_pos = get_global_mouse_position()
-				var coords = tilemap_manager.ground_layer.local_to_map(global_pos)
-				tilemap_manager.placement_helper.place_at_coords(coords)
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			if event.is_pressed():
+				is_dragging = true
+			else:
+				is_dragging = false
+		elif event.button_index == MOUSE_BUTTON_LEFT:
+			# Place object on LMB release, not press
+			if event.is_pressed():
+				return
+			var tilemap_manager = GameManager.tilemap_manager
+			var global_pos = get_global_mouse_position()
+			var coords = tilemap_manager.ground_layer.local_to_map(global_pos)
+			tilemap_manager.placement_helper.place_at_coords(coords)
 	elif event is InputEventMouseMotion and is_dragging:
 		offset -= event.relative / zoom
 
