@@ -1,13 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5f5qimwanrq6"]
+[gd_scene load_steps=3 format=3 uid="uid://b5f5qimwanrq6"]
 
 [ext_resource type="Script" path="res://scripts/Beehive.gd" id="1_2lwvp"]
-[ext_resource type="Script" path="res://scripts/resource_creation_scripts/GridObjectAttributes.gd" id="2_do8cu"]
-
-[sub_resource type="Resource" id="Resource_4lunn"]
-script = ExtResource("2_do8cu")
-id = "beehive"
-name = "Beehive"
+[ext_resource type="Resource" uid="uid://bwiduo75tn2s1" path="res://objects/beehive_obj.tres" id="2_418mg"]
 
 [node name="Beehive" type="Node2D"]
 script = ExtResource("1_2lwvp")
-grid_object_attributes = SubResource("Resource_4lunn")
+attributes = ExtResource("2_418mg")

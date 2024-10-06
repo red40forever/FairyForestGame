@@ -1,7 +1,6 @@
 extends GridObject
 
 @export_group("Basics")
-@export var grid_object_attributes: GridObjectAttributes
 @export var home_type: Constants.HomeTileTypes
 
 @export_group("Constraints")
@@ -13,14 +12,6 @@ extends GridObject
 var current_pollen: int = 0
 var current_honey: int = 0
 var current_bees: int = 0 # how many bees belong to this hive
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 # TODO input events for managing beehives (?)
 func _input(event: InputEvent) -> void:
