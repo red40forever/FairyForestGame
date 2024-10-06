@@ -2,10 +2,8 @@ extends Node2D
 
 @export var camera: PanCamera
 
+var honey: ResourceSlot
+
 
 func _ready():
-	pass # Replace with function body.
-
-
-func _process(delta):
-	pass
+	honey = ResourceSlot.new(ResourceType.HONEY, 20) # For example
