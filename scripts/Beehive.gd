@@ -1,4 +1,4 @@
-extends Node2D
+extends GridObject
 
 @export_group("Basics")
 @export var grid_object_attributes: GridObjectAttributes
