@@ -4,5 +4,3 @@
 
 [node name="Entity" type="CharacterBody2D"]
 script = ExtResource("1_13b8u")
-
-[node name="Sprite" type="Sprite2D" parent="."]
