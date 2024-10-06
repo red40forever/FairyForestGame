@@ -8,6 +8,8 @@ var home: Vector2
 var interactions_completed: int = 0
 var idle: bool = true
 
+signal entity_arrived_at_home(resources_to_deposit: int, entity_reference_to_free: Node)
+
 func _ready():
 	# TODO set home? or maybe the home tile itself sets this when it spawns the bee? idk
 	target = self.position
@@ -36,3 +38,7 @@ func set_new_target(new_target: Vector2):
 
 func return_home():
 	target = home
+
+# TODO determine what type of target we're at, do stuff accordingly
+func on_reached_target():
+	pass
