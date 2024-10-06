@@ -50,13 +50,11 @@ func _input(event):
 
 func zoom_in():
 	if zoom_level_index < zoom_levels.size() - 1:
-		print(zoom_level_index)
 		set_zoom_level(zoom_level_index + 1)
 
 
 func zoom_out():
 	if zoom_level_index > 0:
-		print(zoom_level_index)
 		set_zoom_level(zoom_level_index - 1)
 
 

@@ -7,7 +7,7 @@ extends Node2D
 var last_grid_pos: Vector2i = Vector2i.ZERO
 
 
-func _process(delta):
+func _process(_delta):
 	var mouse_pos = get_global_mouse_position()
 	var tilemap_pos = %GroundLayer.local_to_map(mouse_pos)
 	if tilemap_pos != last_grid_pos:
