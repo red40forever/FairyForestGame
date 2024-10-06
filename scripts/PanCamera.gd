@@ -33,7 +33,7 @@ func _process(_delta):
 
 
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE:
 		if event.is_pressed():
 			is_dragging = true
 			drag_start_pos = event.position

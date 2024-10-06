@@ -1,4 +1,8 @@
-extends Node2D
+extends GridObject
+
+@export_group("Basics")
+@export var grid_object_attributes: GridObjectAttributes
+@export var home_type: Constants.HomeTileTypes
 
 @export_group("Constraints")
 @export var max_bees: int = 3
@@ -41,9 +45,10 @@ func on_day_change():
 	current_pollen = 0
 	
 	# TODO spawn available bees into the world
+	# make sure to connect to their entity_arrived_at_home signals
 
 # TODO signal receiver from bee when bee reaches home
-func on_bee_return(incoming_pollen):
+func _on_entity_arrived_at_home(incoming_pollen: int, incoming_bee: Node):
 	# Add pollen to hive if possible
 	var pollen_to_add
 	if (incoming_pollen + current_pollen + current_honey) > max_storage:
@@ -51,3 +56,6 @@ func on_bee_return(incoming_pollen):
 	else:
 		pollen_to_add = incoming_pollen
 	current_pollen = current_pollen + pollen_to_add
+	
+	# Remove bee from the scene tree
+	incoming_bee.queue_free()
