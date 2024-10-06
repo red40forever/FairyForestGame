@@ -1,5 +1,5 @@
 class_name Entity
-extends CharacterBody2D
+extends GridObject
 
 @export_group("Resources")
 @export var entity_attributes: EntityAttributes
@@ -26,16 +26,15 @@ func _physics_process(delta: float) -> void:
 		var direction := target - self.position
 		direction = direction.normalized()
 		# TODO sprite faces direction of movement
-		
-		velocity = velocity.lerp(direction*entity_attributes.speed, entity_attributes.accel*delta)
-		
-		move_and_slide()
+		var tween = get_tree().create_tween()
+		var tween_duration = 10 # TODO
+		tween.tween_property(self, "global_position", target, tween_duration)
 
 # TODO how to receive a new target? signal? from where?
-func set_new_target(new_target: Vector2):
+func set_new_target(new_target: Vector2i):
 	idle = false
-	# TODO if new_target is tilemap coords, translate to map coords
-	target = new_target
+	# convert tilemap coords into world coords
+	target = GameManager.tilemap_manager.ground_layer.map_to_local(new_target)
 
 func return_home():
 	target = home.global_position

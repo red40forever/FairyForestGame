@@ -1,10 +1,8 @@
-[gd_resource type="Resource" script_class="GridObjectAttributes" load_steps=3 format=3 uid="uid://diuoimdxcbjow"]
+[gd_resource type="Resource" script_class="GridObjectAttributes" load_steps=2 format=3 uid="uid://cjfijrc8iact5"]
 
-[ext_resource type="Script" path="res://scripts/GridObjectAttributes.gd" id="1_1ey8v"]
-[ext_resource type="PackedScene" uid="uid://bjm2x1suw621h" path="res://objects/scenes/scene_obj_test.tscn" id="1_6tuvs"]
+[ext_resource type="Script" path="res://scripts/resource_creation_scripts/GridObjectAttributes.gd" id="1_s0tda"]
 
 [resource]
-script = ExtResource("1_1ey8v")
+script = ExtResource("1_s0tda")
 id = "test_object"
 name = "Test Object"
-node = ExtResource("1_6tuvs")
