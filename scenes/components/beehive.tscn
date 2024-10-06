@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://b5f5qimwanrq6"]
 
 [ext_resource type="Script" path="res://scripts/Beehive.gd" id="1_2lwvp"]
-[ext_resource type="Resource" uid="uid://bwiduo75tn2s1" path="res://objects/beehive_obj.tres" id="2_418mg"]
+[ext_resource type="Texture2D" uid="uid://c38v2hhggcgem" path="res://textures/plant.png" id="1_acfgr"]
 
-[node name="Beehive" type="Node2D"]
+[node name="Beehive" type="Sprite2D"]
+texture = ExtResource("1_acfgr")
 script = ExtResource("1_2lwvp")
-attributes = ExtResource("2_418mg")

@@ -8,7 +8,7 @@ extends Node
 
 func create_object_at_coords(object_attributes: GridObjectAttributes, coords: Vector2i):
 	var grid_object = object_attributes.node.instantiate()
-	grid_object.attributes = object_attributes
+	#grid_object.attributes = object_attributes
 	grid_object.grid_coordinates = coords
 	grid_object_container.add_child(grid_object)
 	return grid_object

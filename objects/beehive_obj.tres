@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="GridObjectAttributes" load_steps=3 format=3 uid="uid://bwiduo75tn2s1"]
+[gd_resource type="Resource" script_class="GridObjectAttributes" load_steps=3 format=3 uid="uid://2qarxujqm4m3"]
 
 [ext_resource type="Script" path="res://scripts/GridObjectAttributes.gd" id="1_5k56o"]
-[ext_resource type="PackedScene" uid="uid://b5f5qimwanrq6" path="res://scenes/components/beehive.tscn" id="1_tk0cf"]
+[ext_resource type="PackedScene" uid="uid://b5f5qimwanrq6" path="res://scenes/components/beehive.tscn" id="1_djag5"]
 
 [resource]
 script = ExtResource("1_5k56o")
-id = "beehive"
-name = "Beehive"
-node = ExtResource("1_tk0cf")
+id = "beehive_obj"
+name = "Beehive Object"
+node = ExtResource("1_djag5")

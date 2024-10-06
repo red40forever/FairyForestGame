@@ -1,3 +1,4 @@
+class_name Beehive
 extends GridObject
 
 @export_group("Basics")
@@ -18,7 +19,7 @@ func _input(event: InputEvent) -> void:
 	pass
 
 # TODO signal receiver from day change when day change signal is implemented
-func on_day_change():
+func _on_day_changed():
 	# New bees created if possible
 	if current_honey >= new_bee_cost:
 		var possible_new_bees: int = floor(current_honey / new_bee_cost)

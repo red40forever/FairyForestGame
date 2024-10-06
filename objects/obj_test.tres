@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="GridObjectAttributes" load_steps=2 format=3 uid="uid://cjfijrc8iact5"]
-
-[ext_resource type="Script" path="res://scripts/resource_creation_scripts/GridObjectAttributes.gd" id="1_s0tda"]
-
-[resource]
-script = ExtResource("1_s0tda")
-id = "test_object"
-name = "Test Object"
