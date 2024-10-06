@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EntityAttributes" load_steps=2 format=3 uid="uid://lmpkq7p1bw1d"]
+
+[ext_resource type="Script" path="res://scripts/resource_creation_scripts/EntityAttributes.gd" id="1_hg415"]
+
+[resource]
+script = ExtResource("1_hg415")
+id = "bee"
+name = "Bee"
+speed = 300.0
+accel = 7.0
+max_interactions = 1
+valid_resource_type = 0
+valid_home_type = 0

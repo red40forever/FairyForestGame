@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://f0jw4rowgxdq"]
+[gd_scene load_steps=3 format=3 uid="uid://f0jw4rowgxdq"]
 
 [ext_resource type="Script" path="res://scripts/Entity.gd" id="1_13b8u"]
+[ext_resource type="Resource" uid="uid://lmpkq7p1bw1d" path="res://objects/bee_entity_attributes.tres" id="2_553av"]
 
 [node name="Entity" type="Sprite2D"]
 script = ExtResource("1_13b8u")
+entity_attributes = ExtResource("2_553av")
