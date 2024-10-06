@@ -1,3 +1,4 @@
+class_name PanCamera
 extends Camera2D
 
 @export_group("Zoom")
