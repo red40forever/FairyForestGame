@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://qkfy6damforr" path="res://materials/mat_sprite_shadowed.tres" id="2_87clq"]
 [ext_resource type="Script" path="res://scripts/TilePlacementHelper.gd" id="2_fx0ts"]
 [ext_resource type="TileSet" uid="uid://dw7bpr6aqttif" path="res://textures/tileset_ground.tres" id="2_mglfb"]
-[ext_resource type="Resource" uid="uid://diuoimdxcbjow" path="res://objects/obj_test.tres" id="5_cg2jh"]
+[ext_resource type="Resource" uid="uid://2qarxujqm4m3" path="res://objects/beehive_obj.tres" id="5_mas4d"]
 [ext_resource type="Texture2D" uid="uid://c68k1b54y31vc" path="res://textures/tile_selection.png" id="6_ourvx"]
 [ext_resource type="Script" path="res://scripts/PlacementIndicator.gd" id="7_grrs5"]
 
@@ -31,7 +31,7 @@ unique_name_in_owner = true
 script = ExtResource("2_fx0ts")
 tilemap_manager = NodePath("..")
 placement_indicator = NodePath("PlacementIndicator")
-selected_object = ExtResource("5_cg2jh")
+selected_object = ExtResource("5_mas4d")
 
 [node name="PlacementIndicator" type="Sprite2D" parent="TilePlacementHelper"]
 modulate = Color(1, 1, 1, 0.235294)
