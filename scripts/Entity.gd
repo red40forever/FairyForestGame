@@ -1,10 +1,11 @@
+class_name Entity
 extends CharacterBody2D
 
 @export_group("Resources")
 @export var entity_attributes: EntityAttributes
 
 var target: Vector2
-var home: Vector2
+var home: Node2D
 var interactions_completed: int = 0
 var idle: bool = true
 
@@ -37,7 +38,7 @@ func set_new_target(new_target: Vector2):
 	target = new_target
 
 func return_home():
-	target = home
+	target = home.global_position
 
 # TODO determine what type of target we're at, do stuff accordingly
 func on_reached_target():
