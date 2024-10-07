@@ -38,7 +38,6 @@ func _on_day_changed():
 	current_pollen = 0
 	
 	# Spawn available bees into the world
-	# make sure to connect to their entity_arrived_at_home signals
 	var map_pos = GameManager.tilemap_manager.ground_layer.local_to_map(self.position)
 	var possible_placement_positions = [map_pos + Vector2i(0, 1), map_pos + 
 		Vector2i(1, 0), map_pos + Vector2i(1, 1), map_pos + Vector2i(0, -1), 
@@ -50,6 +49,7 @@ func _on_day_changed():
 			# Position is empty; place a bee here
 			var bee = GameManager.tilemap_manager.create_object_at_coords(entity_grid_object_attributes, coords)
 			bee.return_home.connect(_on_entity_returned_home)
+			bee.set_home(self)
 			placed_bees += 1
 		if placed_bees >= current_bees:
 			break

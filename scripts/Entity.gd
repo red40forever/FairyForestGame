@@ -5,7 +5,7 @@ extends GridObject
 @export var entity_attributes: EntityAttributes
 
 var target: Vector2
-var home: Node2D
+var home: Node
 var interactions_completed: int = 0
 var idle: bool = true
 
@@ -18,7 +18,7 @@ func _ready():
 func _process(delta: float) -> void:
 	if not idle:
 		if interactions_completed >= entity_attributes.max_interactions:
-			return_home()
+			go_towards_home()
 	
 
 func _physics_process(delta: float) -> void:
@@ -36,7 +36,10 @@ func set_new_target(new_target: Vector2i):
 	# convert tilemap coords into world coords
 	target = GameManager.tilemap_manager.ground_layer.map_to_local(new_target)
 
-func return_home():
+func set_home(new_home: Node):
+	home = new_home
+
+func go_towards_home():
 	target = home.global_position
 
 # TODO determine what type of target we're at, do stuff accordingly
