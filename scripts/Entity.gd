@@ -9,7 +9,7 @@ var home: Node2D
 var interactions_completed: int = 0
 var idle: bool = true
 
-signal entity_arrived_at_home(resources_to_deposit: int, entity_reference_to_free: Node)
+signal return_home(resources_to_deposit: int, entity_reference_to_free: Node)
 
 func _ready():
 	# TODO set home? or maybe the home tile itself sets this when it spawns the bee? idk

@@ -3,6 +3,7 @@ extends GridObject
 
 @export_group("Basics")
 @export var home_type: Constants.HomeTileTypes
+@export var entity_grid_object_attributes: GridObjectAttributes
 
 @export_group("Constraints")
 @export var max_bees: int = 3
@@ -36,11 +37,24 @@ func _on_day_changed():
 	current_honey += current_pollen
 	current_pollen = 0
 	
-	# TODO spawn available bees into the world
+	# Spawn available bees into the world
 	# make sure to connect to their entity_arrived_at_home signals
+	var map_pos = GameManager.tilemap_manager.ground_layer.local_to_map(self.position)
+	var possible_placement_positions = [map_pos + Vector2i(0, 1), map_pos + 
+		Vector2i(1, 0), map_pos + Vector2i(1, 1), map_pos + Vector2i(0, -1), 
+		map_pos + Vector2i(-1, 0), map_pos + Vector2i(-1, 1), map_pos + 
+		Vector2i(1, -1), map_pos + Vector2i(-1, -1)]
+	var placed_bees = 0
+	for coords in possible_placement_positions:
+		if len(GameManager.tilemap_manager.get_objects_at(coords)) <= 0:
+			# Position is empty; place a bee here
+			var bee = GameManager.tilemap_manager.create_object_at_coords(entity_grid_object_attributes, coords)
+			bee.return_home.connect(_on_entity_returned_home)
+			placed_bees += 1
+		if placed_bees >= current_bees:
+			break
 
-# TODO signal receiver from bee when bee reaches home
-func _on_entity_arrived_at_home(incoming_pollen: int, incoming_bee: Node):
+func _on_entity_returned_home(incoming_pollen: int, incoming_bee: Node):
 	# Add pollen to hive if possible
 	var pollen_to_add
 	if (incoming_pollen + current_pollen + current_honey) > max_storage:
