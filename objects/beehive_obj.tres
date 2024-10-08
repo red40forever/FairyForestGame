@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GridObjectAttributes" load_steps=3 format=3 uid="uid://2qarxujqm4m3"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ofrylofjeye8"]
 
 [ext_resource type="Script" path="res://scripts/GridObjectAttributes.gd" id="1_5k56o"]
 [ext_resource type="PackedScene" uid="uid://b5f5qimwanrq6" path="res://scenes/components/beehive.tscn" id="1_djag5"]

@@ -15,11 +15,11 @@ signal resource_removed(resource_type: ResourceType, count: int)
 signal resource_count_updated(resource_type: ResourceType, count: int)
 
 
-func _init(new_accepted_types: Array[ResourceType], new_max_count: int = -1):
-	self.accepted_types = new_accepted_types
+func _init(p_accepted_types: Array[ResourceType], p_max_count: int = -1):
+	self.accepted_types = p_accepted_types
 	for type in accepted_types:
 		self.stored_resources[type] = 0
-	self.max_count = new_max_count
+	self.max_count = p_max_count
 
 
 func add_resource(resource_type: ResourceType, count: int):

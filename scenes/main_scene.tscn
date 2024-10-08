@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhcig4674vsg0"]
+[gd_scene load_steps=5 format=3 uid="uid://bhcig4674vsg0"]
 
 [ext_resource type="PackedScene" uid="uid://b573p5aulkgpe" path="res://scenes/components/tilemap.tscn" id="1_51j67"]
 [ext_resource type="PackedScene" uid="uid://b035nlib0i5rc" path="res://scenes/components/player.tscn" id="2_abeom"]
@@ -13,3 +13,6 @@ unique_name_in_owner = true
 [node name="Player" parent="." instance=ExtResource("2_abeom")]
 unique_name_in_owner = true
 resource = ExtResource("3_471do")
+
+[node name="SlotDisplay" type="Node2D" parent="."]
+script = ExtResource("4_2uykd")
