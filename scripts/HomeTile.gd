@@ -17,7 +17,11 @@ extends GridObject
 @export var current_products: int = 0
 @export var current_entities: int = 0 # how many entities belong to this home
 
-# TODO signal receiver from day change when day change signal is implemented
+func _ready() -> void:
+	# TODO connect signal to day change
+	# and any other needed signals
+	pass
+
 func _on_day_changed():
 	# New entities created if possible
 	if current_products >= new_entity_cost:
@@ -45,9 +49,10 @@ func _on_day_changed():
 	for coords in possible_placement_positions:
 		if len(GameManager.tilemap_manager.get_objects_at(coords)) <= 0:
 			# Position is empty; place a bee here
-			var bee = GameManager.tilemap_manager.create_object_at_coords(entity_grid_object_attributes, coords)
-			bee.return_home.connect(_on_entity_returned_home)
-			bee.set_home(self)
+			var entity = GameManager.tilemap_manager.create_object_at_coords(entity_grid_object_attributes, coords)
+			entity.set_home(self)
+			entity.set_attributes(entity_attributes)
+			entity.return_home.connect(_on_entity_returned_home)
 			placed_entities += 1
 		if placed_entities >= current_entities:
 			break

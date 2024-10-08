@@ -50,6 +50,9 @@ func set_new_target(new_target: Vector2i):
 func set_home(new_home: Node) -> void:
 	home = new_home
 
+func set_attributes(new_attributes: EntityAttributes) -> void:
+	entity_attributes = new_attributes
+
 func go_towards_home() -> void:
 	target = home.global_position
 
