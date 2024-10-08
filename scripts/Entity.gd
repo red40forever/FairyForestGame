@@ -70,9 +70,13 @@ func _on_tween_finished():
 		if object is HomeTile:
 			# If HomeTile contains the same type of entities as myself:
 			if object.entity_attributes == entity_attributes:
-				return_home.emit(carried_resources, self)
-				# This should delete the entity
-				return
+				if interactions_completed >= entity_attributes.max_interactions:
+					return_home.emit(carried_resources, self)
+					# This should delete the entity
+					return
+				# TODO maybe logic here for:
+				# - changing home tile
+				# - taking out resources
 		try_interact_with_object(object)
 
 # Override this function in subclasses to add more behavior 
