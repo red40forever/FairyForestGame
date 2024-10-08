@@ -8,6 +8,7 @@ var target: Vector2
 var home: Node
 var interactions_completed: int = 0
 var idle: bool = true
+var tween: Tween = null
 
 signal return_home(resources_to_deposit: int, entity_reference_to_free: Node)
 
@@ -28,6 +29,7 @@ func _physics_process(delta: float) -> void:
 
 # TODO how to receive a new target? signal? from where? from player input?
 func set_new_target(new_target: Vector2i):
+	# TODO sprite faces direction of movement
 	idle = false
 	# convert tilemap coords into world coords
 	target = GameManager.tilemap_manager.ground_layer.map_to_local(new_target)
@@ -35,11 +37,15 @@ func set_new_target(new_target: Vector2i):
 	# Create tween that moves sprite to target
 	var direction := target - self.position
 	direction = direction.normalized()
-	# TODO sprite faces direction of movement
-	var tween = get_tree().create_tween()
-	var tween_duration = 10 # TODO
+	# Remove old tween if it was present,
+	# ex. if a new target is set before the old tween finished
+	if tween != null:
+		tween.queue_free()
+	# Create and set up the new tween
+	tween = get_tree().create_tween()
+	var tween_duration = 10 # TODO determine duration based on speed and distance
 	tween.tween_property(self, "global_position", target, tween_duration)
-	# TODO call on_reached_target when tween ends
+	tween.finished.connect(_on_tween_finished)
 
 func set_home(new_home: Node) -> void:
 	home = new_home
@@ -47,6 +53,10 @@ func set_home(new_home: Node) -> void:
 func go_towards_home() -> void:
 	target = home.global_position
 
-# TODO determine what type of target we're at, do stuff accordingly
-func on_reached_target():
+func _on_tween_finished():
+	# TODO determine what type of target we're at, do stuff accordingly
+	# TODO determine whether entity *should* attempt to interact,
+	# i.e. whether the previous tween finished before setting a new target & new tween
+	# i.e. whether a freed tween emits the finished signal
+	tween = null
 	pass
