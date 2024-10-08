@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 
 GameManager="*res://scripts/GameManager.gd"
 
+[display]
+
+window/stretch/scale_mode="integer"
+
 [input]
 
 zoom_in={
