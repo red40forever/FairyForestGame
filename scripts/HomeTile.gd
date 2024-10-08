@@ -8,7 +8,7 @@ extends GridObject
 
 @export_group("Constraints")
 @export var max_entities: int = 3
-@export var max_storage: int = 5
+@export var max_storage: int = 5 # resources and products share the same cap
 @export var new_entity_cost: int = 2
 @export var base_resource_is_final_form: bool = false
 
