@@ -2,7 +2,7 @@ class_name HomeTile
 extends GridObject
 
 @export_group("Type Assignments")
-@export var home_type: Constants.HomeTileTypes
+#@export var home_type: Constants.HomeTileTypes
 @export var entity_grid_object_attributes: GridObjectAttributes
 @export var entity_attributes: EntityAttributes
 

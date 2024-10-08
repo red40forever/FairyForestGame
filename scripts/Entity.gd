@@ -9,6 +9,7 @@ var home: Node
 var interactions_completed: int = 0
 var idle: bool = true
 var tween: Tween = null
+var carried_resources: int = 0
 
 signal return_home(resources_to_deposit: int, entity_reference_to_free: Node)
 
@@ -56,11 +57,26 @@ func set_attributes(new_attributes: EntityAttributes) -> void:
 func go_towards_home() -> void:
 	target = home.global_position
 
+# When tween is finished, entity has stopped moving.
 func _on_tween_finished():
-	# TODO determine whether entity *should* attempt to interact,
-	# i.e. whether the previous tween finished before setting a new target & new tween
-	# i.e. whether a freed tween emits the finished signal
-	# Im just gonna assume it doesn't lol
 	tween = null
 	
-	# TODO determine what type of target we're at, do stuff accordingly
+	# Determine what type of tile we've stopped at, do stuff accordingly
+	var mgr = GameManager.tilemap_manager
+	var map_coords = mgr.base_layer.local_to_map(self.position)
+	var objects = mgr.get_objects_at(map_coords)
+	# If valid object type, do stuff
+	for object in objects:
+		if object is HomeTile:
+			# If HomeTile contains the same type of entities as myself:
+			if object.entity_attributes == entity_attributes:
+				return_home.emit(carried_resources, self)
+				# This should delete the entity
+				return
+		try_interact_with_object(object)
+
+# Override this function in subclasses to add more behavior 
+# without removing what is specified above.
+# Don't forget to perform checks for action limit.
+func try_interact_with_object(object: GridObject):
+	pass
