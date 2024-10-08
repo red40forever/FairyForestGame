@@ -54,9 +54,10 @@ func go_towards_home() -> void:
 	target = home.global_position
 
 func _on_tween_finished():
-	# TODO determine what type of target we're at, do stuff accordingly
 	# TODO determine whether entity *should* attempt to interact,
 	# i.e. whether the previous tween finished before setting a new target & new tween
 	# i.e. whether a freed tween emits the finished signal
+	# Im just gonna assume it doesn't lol
 	tween = null
-	pass
+	
+	# TODO determine what type of target we're at, do stuff accordingly
