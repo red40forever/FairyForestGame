@@ -3,8 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_uwor8"]
 [ext_resource type="PackedScene" uid="uid://dxyty7gj8tajg" path="res://scenes/components/camera.tscn" id="2_wcy5h"]
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("camera")]
+[node name="Player" type="Node2D"]
 script = ExtResource("1_uwor8")
-camera = NodePath("")
 
 [node name="Camera2D" parent="." instance=ExtResource("2_wcy5h")]

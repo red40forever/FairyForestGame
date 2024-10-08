@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbqnl384ircos"]
+
+[ext_resource type="Script" path="res://scripts/audio_manager.gd" id="1_sjfl2"]
+
+[node name="AudioManager" type="FmodBankLoader"]
+bank_paths = ["res://addons/fairyforestaudio/Build/Desktop/Master.bank"]
+script = ExtResource("1_sjfl2")

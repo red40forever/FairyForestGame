@@ -16,3 +16,10 @@ mono_crash.*.json
 
 # Temporary files
 *.tmp
+
+# Fmod Ignores
+addons/fmod/*.dll
+addons/fmod/*.a
+addons/fmod/*.dylib
+addons/fmod/*.so
+!addons/fmod/libs/
