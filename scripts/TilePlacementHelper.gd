@@ -2,7 +2,6 @@ extends Node2D
 
 @export var tilemap_manager: TilemapManager
 @export var placement_indicator: Sprite2D
-@export var selected_object: GridObjectAttributes
 
 var last_grid_pos: Vector2i = Vector2i.ZERO
 
@@ -15,8 +14,8 @@ func _process(_delta):
 	last_grid_pos = tilemap_pos
 
 
-func place_at_coords(coordinates: Vector2i):
-	tilemap_manager.create_object_at_coords(selected_object, coordinates)
+func place_at_coords(grid_object_attributes: GridObjectAttributes, coordinates: Vector2i) -> GridObject:
+	return tilemap_manager.create_object_at_coords(grid_object_attributes, coordinates)
 
 
 func quantize_local_position(local_pos: Vector2):

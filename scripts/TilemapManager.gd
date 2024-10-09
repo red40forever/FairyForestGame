@@ -11,7 +11,7 @@ signal grid_object_created(grid_object: GridObject, coords: Vector2i)
 signal grid_object_deleted(grid_object: GridObject, coords: Vector2i)
 
 
-func create_object_at_coords(object_attributes: GridObjectAttributes, coords: Vector2i):
+func create_object_at_coords(object_attributes: GridObjectAttributes, coords: Vector2i) -> GridObject:
 	var grid_object = object_attributes.node.instantiate()
 	grid_object.grid_coordinates = coords
 	grid_object.global_position = ground_layer.map_to_local(coords)
