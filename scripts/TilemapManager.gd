@@ -7,6 +7,9 @@ extends Node
 
 var grid_objects: Array[GridObject] = []
 
+signal grid_object_created(grid_object: GridObject, coords: Vector2i)
+signal grid_object_deleted(grid_object: GridObject, coords: Vector2i)
+
 
 func create_object_at_coords(object_attributes: GridObjectAttributes, coords: Vector2i):
 	var grid_object = object_attributes.node.instantiate()
@@ -15,6 +18,9 @@ func create_object_at_coords(object_attributes: GridObjectAttributes, coords: Ve
 	grid_object_container.add_child(grid_object)
 	grid_objects.append(grid_object)
 	grid_object.tree_exiting.connect(_on_grid_object_deleted.bind(grid_object))
+	
+	grid_object_created.emit(grid_object, coords)
+	
 	return grid_object
 
 
@@ -28,3 +34,4 @@ func get_objects_at(coordinates: Vector2i):
 
 func _on_grid_object_deleted(grid_object: GridObject):
 	grid_objects.erase(grid_object)
+	grid_object_deleted.emit(grid_object, grid_object.grid_coordinates)
