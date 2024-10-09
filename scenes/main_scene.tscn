@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b573p5aulkgpe" path="res://scenes/components/tilemap.tscn" id="1_51j67"]
 [ext_resource type="PackedScene" uid="uid://cai78k8j65ea3" path="res://scenes/pause_menu.tscn" id="1_s6x6x"]
 [ext_resource type="PackedScene" uid="uid://b035nlib0i5rc" path="res://scenes/components/player.tscn" id="2_abeom"]
-[ext_resource type="Resource" path="res://objects/bee_obj.tres" id="3_471do"]
+[ext_resource type="Resource" uid="uid://bl65q2tthfpjv" path="res://objects/bee_obj.tres" id="3_471do"]
 
 [node name="MainScene" type="Node2D"]
 y_sort_enabled = true
