@@ -18,7 +18,7 @@ extends GridObject
 @export var current_entities: int = 0 # how many entities belong to this home
 
 func _ready() -> void:
-	GameManager.day_changed.connect(_on_day_changed())
+	GameManager.day_changed.connect(_on_day_changed)
 	# TODO connect any other needed signals
 	pass
 
