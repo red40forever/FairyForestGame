@@ -63,7 +63,7 @@ func _on_tween_finished():
 	
 	# Determine what type of tile we've stopped at, do stuff accordingly
 	var mgr = GameManager.tilemap_manager
-	var map_coords = mgr.base_layer.local_to_map(self.position)
+	var map_coords = mgr.ground_layer.local_to_map(self.position)
 	var objects = mgr.get_objects_at(map_coords)
 	# If valid object type, do stuff
 	for object in objects:
