@@ -22,11 +22,7 @@ func _process(delta: float) -> void:
 	if not idle:
 		if interactions_completed >= entity_attributes.max_interactions:
 			go_towards_home()
-	
-
-func _physics_process(delta: float) -> void:
-	if not idle:
-		pass
+		self.grid_coordinates = GameManager.tilemap_manager.ground_layer.local_to_map(self.position)
 
 # TODO how to receive a new target? signal? from where? from player input?
 func set_new_target(new_target: Vector2i):
