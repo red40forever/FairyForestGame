@@ -18,11 +18,11 @@ extends GridObject
 @export var current_entities: int = 0 # how many entities belong to this home
 
 func _ready() -> void:
-	GameManager.day_changed.connect(_on_day_changed)
+	GameManager.day_manager.day_changed.connect(_on_day_changed)
 	# TODO connect any other needed signals
 	pass
 
-func _on_day_changed():
+func _on_day_changed(_count):
 	# New entities created if possible
 	if current_products >= new_entity_cost:
 		var possible_new_entities: int = floor(current_products / new_entity_cost)

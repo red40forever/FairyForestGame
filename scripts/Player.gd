@@ -18,4 +18,4 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("debug_trigger"):
-		GameManager.day_changed.emit()
+		GameManager.day_cycle_manager.day_changed.emit()
