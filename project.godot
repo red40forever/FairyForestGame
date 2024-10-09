@@ -35,7 +35,6 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 [autoload]
 
 GameManager="*res://scripts/GameManager.gd"
-FmodManager="*res://addons/fmod/FmodManager.gd"
 FMODRuntime="*res://addons/FMOD/runtime/fmod_runtime_manager.gd"
 AudioManager="*res://scenes/components/audio_manager.tscn"
 

@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://c1yk8c7w55frc"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Overworld B"
+guid = "{d9fd9fc6-0421-403d-b531-1b131fd0f09e}"
+name = "Overworld B"

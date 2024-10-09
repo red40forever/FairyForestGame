@@ -1,8 +1,8 @@
-[gd_resource type="BankAsset" format=3 uid="uid://dr6aplfi0g0qi"]
+[gd_resource type="BankAsset" format=3 uid="uid://b2gmr7t4wfhol"]
 
 [resource]
 file_path = "res://addons/fairyforestaudio/Build/Desktop/Master.strings.bank"
-modified_time = 1728505045
+modified_time = 1728515490
 path = "bank:/Master.strings"
 guid = "{29ac7ed6-7efc-0409-2983-e3fa7057314b}"
 name = "Master.strings"
