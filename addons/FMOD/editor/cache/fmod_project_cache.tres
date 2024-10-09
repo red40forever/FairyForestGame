@@ -1,0 +1,67 @@
+[gd_resource type="ProjectCache" load_steps=7 format=3 uid="uid://cjvytjkxlgksa"]
+
+[ext_resource type="BankAsset" uid="uid://dtuhrrtco77o2" path="res://addons/FMOD/editor/resources/banks/{b1b15e02-0f87-484b-afca-690481a437d3}.tres" id="1_ej6so"]
+[ext_resource type="BankAsset" uid="uid://dr6aplfi0g0qi" path="res://addons/FMOD/editor/resources/banks/{29ac7ed6-7efc-0409-2983-e3fa7057314b}.tres" id="2_0gp5p"]
+[ext_resource type="BusAsset" uid="uid://cn2jncriik4vi" path="res://addons/FMOD/editor/resources/busses/{1ecdaa3d-ac80-4667-ae68-85b715be72bc}.tres" id="3_80cmp"]
+[ext_resource type="BusAsset" uid="uid://bdya4qscww0dv" path="res://addons/FMOD/editor/resources/busses/{4d181d97-4758-487e-a9fb-57aab45094e5}.tres" id="4_vjy4l"]
+[ext_resource type="EventAsset" uid="uid://cf4g5xwqv3uho" path="res://addons/FMOD/editor/resources/events/{dd4a22dd-c9bd-4f7e-8abc-6427a57f0be4}.tres" id="5_rksoi"]
+
+[sub_resource type="EventAsset" id="EventAsset_gbjuw"]
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/TestMusic2"
+guid = "{60c7c37d-22ac-4162-8ed8-e8f5896f0118}"
+name = "TestMusic2"
+
+[resource]
+banks = {
+"{29ac7ed6-7efc-0409-2983-e3fa7057314b}": ExtResource("2_0gp5p"),
+"{b1b15e02-0f87-484b-afca-690481a437d3}": ExtResource("1_ej6so")
+}
+events = {
+"{60c7c37d-22ac-4162-8ed8-e8f5896f0118}": SubResource("EventAsset_gbjuw"),
+"{dd4a22dd-c9bd-4f7e-8abc-6427a57f0be4}": ExtResource("5_rksoi")
+}
+busses = {
+"{1ecdaa3d-ac80-4667-ae68-85b715be72bc}": ExtResource("3_80cmp"),
+"{4d181d97-4758-487e-a9fb-57aab45094e5}": ExtResource("4_vjy4l")
+}
+bank_tree = [{
+"children": [],
+"item_type": 3,
+"node_name": "Master",
+"path": "bank:/Master",
+"resource": ExtResource("1_ej6so")
+}, {
+"children": [],
+"item_type": 3,
+"node_name": "Master.strings",
+"path": "bank:/Master.strings",
+"resource": ExtResource("2_0gp5p")
+}]
+event_tree = [{
+"children": [],
+"item_type": 1,
+"node_name": "MainMusic",
+"path": "event:/MainMusic",
+"resource": ExtResource("5_rksoi")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "TestMusic2",
+"path": "event:/TestMusic2",
+"resource": SubResource("EventAsset_gbjuw")
+}]
+bus_tree = [{
+"children": [{
+"children": [],
+"item_type": 4,
+"node_name": "Reverb",
+"path": "bus:/Reverb",
+"resource": ExtResource("4_vjy4l")
+}],
+"item_type": 4,
+"node_name": "bus:",
+"path": "bus:/",
+"resource": ExtResource("3_80cmp")
+}]

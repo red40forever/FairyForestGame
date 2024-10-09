@@ -1,0 +1,8 @@
+[gd_resource type="BankAsset" format=3 uid="uid://dtuhrrtco77o2"]
+
+[resource]
+file_path = "res://addons/fairyforestaudio/Build/Desktop/Master.bank"
+modified_time = 1728505045
+path = "bank:/Master"
+guid = "{b1b15e02-0f87-484b-afca-690481a437d3}"
+name = "Master"

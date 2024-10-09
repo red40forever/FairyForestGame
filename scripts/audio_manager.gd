@@ -1,23 +1,53 @@
-extends FmodBankLoader
+extends Node
 
-var music_emitter: MusicEmitter
-var i = 0
-var param = 1
+@export var overworldMusicEventA: EventAsset
+@export var overworldMusicEventB: EventAsset
+@export var DialogueMusicEventBee: EventAsset
+@export var DialogueMusicEventMole: EventAsset
+
+enum song {GAMEPLAY_A, GAMEPLAY_B, DIALOGUE_BEE, DIALOGUE_MOLE}
+
+var musicInstance: EventInstance
+
+var teststate = 0
+var time = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	music_emitter = MusicEmitter.new()
-	music_emitter.event_guid = "{dd4a22dd-c9bd-4f7e-8abc-6427a57f0be4}"
-	music_emitter.play()
-
+	print("audio 1")
+	play(song.GAMEPLAY_A)
+	teststate = 1
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if(i > 5):
-		i = 0
-		music_emitter.set_param("volume", -1)
-		print("swap")
-	else:
-		i += delta
+	time += delta
+	if(teststate == 1 and time > 3):
+		print("audio 2")
+		setParameter("volume", -1)
+		teststate = 2
+	if(teststate == 2	 and time > 6):
+		print("audio 3")
+		setParameter("volume", 1)
+		teststate = 3
+		
 
-func _exit_tree():
-	music_emitter.stop()
+func play(songName: song):
+	if(musicInstance != null):
+		musicInstance.stop(FMODStudioModule.FMOD_STUDIO_STOP_ALLOWFADEOUT)
+		musicInstance.release()
+	
+	match songName:
+		song.GAMEPLAY_A:
+			musicInstance = FMODRuntime.create_instance(overworldMusicEventA)
+		song.GAMEPLAY_B:
+			musicInstance = FMODRuntime.create_instance(overworldMusicEventB)
+		song.DIALOGUE_BEE:
+			musicInstance = FMODRuntime.create_instance(DialogueMusicEventBee)
+		song.DIALOGUE_MOLE:
+			musicInstance = FMODRuntime.create_instance(DialogueMusicEventMole)
+
+	musicInstance.start()
+	
+func setParameter(parameterName: String, value: Variant):
+	FMODStudioModule.get_studio_system().set_parameter_by_name(parameterName, value, false)
+	

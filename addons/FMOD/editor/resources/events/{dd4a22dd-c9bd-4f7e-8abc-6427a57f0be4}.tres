@@ -1,0 +1,29 @@
+[gd_resource type="EventAsset" load_steps=4 format=3 uid="uid://cf4g5xwqv3uho"]
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_qm4yy"]
+data1 = 92715083
+data2 = 1028680570
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_ui8mc"]
+name = "volume"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_qm4yy")
+minimum = -1.0
+maximum = 1.0
+default_value = 1.0
+guid = "{64cd67bc-2564-491c-8179-6a2869abef45}"
+
+[sub_resource type="ParameterAsset" id="ParameterAsset_h4lt4"]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_ui8mc")
+path = "parameter:/volume"
+guid = "{64cd67bc-2564-491c-8179-6a2869abef45}"
+name = "volume"
+
+[resource]
+min_distance = 1.0
+max_distance = 20.0
+parameters = {
+"{64cd67bc-2564-491c-8179-6a2869abef45}": SubResource("ParameterAsset_h4lt4")
+}
+path = "event:/MainMusic"
+guid = "{dd4a22dd-c9bd-4f7e-8abc-6427a57f0be4}"
+name = "MainMusic"
