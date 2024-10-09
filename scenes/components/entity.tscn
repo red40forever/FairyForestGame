@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://f0jw4rowgxdq"]
+[gd_scene load_steps=4 format=3 uid="uid://f0jw4rowgxdq"]
 
+[ext_resource type="Texture2D" uid="uid://sg7qy2g1mwot" path="res://textures/placeholder_tile.png" id="1_1cfwe"]
 [ext_resource type="Script" path="res://scripts/Entity.gd" id="1_13b8u"]
+[ext_resource type="Resource" uid="uid://lmpkq7p1bw1d" path="res://objects/bee_entity_attributes.tres" id="2_553av"]
 
-[node name="Entity" type="CharacterBody2D"]
+[node name="Entity" type="Sprite2D"]
+texture = ExtResource("1_1cfwe")
 script = ExtResource("1_13b8u")
+entity_attributes = ExtResource("2_553av")

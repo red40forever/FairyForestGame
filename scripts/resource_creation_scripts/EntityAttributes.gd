@@ -4,7 +4,6 @@ extends Resource
 @export_group("Basics")
 @export var id: String
 @export var name: String
-@export var texture: Texture2D
 
 @export_group("Movement")
 @export var speed: float

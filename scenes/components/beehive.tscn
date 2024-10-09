@@ -1,8 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5f5qimwanrq6"]
+[gd_scene load_steps=5 format=3 uid="uid://b5f5qimwanrq6"]
 
 [ext_resource type="Script" path="res://scripts/Beehive.gd" id="1_2lwvp"]
-[ext_resource type="Resource" uid="uid://dq4qq7qyex5gy" path="res://objects/obj_beehive.tres" id="2_an4as"]
+[ext_resource type="Texture2D" uid="uid://c38v2hhggcgem" path="res://textures/plant.png" id="1_acfgr"]
+[ext_resource type="Resource" uid="uid://bl65q2tthfpjv" path="res://objects/bee_obj.tres" id="3_wuey6"]
+[ext_resource type="Resource" uid="uid://lmpkq7p1bw1d" path="res://objects/bee_entity_attributes.tres" id="4_k5i7w"]
 
-[node name="Beehive" type="Node2D"]
+[node name="Beehive" type="Sprite2D"]
+texture = ExtResource("1_acfgr")
 script = ExtResource("1_2lwvp")
-grid_object_attributes = ExtResource("2_an4as")
+entity_grid_object_attributes = ExtResource("3_wuey6")
+entity_attributes = ExtResource("4_k5i7w")
+current_entities = 3

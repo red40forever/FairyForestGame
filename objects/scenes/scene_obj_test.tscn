@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjm2x1suw621h"]
+
+[ext_resource type="Texture2D" uid="uid://sg7qy2g1mwot" path="res://textures/placeholder_tile.png" id="1_pb145"]
+[ext_resource type="Script" path="res://scripts/GridObject.gd" id="2_ja3n0"]
+
+[node name="TestObject" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_pb145")
+script = ExtResource("2_ja3n0")
