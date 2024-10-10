@@ -33,12 +33,13 @@ func set_selected(new_selected: bool):
 	if !main_sprite:
 		return
 	
+	if selected:
+		main_sprite.material.set("shader_parameter/outline_color", Color.AQUA)
+	else:
+		main_sprite.material.set("shader_parameter/outline_color", Color.WHITE)
+	
 	if selection_button.is_hovered():
 		main_sprite.material.set("shader_parameter/enabled", true)
-		if selected:
-			main_sprite.material.set("shader_parameter/outline_color", Color.AQUA)
-		else:
-			main_sprite.material.set("shader_parameter/outline_color", Color.WHITE)
 	else:
 		main_sprite.material.set("shader_parameter/enabled", false)
 
