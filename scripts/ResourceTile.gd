@@ -15,6 +15,11 @@ func _on_day_changed():
 	for type in produced_resources:
 		slot.add_resource_overflow_safe(type, daily_production)
 
+# This is never called in this base class, because the conditions for
+# upgrading tiers varies per resource tile
+func upgrade_tier():
+	pass
+
 # Entities should call this function and pass in their Slot
 # to harvest resources from this tile.
 # Returns true if the interaction was successful and something happened, false otherwise

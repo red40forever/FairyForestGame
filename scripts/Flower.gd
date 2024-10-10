@@ -5,8 +5,8 @@ extends ResourceTile
 func supplemental_interaction_logic(incoming_slot: Slot) -> bool:
 	return false
 
-# TODO on day change
-func _try_upgrade_tier():
+# TODO already called on day change
+func upgrade_tier():
 	pass
 
 func get_class_name(): return "Flower"

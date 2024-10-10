@@ -3,6 +3,6 @@ extends ResourceTile
 
 func get_class_name(): return "Mushroom"
 
-# TODO on day change
-func _try_upgrade_tier():
+# TODO already called on day change
+func upgrade_tier():
 	pass
