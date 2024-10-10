@@ -39,13 +39,13 @@ func _input(event):
 			else:
 				is_dragging = false
 		elif event.button_index == MOUSE_BUTTON_LEFT:
-			# Place object on LMB release, not press
+			# Select tile on LMB release, not press
 			if event.is_pressed():
 				return
 			var tilemap_manager = GameManager.tilemap_manager
 			var global_pos = get_global_mouse_position()
 			var coords = tilemap_manager.ground_layer.local_to_map(global_pos)
-			tilemap_manager.placement_helper.place_at_coords(coords)
+			# TODO: Tile selection logic
 	elif event is InputEventMouseMotion and is_dragging:
 		offset -= event.relative / zoom
 

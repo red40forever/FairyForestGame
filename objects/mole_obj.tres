@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GridObjectAttributes" load_steps=3 format=3 uid="uid://b1i6dh5eisins"]
+
+[ext_resource type="Script" path="res://scripts/GridObjectAttributes.gd" id="1_h05yf"]
+[ext_resource type="PackedScene" uid="uid://d4i2j8ocgcn8d" path="res://scenes/components/mole.tscn" id="1_mfd6i"]
+
+[resource]
+script = ExtResource("1_h05yf")
+id = "mole"
+name = "Mole"
+node = ExtResource("1_mfd6i")

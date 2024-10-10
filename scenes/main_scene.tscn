@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bhcig4674vsg0"]
 
 [ext_resource type="PackedScene" uid="uid://b573p5aulkgpe" path="res://scenes/components/tilemap.tscn" id="1_51j67"]
-[ext_resource type="PackedScene" uid="uid://cai78k8j65ea3" path="res://scenes/pause_menu.tscn" id="1_s6x6x"]
 [ext_resource type="PackedScene" uid="uid://b035nlib0i5rc" path="res://scenes/components/player.tscn" id="2_abeom"]
-[ext_resource type="Resource" uid="uid://bl65q2tthfpjv" path="res://objects/bee_obj.tres" id="3_471do"]
-[ext_resource type="PackedScene" uid="uid://c0qwjcmhrskp2" path="res://scenes/components/day_cycle_manager.tscn" id="5_koqcr"]
+[ext_resource type="Resource" uid="uid://b1i6dh5eisins" path="res://objects/mole_obj.tres" id="3_dwkji"]
+[ext_resource type="PackedScene" uid="uid://wk1n06a5tvtk" path="res://scenes/ui.tscn" id="5_63ucx"]
+[ext_resource type="PackedScene" path="res://scenes/components/day_cycle_manager.tscn" id="5_koqcr"]
 
 [node name="MainScene" type="Node2D"]
 y_sort_enabled = true
@@ -14,11 +14,12 @@ unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("2_abeom")]
 unique_name_in_owner = true
-resource = ExtResource("3_471do")
+resource = ExtResource("3_dwkji")
 
 [node name="DayCycleManager" parent="." instance=ExtResource("5_koqcr")]
 unique_name_in_owner = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("1_s6x6x")]
+[node name="UI" parent="CanvasLayer" instance=ExtResource("5_63ucx")]
+unique_name_in_owner = true

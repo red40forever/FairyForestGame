@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 
 GameManager="*res://scripts/GameManager.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+UIManager="*res://scripts/UIManager.gd"
 
 [dialogic]
 
