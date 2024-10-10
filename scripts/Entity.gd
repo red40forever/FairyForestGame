@@ -71,14 +71,15 @@ func _on_tween_finished():
 	# If valid object type, do stuff
 	for object in objects:
 		if object is InteractableGridObject:
-			if interactions_completed < entity_attributes.max_interactions:
-				var inter = object.request_interaction(slot)
-				if inter:
-					interactions_completed += 1
-					break
+			var inter = try_interact_with_object(object)
+			if inter == true:
+				break
 
-# Override this function in subclasses to add more behavior 
-# without removing what is specified above.
-# Don't forget to perform checks for action limit.
-func try_interact_with_object(object: GridObject):
-	assert(false, "Subclasses must override try_interact_with_object(object: GridObject)")
+func try_interact_with_object(object: InteractableGridObject) -> bool:
+	if interactions_completed < entity_attributes.max_interactions:
+		var inter = object.request_interaction(slot)
+		if inter:
+			if object is not HomeTile:
+				interactions_completed += 1
+			return true
+	return false
