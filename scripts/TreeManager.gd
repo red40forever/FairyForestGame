@@ -6,10 +6,14 @@ extends Node2D
 	{ "honey": 3, "pollen": 12, "mushrooms": 8 }
 ]
 @export var stage = 0 
-@export var ending_stage = 2 # when the stage becommes this, the player wins
+@export var ending_stage = 2 # when the stage becomes this, the player wins
 var slot_honey = Slot
 var slot_pollen = Slot
 var slot_mushrooms = Slot
+
+signal stage_completed # emitted when any stage is completed
+signal stage_zero_completed
+signal stage_one_completed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
