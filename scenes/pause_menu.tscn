@@ -1,0 +1,145 @@
+[gd_scene load_steps=4 format=3 uid="uid://cai78k8j65ea3"]
+
+[ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="1_sanwq"]
+[ext_resource type="Texture2D" uid="uid://da063j1cubogk" path="res://textures/ui_white_panel_bg.png" id="1_wv40e"]
+[ext_resource type="FontFile" uid="uid://c42yu4n3i21fd" path="res://fonts/Retro Gaming.ttf" id="2_d0r6i"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sanwq")
+
+[node name="PausePanel" type="Control" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PausePanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_wv40e")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleText" type="Label" parent="PausePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_d0r6i")
+theme_override_font_sizes/font_size = 33
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PausePanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="SettingsButton" type="Button" parent="PausePanel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_d0r6i")
+theme_override_font_sizes/font_size = 22
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="PausePanel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_d0r6i")
+theme_override_font_sizes/font_size = 22
+text = "Quit
+"
+
+[node name="QuitConfirmPanel" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -60.0
+offset_right = 175.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="QuitConfirmPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_wv40e")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuitConfirmPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="TitleText" type="Label" parent="QuitConfirmPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_d0r6i")
+theme_override_font_sizes/font_size = 33
+text = "Are you sure?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="QuitConfirmPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="NoButton" type="Button" parent="QuitConfirmPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_d0r6i")
+theme_override_font_sizes/font_size = 22
+text = "No"
+
+[node name="YesButton" type="Button" parent="QuitConfirmPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_d0r6i")
+theme_override_font_sizes/font_size = 22
+text = "Yes"
+
+[connection signal="pressed" from="PausePanel/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="QuitConfirmPanel/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="QuitConfirmPanel/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]

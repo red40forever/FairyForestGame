@@ -1,31 +1,32 @@
 class_name Entity
 extends GridObject
 
-@export_group("Resources")
+@export_group("Attributes")
 @export var entity_attributes: EntityAttributes
 
-var target: Vector2
-var home: Node
+@export_group("Interactions")
+@export var carryable_resources: Array[Slot.ResourceType]
 var interactions_completed: int = 0
 var idle: bool = true
+var slot: Slot
+
+# Movement
+var target: Vector2
+var home: Node
 var tween: Tween = null
 
-signal return_home(resources_to_deposit: int, entity_reference_to_free: Node)
+signal return_home(entity_reference_to_free: Entity)
+#signal deposit_resources(resources_to_deposit: Slot)
 
 func _ready():
 	target = self.position
-	# TODO debug, remove later
-	set_new_target(Vector2i(5,5))
+	slot = Slot.new(carryable_resources)
 
 func _process(delta: float) -> void:
 	if not idle:
 		if interactions_completed >= entity_attributes.max_interactions:
 			go_towards_home()
-	
-
-func _physics_process(delta: float) -> void:
-	if not idle:
-		pass
+		self.grid_coordinates = GameManager.tilemap_manager.ground_layer.local_to_map(self.position)
 
 # TODO how to receive a new target? signal? from where? from player input?
 func set_new_target(new_target: Vector2i):
@@ -50,13 +51,36 @@ func set_new_target(new_target: Vector2i):
 func set_home(new_home: Node) -> void:
 	home = new_home
 
+func set_attributes(new_attributes: EntityAttributes) -> void:
+	entity_attributes = new_attributes
+
 func go_towards_home() -> void:
 	target = home.global_position
 
+# When tween is finished, entity has stopped moving.
 func _on_tween_finished():
-	# TODO determine what type of target we're at, do stuff accordingly
-	# TODO determine whether entity *should* attempt to interact,
-	# i.e. whether the previous tween finished before setting a new target & new tween
-	# i.e. whether a freed tween emits the finished signal
 	tween = null
-	pass
+	
+	# Determine what type of tile we've stopped at, do stuff accordingly
+	var mgr = GameManager.tilemap_manager
+	var map_coords = mgr.ground_layer.local_to_map(self.position)
+	var objects = mgr.get_objects_at(map_coords)
+	# If valid object type, do stuff
+	for object in objects:
+		if object is HomeTile:
+			# If HomeTile contains the same type of entities as myself:
+			if object.entity_attributes == entity_attributes:
+				if interactions_completed >= entity_attributes.max_interactions:
+					return_home.emit(self, slot)
+					# This should delete the entity
+					return
+				# TODO maybe logic here for:
+				# - changing home tile
+				# - taking out resources
+		try_interact_with_object(object)
+
+# Override this function in subclasses to add more behavior 
+# without removing what is specified above.
+# Don't forget to perform checks for action limit.
+func try_interact_with_object(object: GridObject):
+	assert(false, "Subclasses must override try_interact_with_object(object: GridObject)")
