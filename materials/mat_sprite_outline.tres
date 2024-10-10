@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://you2tiklg27t"]
+
+[ext_resource type="Shader" path="res://materials/shaders/shader_sprite_outline.gdshader" id="1_ip8d5"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_ip8d5")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/enabled = false

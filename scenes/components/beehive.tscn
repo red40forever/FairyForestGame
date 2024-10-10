@@ -1,13 +1,25 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5f5qimwanrq6"]
 
 [ext_resource type="Script" path="res://scripts/Beehive.gd" id="1_2lwvp"]
-[ext_resource type="Texture2D" uid="uid://c38v2hhggcgem" path="res://textures/plant.png" id="1_acfgr"]
-[ext_resource type="Resource" uid="uid://bl65q2tthfpjv" path="res://objects/bee_obj.tres" id="3_wuey6"]
-[ext_resource type="Resource" uid="uid://lmpkq7p1bw1d" path="res://objects/bee_entity_attributes.tres" id="4_k5i7w"]
+[ext_resource type="Material" uid="uid://you2tiklg27t" path="res://materials/mat_sprite_outline.tres" id="2_b60kh"]
+[ext_resource type="Texture2D" uid="uid://cxu0gdd5hr8gn" path="res://textures/obj_beehive.png" id="2_j27ht"]
 
-[node name="Beehive" type="Sprite2D"]
-texture = ExtResource("1_acfgr")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijh2h"]
+size = Vector2(25, 35)
+
+[node name="Beehive" type="Node2D" node_paths=PackedStringArray("main_sprite", "hover_area")]
+texture_filter = 1
 script = ExtResource("1_2lwvp")
-entity_grid_object_attributes = ExtResource("3_wuey6")
-entity_attributes = ExtResource("4_k5i7w")
-resource_type = 1
+main_sprite = NodePath("Beehive")
+hover_area = NodePath("HoverArea")
+
+[node name="Beehive" type="Sprite2D" parent="."]
+material = ExtResource("2_b60kh")
+position = Vector2(3, -10)
+texture = ExtResource("2_j27ht")
+
+[node name="HoverArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+position = Vector2(-2.5, -10.5)
+shape = SubResource("RectangleShape2D_ijh2h")

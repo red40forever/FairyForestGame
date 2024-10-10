@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhcig4674vsg0"]
+[gd_scene load_steps=5 format=3 uid="uid://bhcig4674vsg0"]
 
 [ext_resource type="PackedScene" uid="uid://b573p5aulkgpe" path="res://scenes/components/tilemap.tscn" id="1_51j67"]
 [ext_resource type="PackedScene" uid="uid://b035nlib0i5rc" path="res://scenes/components/player.tscn" id="2_abeom"]
-[ext_resource type="Resource" uid="uid://b1i6dh5eisins" path="res://objects/mole_obj.tres" id="3_dwkji"]
 [ext_resource type="PackedScene" uid="uid://wk1n06a5tvtk" path="res://scenes/ui.tscn" id="5_63ucx"]
 [ext_resource type="PackedScene" path="res://scenes/components/day_cycle_manager.tscn" id="5_koqcr"]
 
@@ -14,7 +13,6 @@ unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("2_abeom")]
 unique_name_in_owner = true
-resource = ExtResource("3_dwkji")
 
 [node name="DayCycleManager" parent="." instance=ExtResource("5_koqcr")]
 unique_name_in_owner = true

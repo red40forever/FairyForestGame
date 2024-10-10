@@ -1,24 +1,79 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4i2j8ocgcn8d"]
+[gd_scene load_steps=12 format=3 uid="uid://d4i2j8ocgcn8d"]
 
+[ext_resource type="Material" uid="uid://you2tiklg27t" path="res://materials/mat_sprite_outline.tres" id="1_4km2t"]
 [ext_resource type="Script" path="res://scripts/Mole.gd" id="1_tecxf"]
 [ext_resource type="Texture2D" uid="uid://cq7p871s5t4l3" path="res://textures/entity_mole.png" id="1_uhyer"]
-[ext_resource type="Resource" uid="uid://bmey24531lhmm" path="res://objects/mole_entity_attributes.tres" id="2_4ethu"]
-[ext_resource type="Script" path="res://scripts/MoleAnimation.gd" id="2_kwa1v"]
+[ext_resource type="Resource" uid="uid://cl2tnst61vqop" path="res://objects/mole_entity_attributes.tres" id="2_7r4el"]
+[ext_resource type="Texture2D" uid="uid://e6omutuh30c5" path="res://textures/entity_mole_shadow.png" id="4_e2j8e"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mqnyk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktxgq"]
 atlas = ExtResource("1_uhyer")
+region = Rect2(0, 0, 64, 64)
 
-[node name="Mole" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_b61li"]
+atlas = ExtResource("1_uhyer")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6gnw"]
+atlas = ExtResource("1_uhyer")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uwkj"]
+atlas = ExtResource("1_uhyer")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f78c7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktxgq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b61li")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6gnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uwkj")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pky1j"]
+size = Vector2(32, 16)
+
+[node name="Mole" type="Node2D" node_paths=PackedStringArray("main_sprite", "hover_area")]
+texture_filter = 1
 script = ExtResource("1_tecxf")
-entity_attributes = ExtResource("2_4ethu")
+entity_attributes = ExtResource("2_7r4el")
 carryable_resources = Array[int]([2])
+main_sprite = NodePath("AnimatedSprite2D")
+hover_area = NodePath("HoverArea")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-texture = SubResource("AtlasTexture_mqnyk")
-hframes = 3
-script = ExtResource("2_kwa1v")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = ExtResource("1_4km2t")
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_f78c7")
+animation = &"walk"
+frame = 2
+frame_progress = 0.308294
 
-[node name="Timer" type="Timer" parent="Sprite2D"]
-unique_name_in_owner = true
-wait_time = 0.25
+[node name="Shadow" type="Sprite2D" parent="AnimatedSprite2D"]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(0, 4)
+texture = ExtResource("4_e2j8e")
+
+[node name="HoverArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+position = Vector2(3, -3)
+shape = SubResource("RectangleShape2D_pky1j")
