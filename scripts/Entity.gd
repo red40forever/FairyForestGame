@@ -7,6 +7,7 @@ extends GridObject
 @export_group("Interactions")
 @export var carryable_resources: Array[Slot.ResourceType]
 @export var max_storage: int = 1
+@export var effortless_tiles: Array[InteractableGridObject]
 
 var interactions_completed: int = 0
 var idle: bool = true
