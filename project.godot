@@ -23,10 +23,15 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 directories/dch_directory={
 "BeeFairy": "res://addons/dialogic/Characters/BeeFairy.dch",
-"Narrator": "res://addons/dialogic/Characters/Narrator.dch"
+"Narrator": "res://addons/dialogic/Characters/Narrator.dch",
+"UnknownChars": "res://addons/dialogic/Characters/UnknownChars.dch"
 }
 directories/dtl_directory={
+"2HoneyInHive": "res://addons/dialogic/Timelines/2HoneyInHive.dtl",
 "BeeFairy1": "res://addons/dialogic/Timelines/BeeFairy1.dtl",
+"BeeFairy2": "res://addons/dialogic/Timelines/BeeFairy2.dtl",
+"BeeFairy3": "res://addons/dialogic/Timelines/BeeFairy3.dtl",
+"BeeFairy4": "res://addons/dialogic/Timelines/BeeFairy4.dtl",
 "IntroDialogue": "res://addons/dialogic/Timelines/IntroDialogue.dtl"
 }
 extensions_folder="res://addons/dialogic_additions"
