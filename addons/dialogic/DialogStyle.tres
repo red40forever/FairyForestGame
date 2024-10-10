@@ -30,7 +30,11 @@ overrides = {}
 script = ExtResource("1_jlmy8")
 scene = ExtResource("5_xs0m1")
 overrides = {
-"box_size": "Vector2(750, 150)"
+"box_size": "Vector2(750, 150)",
+"normal_font": "\"res://fonts/ChevyRay - Softsquare Wide.ttf\"",
+"text_size": "20.0",
+"text_use_global_font": "false",
+"text_use_global_size": "false"
 }
 
 [sub_resource type="Resource" id="Resource_3842y"]
