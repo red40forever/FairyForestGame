@@ -1,3 +1,4 @@
+## NOTE: This class is for Godot asset resources. See Slot for in-game resources.
 class_name Resources
 
 static var resources: Dictionary = {

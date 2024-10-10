@@ -1,5 +1,5 @@
 class_name GridObject
-extends Sprite2D
+extends Node2D
 
 #@export var attributes: GridObjectAttributes
 

@@ -3,7 +3,7 @@ extends Node
 
 @export var ground_layer: TileMapLayer
 @export var grid_object_container: Node2D
-@export var placement_helper: Node2D
+@export var placement_helper: TilePlacementHelper
 
 var grid_objects: Array[GridObject] = []
 
