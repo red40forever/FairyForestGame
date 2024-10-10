@@ -67,7 +67,7 @@ func set_new_target(new_target: Vector2i):
 	tween.finished.connect(_on_tween_finished)
 	
 	# Visual flip depending on direction
-	if new_target.x <= grid_coordinates.x:
+	if target.x <= position.x:
 		main_sprite.flip_h = true
 	else:
 		main_sprite.flip_h = false
