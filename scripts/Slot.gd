@@ -2,7 +2,9 @@ class_name Slot
 
 enum ResourceType {
 	HONEY,
-	POLLEN
+	POLLEN,
+	MUSHROOM,
+	NULL
 }
 
 var accepted_types: Array[ResourceType]
