@@ -1,5 +1,5 @@
 class_name HomeTile
-extends GridObject
+extends InteractableGridObject
 
 @export_group("Type Assignments")
 @export var entity_grid_object_attributes: GridObjectAttributes
@@ -85,3 +85,6 @@ func _on_entity_returned_home(incoming_entity: Entity, incoming_resources: Slot)
 	_on_resources_received(incoming_resources)
 	# Remove entity from the scene tree
 	incoming_entity.queue_free()
+
+func request_interaction(slot: Slot) -> bool:
+	return false # TODO

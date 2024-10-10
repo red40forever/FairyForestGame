@@ -1,5 +1,5 @@
 class_name ResourceTile
-extends GridObject
+extends InteractableGridObject
 
 @export_group("Production")
 @export var produced_resources: Array[Slot.ResourceType]
