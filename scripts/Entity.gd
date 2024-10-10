@@ -18,7 +18,7 @@ var slot: Slot
 
 # Movement
 var target: Vector2
-var home: Node
+var home: HomeTile
 var tween: Tween = null
 
 signal return_home(entity_reference_to_free: Entity)
@@ -40,12 +40,11 @@ func _ready():
 func _process(delta: float) -> void:
 	if not idle:
 		if interactions_completed >= entity_attributes.max_interactions:
-			go_towards_home()
+			set_new_target(home.grid_coordinates)
 		self.grid_coordinates = GameManager.tilemap_manager.ground_layer.local_to_map(self.position)
 
-# TODO how to receive a new target? signal? from where? from player input?
+
 func set_new_target(new_target: Vector2i):
-	# TODO sprite faces direction of movement
 	idle = false
 	# convert tilemap coords into world coords
 	target = GameManager.tilemap_manager.ground_layer.map_to_local(new_target)
@@ -77,9 +76,6 @@ func set_home(new_home: Node) -> void:
 
 func set_attributes(new_attributes: EntityAttributes) -> void:
 	entity_attributes = new_attributes
-
-func go_towards_home() -> void:
-	target = home.position
 
 # When tween is finished, entity has stopped moving.
 func _on_tween_finished():
