@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://nsxlh2a4ul3n"]
+[gd_scene load_steps=6 format=3 uid="uid://nsxlh2a4ul3n"]
 
 [ext_resource type="Texture2D" uid="uid://4blcvs3gv4cn" path="res://textures/entity_bee.png" id="1_wvaxq"]
 [ext_resource type="Script" path="res://scripts/Bee.gd" id="1_xtxqw"]
+[ext_resource type="Resource" uid="uid://lmpkq7p1bw1d" path="res://objects/bee_entity_attributes.tres" id="2_788e3"]
 [ext_resource type="Texture2D" uid="uid://5bsw7fxff3f0" path="res://textures/entity_bee_shadow.png" id="3_ixp5y"]
 [ext_resource type="Script" path="res://scripts/BeeAnimation.gd" id="4_kbffd"]
 
 [node name="Bee" type="Node2D"]
 script = ExtResource("1_xtxqw")
+entity_attributes = ExtResource("2_788e3")
+carryable_resources = Array[int]([0, 1, 3])
 
 [node name="Shadow" type="Sprite2D" parent="."]
 show_behind_parent = true

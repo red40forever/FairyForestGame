@@ -4,6 +4,7 @@ enum ResourceType {
 	HONEY,
 	POLLEN,
 	MUSHROOM,
+	SPORE,
 	NULL
 }
 
