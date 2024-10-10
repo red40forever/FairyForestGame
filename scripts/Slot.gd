@@ -55,6 +55,23 @@ func set_resource_count(resource_type: ResourceType, count: int):
 	
 	resource_count_updated.emit(resource_type, old_count, count)
 
+# Function attempts to add as many resources from count as it can,
+# and returns any amount that was unable to be added if it overflows,
+# instead of throwing an error.
+func add_resource_overflow_safe(resource_type: ResourceType, count: int) -> int:
+	assert(count > 0, "Count must be positive.")
+	assert(stored_resources.has(resource_type), "Slot cannot take this ResourceType.")
+	
+	var overflow = max(0, (total_resource_count + count) - max_count)
+	var to_add = 0
+	if overflow > 0:
+		to_add = max_count - total_resource_count
+	else:
+		to_add = count
+	
+	add_resource(resource_type, to_add)
+	
+	return overflow
 
 func get_resource_count(resource_type: ResourceType):
 	return stored_resources.get(resource_type, 0)
