@@ -29,3 +29,8 @@ func request_interaction(incoming_slot: Slot) -> bool:
 			if exchange > 0:
 				return true
 	return false # If no exchange ever occurred
+
+# Subclasses can override to provide more logic, 
+# such as upgrading tiers
+func supplemental_interaction_logic(incoming_slot: Slot) -> bool:
+	return false

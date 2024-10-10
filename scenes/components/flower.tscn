@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://db4dyxufox63w"]
+
+[ext_resource type="Script" path="res://scripts/Flower.gd" id="1_riqdc"]
+
+[node name="Flower" type="Sprite2D"]
+script = ExtResource("1_riqdc")
+produced_resources = Array[int]([1])
