@@ -19,6 +19,10 @@ func request_interaction(incoming_slot: Slot) -> bool:
 	# If the interactor can receive something that I produce,
 	for type in incoming_slot.accepted_types:
 		if slot.accepted_types.has(type):
-			pass #TODO
-			# Attempt to give resource
-	return false # TODO
+			# Attempt to give it
+			var overflow = incoming_slot.add_resource_overflow_safe(type, slot.get_resource_count(type))
+			var exchange = slot.get_resource_count(type) - overflow
+			slot.remove_resource(type, exchange)
+			if exchange > 0:
+				return true
+	return false # If no exchange ever occurred
