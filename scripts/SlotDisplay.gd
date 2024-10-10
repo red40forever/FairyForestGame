@@ -4,23 +4,15 @@ var displayed_slot: Slot
 
 var horizontal_containers = { }
 
-var open: bool = false
+var open: bool = true
 var animating: bool = false
 var original_position: Vector2
 
+signal resource_clicked(resource: Slot.ResourceType)
 signal animation_finished(open: bool)
 
 
 func _ready():
-	# Testing
-	var accepted_types: Array[Slot.ResourceType] = [
-		Slot.ResourceType.HONEY,
-		Slot.ResourceType.POLLEN
-	]
-	displayed_slot = Slot.new(accepted_types, 5)
-	displayed_slot.add_resource(Slot.ResourceType.HONEY, 3)
-	displayed_slot.add_resource(Slot.ResourceType.POLLEN, 2)
-	
 	displayed_slot.resource_count_updated.connect(_on_slot_resource_count_updated)
 	
 	# For open/close animation
@@ -36,8 +28,8 @@ func _ready():
 		
 		var resource_count = displayed_slot.stored_resources[resource]
 		for i in range(resource_count):
-			var resource_sprite = _create_resource_icon(resource)
-			horizontal_container.add_child(resource_sprite)
+			var button = _create_resource_button(resource)
+			horizontal_container.add_child(button)
 
 
 func _process(_delta):
@@ -83,10 +75,10 @@ func animate_display_close():
 
 
 func _add_resource_icons(resource: Slot.ResourceType, count: int):
-	var sprite = _create_resource_icon(resource)
+	var button = _create_resource_button(resource)
 	var horizontal_container: HBoxContainer = horizontal_containers[resource]
 	for i in range(count):
-		horizontal_containers[resource].add_child(sprite)
+		horizontal_containers[resource].add_child(button)
 	
 	horizontal_container.visible = true
 
@@ -110,10 +102,14 @@ func _on_slot_resource_count_updated(resource: Slot.ResourceType, old_count: int
 		_remove_resource_icons(resource, abs(count_change))
 
 
-func _create_resource_icon(resource: Slot.ResourceType) -> TextureRect:
-	var resource_sprite = TextureRect.new()
-	var sprites = Resources.find("ui_resource_sprites")
-	resource_sprite.texture = sprites[resource]
-	resource_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+func _on_resource_button_pressed(resource: Slot.ResourceType):
+	resource_clicked.emit(resource)
+
+
+func _create_resource_button(resource: Slot.ResourceType, should_use_pressed_signal: bool = true) -> Button:
+	var button = ResourceButton.new(resource)
 	
-	return resource_sprite
+	if should_use_pressed_signal:
+		button.pressed.connect(_on_resource_button_pressed.bind(resource))
+	
+	return button
