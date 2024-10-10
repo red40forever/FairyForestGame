@@ -6,11 +6,11 @@
 "custom_info": {
 "sound_mood_default": "",
 "sound_moods": {},
-"style": "DialogStyle"
+"style": ""
 },
 "default_portrait": "",
-"description": "The narrator",
-"display_name": "Narrator",
+"description": "",
+"display_name": "???",
 "mirror": false,
 "nicknames": [""],
 "offset": Vector2(0, 0),
