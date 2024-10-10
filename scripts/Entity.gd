@@ -62,6 +62,7 @@ func set_new_target(new_target: Vector2i):
 	var distance = (target - position).length()
 	tween = get_tree().create_tween()
 	var tween_duration = distance / entity_attributes.speed
+	tween.set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(self, "position", target, tween_duration)
 	tween.finished.connect(_on_tween_finished)
 	
@@ -71,7 +72,7 @@ func set_new_target(new_target: Vector2i):
 	else:
 		main_sprite.flip_h = false
 
-func set_home(new_home: Node) -> void:
+func set_home(new_home: HomeTile) -> void:
 	home = new_home
 
 func set_attributes(new_attributes: EntityAttributes) -> void:

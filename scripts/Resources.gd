@@ -6,6 +6,7 @@ static var resources: Dictionary = {
 		"bee": preload("res://objects/bee_obj.tres"),
 		"mole": preload("res://objects/mole_obj.tres"),
 		"beehive": preload("res://objects/beehive_obj.tres"),
+		"mole_hill": preload("res://objects/mole_hill_obj.tres"),
 		"item_pile": preload("res://objects/item_pile_obj.tres")
 	},
 	"ui_resource_sprites": {

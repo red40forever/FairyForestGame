@@ -27,15 +27,11 @@ func _ready():
 	camera.tile_clicked.connect(_on_tile_clicked)
 	
 	# debug
-	var item_pile_res = Resources.find("objects")["item_pile"]
-	var mole_res = Resources.find("objects")["mole"]
-	var bee_res = Resources.find("objects")["bee"]
+	var mole_hill_res = Resources.find("objects")["mole_hill"]
 	
-	var item_pile: ItemPile = GameManager.tilemap_manager.create_object_at_coords(item_pile_res, Vector2i(4, 4))
-	var mole: Mole = GameManager.tilemap_manager.create_object_at_coords(mole_res, Vector2i(5, 5))
-	var bee: Bee = GameManager.tilemap_manager.create_object_at_coords(bee_res, Vector2i(5, 6))
+	var mole_hill: MoleHill = GameManager.tilemap_manager.create_object_at_coords(mole_hill_res, Vector2i(5, 6))
 	
-	item_pile.deposit(Slot.ResourceType.HONEY, 2)
+	#item_pile.deposit(Slot.ResourceType.HONEY, 2)
 
 
 func _on_tile_clicked(coordinates: Vector2i):
