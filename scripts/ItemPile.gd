@@ -1,5 +1,5 @@
 class_name ItemPile
-extends GridObject
+extends InteractableGridObject
 
 var slot: Slot
 
@@ -72,3 +72,12 @@ func _update_displayed_resources():
 				rng.randi_range(-item_display_spread.x, item_display_spread.x),
 				rng.randi_range(-item_display_spread.y, item_display_spread.y)
 			)
+
+func request_interaction(incoming_slot: Slot) -> bool:
+	for type in incoming_slot.accepted_types:
+		var overflow = slot.add_resource_overflow_safe(type, incoming_slot.get_resource_count(type))
+		var exchange = slot.get_resource_count(type) - overflow
+		slot.remove_resource(type, exchange)
+		if exchange > 0:
+			return true
+	return false
