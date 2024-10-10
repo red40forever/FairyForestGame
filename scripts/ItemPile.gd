@@ -75,7 +75,10 @@ func _update_displayed_resources():
 
 func request_interaction(incoming_slot: Slot) -> bool:
 	for type in incoming_slot.accepted_types:
-		var overflow = slot.add_resource_overflow_safe(type, incoming_slot.get_resource_count(type))
+		var resource_count = incoming_slot.get_resource_count(type)
+		if resource_count == 0:
+			continue
+		var overflow = slot.add_resource_overflow_safe(type, resource_count)
 		var exchange = slot.get_resource_count(type) - overflow
 		slot.remove_resource(type, exchange)
 		if exchange > 0:

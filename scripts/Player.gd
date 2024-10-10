@@ -1,21 +1,18 @@
+class_name Player
 extends Node2D
 
 @export var camera: PanCamera
-@export var resource: GridObjectAttributes
 
-var inventory: Slot # Slot usage example
+var selected_object: GridObject
+
 
 func _ready():
-	# Slot usage example:
-	var accepted_resources: Array[Slot.ResourceType] = [
-		Slot.ResourceType.HONEY,
-		Slot.ResourceType.POLLEN
-	]
-	inventory = Slot.new(accepted_resources, 20)
-	
 	# debug
-	GameManager.tilemap_manager.create_object_at_coords(resource, Vector2i(5,5))
-
-func _process(delta):
-	if Input.is_action_just_pressed("debug_trigger"):
-		GameManager.day_cycle_manager.day_changed.emit()
+	var item_pile_res = Resources.find("objects")["item_pile"]
+	var mole_res = Resources.find("objects")["mole"]
+	
+	var item_pile: ItemPile = GameManager.tilemap_manager.create_object_at_coords(item_pile_res, Vector2i(4, 4))
+	var mole1: Mole = GameManager.tilemap_manager.create_object_at_coords(mole_res, Vector2i(5, 5))
+	var mole2: Mole = GameManager.tilemap_manager.create_object_at_coords(mole_res, Vector2i(5, 6))
+	
+	item_pile.deposit(Slot.ResourceType.HONEY, 2)

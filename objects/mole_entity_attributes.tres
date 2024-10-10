@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EntityAttributes" load_steps=2 format=3 uid="uid://cl2tnst61vqop"]
+
+[ext_resource type="Script" path="res://scripts/resource_creation_scripts/EntityAttributes.gd" id="1_0aevc"]
+
+[resource]
+script = ExtResource("1_0aevc")
+id = "mole"
+name = "Mole"
+speed = 25.0
+accel = 7.0
+max_interactions = 1

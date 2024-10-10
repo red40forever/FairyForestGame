@@ -7,6 +7,7 @@ extends GridObject
 @export_group("Interactions")
 @export var carryable_resources: Array[Slot.ResourceType]
 @export var max_storage: int = 1
+
 var interactions_completed: int = 0
 var idle: bool = true
 var slot: Slot
@@ -20,7 +21,10 @@ signal return_home(entity_reference_to_free: Entity)
 #signal deposit_resources(resources_to_deposit: Slot)
 
 func _ready():
+	super()
+	
 	target = self.position
+	
 	slot = Slot.new(carryable_resources, max_storage)
 
 func _process(delta: float) -> void:
@@ -46,10 +50,17 @@ func set_new_target(new_target: Vector2i):
 		tween.kill()
 		
 	# Create and set up the new tween
+	var distance = (target - position).length()
 	tween = get_tree().create_tween()
-	var tween_duration = 10 # TODO determine duration based on speed and distance
-	tween.tween_property(self, "global_position", target, tween_duration)
+	var tween_duration = distance / entity_attributes.speed
+	tween.tween_property(self, "position", target, tween_duration)
 	tween.finished.connect(_on_tween_finished)
+	
+	# Visual flip depending on direction
+	if new_target.x <= grid_coordinates.x:
+		main_sprite.flip_h = true
+	else:
+		main_sprite.flip_h = false
 
 func set_home(new_home: Node) -> void:
 	home = new_home
@@ -58,7 +69,7 @@ func set_attributes(new_attributes: EntityAttributes) -> void:
 	entity_attributes = new_attributes
 
 func go_towards_home() -> void:
-	target = home.global_position
+	target = home.position
 
 # When tween is finished, entity has stopped moving.
 func _on_tween_finished():
