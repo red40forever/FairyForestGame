@@ -4,6 +4,10 @@ extends Node2D
 var day_count: int = 0
 
 signal day_changed(day_count: int)
+signal day_ending()
+
+func end_day():
+	day_ending.emit()
 
 func change_day():
 	day_count += 1
