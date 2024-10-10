@@ -1,17 +1,24 @@
 class_name Entity
 extends GridObject
 
-@export_group("Resources")
+@export_group("Attributes")
 @export var entity_attributes: EntityAttributes
 
+@export_group("Interactions")
+@export var interactable_resources: Array[Slot.ResourceType]
+
+# Movement
 var target: Vector2
 var home: Node
+var tween: Tween = null
+
+# Interactions
 var interactions_completed: int = 0
 var idle: bool = true
-var tween: Tween = null
-var carried_resources: int = 0
+var slot: Slot
 
-signal return_home(resources_to_deposit: int, entity_reference_to_free: Node)
+signal return_home(entity_reference_to_free: Entity)
+#signal deposit_resources(resources_to_deposit: Slot)
 
 func _ready():
 	target = self.position
@@ -67,7 +74,7 @@ func _on_tween_finished():
 			# If HomeTile contains the same type of entities as myself:
 			if object.entity_attributes == entity_attributes:
 				if interactions_completed >= entity_attributes.max_interactions:
-					return_home.emit(carried_resources, self)
+					return_home.emit(self, slot)
 					# This should delete the entity
 					return
 				# TODO maybe logic here for:

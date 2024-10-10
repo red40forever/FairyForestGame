@@ -81,6 +81,7 @@ func _on_resources_received(incoming_resources: Slot):
 			incoming_resources.remove_resource(type, change)
 	
 
-func _on_entity_returned_home(incoming_entity: Entity):
+func _on_entity_returned_home(incoming_entity: Entity, incoming_resources: Slot):
+	_on_resources_received(incoming_resources)
 	# Remove entity from the scene tree
 	incoming_entity.queue_free()
