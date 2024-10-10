@@ -87,4 +87,7 @@ func _on_entity_returned_home(incoming_entity: Entity, incoming_resources: Slot)
 	incoming_entity.queue_free()
 
 func request_interaction(slot: Slot) -> bool:
+	# RAAAAAAARGH HOW TO TAKE SPECIFIC RESOURCE?
+	# store enum here and update said enum when player input,
+	# then only exchange that type?????????
 	return false # TODO
