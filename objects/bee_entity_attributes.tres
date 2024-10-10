@@ -9,5 +9,3 @@ name = "Bee"
 speed = 300.0
 accel = 7.0
 max_interactions = 1
-valid_resource_type = 0
-valid_home_type = 0

@@ -19,10 +19,12 @@ extends InteractableGridObject
 @export var current_entities: int = 0 # how many entities belong to this home
 
 var slot: Slot
+var selected_withdraw_type: Slot.ResourceType
 
 func _ready() -> void:
 	GameManager.day_manager.day_changed.connect(_on_day_changed)
 	initialize_slot()
+	selected_withdraw_type = product_type
 	# TODO connect any other needed signals
 
 func initialize_slot():

@@ -1,3 +1,4 @@
+class_name SlotDisplay
 extends Control
 
 var displayed_slot: Slot
