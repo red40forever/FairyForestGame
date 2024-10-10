@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@export var bob_height: int = 10
+@export var bob_height: int = 4
 
 
 func _ready():

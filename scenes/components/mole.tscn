@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://d4i2j8ocgcn8d"]
+[gd_scene load_steps=13 format=3 uid="uid://d4i2j8ocgcn8d"]
 
 [ext_resource type="Material" uid="uid://you2tiklg27t" path="res://materials/mat_sprite_outline.tres" id="1_4km2t"]
 [ext_resource type="Script" path="res://scripts/Mole.gd" id="1_tecxf"]
 [ext_resource type="Texture2D" uid="uid://cq7p871s5t4l3" path="res://textures/entity_mole.png" id="1_uhyer"]
 [ext_resource type="Resource" uid="uid://cl2tnst61vqop" path="res://objects/mole_entity_attributes.tres" id="2_7r4el"]
 [ext_resource type="Texture2D" uid="uid://e6omutuh30c5" path="res://textures/entity_mole_shadow.png" id="4_e2j8e"]
+[ext_resource type="PackedScene" uid="uid://c7hgnu1uoo1um" path="res://scenes/components/slot_display.tscn" id="6_u7308"]
+[ext_resource type="PackedScene" uid="uid://dcktwik0sg56c" path="res://scenes/components/selection_button.tscn" id="6_wjpq5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ktxgq"]
 atlas = ExtResource("1_uhyer")
@@ -47,20 +49,18 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pky1j"]
-size = Vector2(32, 16)
-
-[node name="Mole" type="Node2D" node_paths=PackedStringArray("main_sprite", "hover_area")]
+[node name="Mole" type="Node2D" node_paths=PackedStringArray("slot_display", "main_sprite", "selection_button")]
 texture_filter = 1
 script = ExtResource("1_tecxf")
 entity_attributes = ExtResource("2_7r4el")
 carryable_resources = Array[int]([2])
+slot_display = NodePath("SlotDisplay")
 main_sprite = NodePath("AnimatedSprite2D")
-hover_area = NodePath("HoverArea")
+selection_button = NodePath("SelectionButton")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = ExtResource("1_4km2t")
-position = Vector2(0, -11)
+position = Vector2(-3, -11)
 sprite_frames = SubResource("SpriteFrames_f78c7")
 animation = &"walk"
 frame = 2
@@ -72,8 +72,13 @@ texture_filter = 1
 position = Vector2(0, 4)
 texture = ExtResource("4_e2j8e")
 
-[node name="HoverArea" type="Area2D" parent="."]
+[node name="SelectionButton" parent="." instance=ExtResource("6_wjpq5")]
+offset_left = -13.0
+offset_top = -11.0
+offset_right = 15.0
+offset_bottom = 5.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
-position = Vector2(3, -3)
-shape = SubResource("RectangleShape2D_pky1j")
+[node name="SlotDisplay" parent="." instance=ExtResource("6_u7308")]
+anchors_preset = 0
+offset_top = -19.0
+offset_bottom = -12.0

@@ -1,22 +1,21 @@
 class_name ItemPile
-extends InteractableGridObject
-
-var slot: Slot
+extends HomeTile
 
 const max_ground_items: int = 2
 const item_display_spread: Vector2 = Vector2(10, 6)
 
-
 func _ready() -> void:
+	super()
+	
 	# Item pile accepts all resource types
 	var accepted_types: Array[Slot.ResourceType]
 	for resource_type in Slot.ResourceType:
 		accepted_types.append(Slot.ResourceType[resource_type])
 	
-	GameManager.day_manager.day_changed.connect(_on_day_changed)
-	
 	slot = Slot.new(accepted_types, max_ground_items)
 	slot.resource_count_updated.connect(_on_slot_resource_count_updated)
+	
+	slot_display.displayed_slot = slot
 
 
 ## Attempt to deposit a resource into this object's slot.
@@ -35,6 +34,7 @@ func _on_slot_resource_count_updated(resource_type: Slot.ResourceType, old_count
 
 
 func _on_day_changed(day_count: int):
+	super(day_count)
 	_try_create_building_with_items()
 
 

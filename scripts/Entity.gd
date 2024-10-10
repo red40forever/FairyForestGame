@@ -9,6 +9,9 @@ extends GridObject
 @export var max_storage: int = 1
 @export var effortless_tiles: Array[InteractableGridObject]
 
+@export_group("References")
+@export var slot_display: SlotDisplay
+
 var interactions_completed: int = 0
 var idle: bool = true
 var slot: Slot
@@ -27,6 +30,12 @@ func _ready():
 	target = self.position
 	
 	slot = Slot.new(carryable_resources, max_storage)
+	
+	if slot_display:
+		slot_display.displayed_slot = slot
+		print(slot_display.name, ": ", slot_display.displayed_slot)
+	else:
+		push_warning("Entity '", name, "' does not have a SlotDisplay.")
 
 func _process(delta: float) -> void:
 	if not idle:
@@ -76,6 +85,9 @@ func go_towards_home() -> void:
 func _on_tween_finished():
 	tween = null
 	
+	if GameManager.player.selected_object == self:
+		GameManager.player.selected_object = null
+	
 	# Determine what type of tile we've stopped at, do stuff accordingly
 	var mgr = GameManager.tilemap_manager
 	var map_coords = mgr.ground_layer.local_to_map(self.position)
@@ -95,3 +107,8 @@ func try_interact_with_object(object: InteractableGridObject) -> bool:
 				interactions_completed += 1
 			return true
 	return false
+
+func set_selected(new_selected: bool):
+	super(new_selected)
+	if slot_display:
+		slot_display.set_open(new_selected)

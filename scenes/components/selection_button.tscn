@@ -1,0 +1,40 @@
+[gd_scene load_steps=12 format=3 uid="uid://dcktwik0sg56c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8kvdh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ittn6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_61ukp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fqdyt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7f53"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xmpun"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7hwlb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aca18"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4nrn7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7x3ho"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7sbx"]
+
+[node name="SelectionButton" type="Button"]
+offset_left = -9.0
+offset_top = -25.0
+offset_right = 9.0
+offset_bottom = 3.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8kvdh")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ittn6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_61ukp")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_fqdyt")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_u7f53")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_xmpun")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7hwlb")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_aca18")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4nrn7")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_7x3ho")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_p7sbx")
