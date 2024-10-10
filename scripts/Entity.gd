@@ -39,10 +39,12 @@ func set_new_target(new_target: Vector2i):
 	# Create tween that moves sprite to target
 	var direction := target - self.position
 	direction = direction.normalized()
+	
 	# Remove old tween if it was present,
 	# ex. if a new target is set before the old tween finished
 	if tween != null:
-		tween.queue_free()
+		tween.kill()
+		
 	# Create and set up the new tween
 	tween = get_tree().create_tween()
 	var tween_duration = 10 # TODO determine duration based on speed and distance
