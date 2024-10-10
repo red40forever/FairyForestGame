@@ -20,12 +20,13 @@ extends InteractableGridObject
 
 var slot: Slot
 var selected_withdraw_type: Slot.ResourceType
+@onready var display = %SlotDisplay
 
 func _ready() -> void:
 	GameManager.day_manager.day_changed.connect(_on_day_changed)
 	initialize_slot()
 	selected_withdraw_type = product_type
-	# TODO connect any other needed signals
+	display.resource_clicked.connect(_on_resource_clicked)
 
 func initialize_slot():
 	var accepted = [resource_type, product_type]
@@ -88,8 +89,18 @@ func _on_entity_returned_home(incoming_entity: Entity, incoming_resources: Slot)
 	# Remove entity from the scene tree
 	incoming_entity.queue_free()
 
-func request_interaction(slot: Slot) -> bool:
-	# RAAAAAAARGH HOW TO TAKE SPECIFIC RESOURCE?
-	# store enum here and update said enum when player input,
-	# then only exchange that type?????????
-	return false # TODO
+func _on_resource_clicked(resource: Slot.ResourceType):
+	selected_withdraw_type = resource
+
+# HomeTile's request_interaction is defined such that
+# the interactor receives resources of the HomeTile's selected_withdraw_type
+func request_interaction(inc_slot: Slot) -> bool:
+	for type in inc_slot.accepted_types:
+		if type == selected_withdraw_type:
+			# Attempt to give resource to interactor
+			var overflow = inc_slot.add_resource_overflow_safe(type, slot.get_resource_count(type))
+			var exchange = slot.get_resource_count(type) - overflow
+			slot.remove_resource(type, exchange)
+			if exchange > 0:
+				return true
+	return false
