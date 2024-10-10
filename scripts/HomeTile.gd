@@ -2,30 +2,40 @@ class_name HomeTile
 extends GridObject
 
 @export_group("Type Assignments")
-#@export var home_type: Constants.HomeTileTypes
 @export var entity_grid_object_attributes: GridObjectAttributes
 @export var entity_attributes: EntityAttributes
+@export var resource_type: Slot.ResourceType
+@export var product_type: Slot.ResourceType
 
 @export_group("Constraints")
 @export var max_entities: int = 3
 @export var max_storage: int = 5 # resources and products share the same cap
 @export var new_entity_cost: int = 2
-@export var base_resource_is_final_form: bool = false
+#@export var base_resource_is_final_form: bool = false
 
 @export_group("Initial Values")
-@export var current_resources: int = 0
-@export var current_products: int = 0
+@export var initial_resources: int = 0
+@export var initial_products: int = 0
 @export var current_entities: int = 0 # how many entities belong to this home
+
+var slot: Slot
 
 func _ready() -> void:
 	GameManager.day_manager.day_changed.connect(_on_day_changed)
+	initialize_slot()
 	# TODO connect any other needed signals
-	pass
+
+func initialize_slot():
+	var accepted = [resource_type, product_type]
+	slot = Slot.new(accepted, max_storage)
+	slot.add_resource(resource_type, initial_resources)
+	slot.add_resource(product_type, initial_products)
 
 func _on_day_changed(_count):
 	# New entities created if possible
-	if current_products >= new_entity_cost:
-		var possible_new_entities: int = floor(current_products / new_entity_cost)
+	var product_count = slot.get_resource_count(product_type)
+	if product_count >= new_entity_cost:
+		var possible_new_entities: int = floor(product_count / new_entity_cost)
 		var entities_to_create: int
 		# Make sure the entities we add don't exceed the maximum we can store
 		if possible_new_entities + current_entities > max_entities:
@@ -33,18 +43,19 @@ func _on_day_changed(_count):
 		else:
 			entities_to_create = possible_new_entities
 		current_entities = current_entities + entities_to_create
-		current_products = current_products - (entities_to_create * new_entity_cost)
+		slot.remove_resource(product_type, (entities_to_create * new_entity_cost))
 	
 	# New product created by consuming resources if possible
-	current_products += current_resources
-	current_products = 0
+	slot.add_resource(product_type, slot.get_resource_count(resource_type))
+	slot.set_resource_count(resource_type, 0)
 	
 	# Spawn available bees into the world
 	var map_pos = GameManager.tilemap_manager.ground_layer.local_to_map(self.position)
-	var possible_placement_positions = [map_pos + Vector2i(0, 1), map_pos + 
-		Vector2i(1, 0), map_pos + Vector2i(1, 1), map_pos + Vector2i(0, -1), 
-		map_pos + Vector2i(-1, 0), map_pos + Vector2i(-1, 1), map_pos + 
-		Vector2i(1, -1), map_pos + Vector2i(-1, -1)]
+	# weird ass isometric positioning...
+	var possible_placement_positions = [map_pos + Vector2i(0, -2), map_pos + 
+		Vector2i(0, -1), map_pos + Vector2i(1, 0), map_pos + Vector2i(0, 1), 
+		map_pos + Vector2i(0, 2), map_pos + Vector2i(-1, 1), map_pos + 
+		Vector2i(-1, 0), map_pos + Vector2i(-1, -1)]
 	var placed_entities = 0
 	for coords in possible_placement_positions:
 		if len(GameManager.tilemap_manager.get_objects_at(coords)) <= 0:
@@ -57,18 +68,19 @@ func _on_day_changed(_count):
 		if placed_entities >= current_entities:
 			break
 
-func _on_entity_returned_home(incoming_resources: int, incoming_entity: Node):
+func _on_resources_received(incoming_resources: Slot):
 	# Add resources to home if possible
-	var resources_to_add
-	if (incoming_resources + current_resources + current_products) > max_storage:
-		resources_to_add = max_storage - (current_resources + current_products)
-	else:
-		resources_to_add = incoming_resources
+	var types = incoming_resources.accepted_types
+	for type in types:
+		if slot.accepted_types.has(type):
+			# Home's slot accepts resources
+			var old = slot.get_resource_count(type)
+			slot.add_resource(type, incoming_resources.get_resource_count(type))
+			# Resources removed from incoming slot, just in case
+			var change = slot.get_resource_count(type) - old
+			incoming_resources.remove_resource(type, change)
 	
-	if(base_resource_is_final_form):
-		current_products = current_products + resources_to_add
-	else:
-		current_resources = current_resources + resources_to_add
-	
+
+func _on_entity_returned_home(incoming_entity: Entity):
 	# Remove entity from the scene tree
 	incoming_entity.queue_free()

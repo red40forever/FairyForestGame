@@ -10,4 +10,5 @@ texture = ExtResource("1_acfgr")
 script = ExtResource("1_2lwvp")
 entity_grid_object_attributes = ExtResource("3_wuey6")
 entity_attributes = ExtResource("4_k5i7w")
+resource_type = 1
 current_entities = 3

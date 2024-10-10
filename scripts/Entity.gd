@@ -79,4 +79,4 @@ func _on_tween_finished():
 # without removing what is specified above.
 # Don't forget to perform checks for action limit.
 func try_interact_with_object(object: GridObject):
-	pass
+	assert(false, "Subclasses must override try_interact_with_object(object: GridObject)")
