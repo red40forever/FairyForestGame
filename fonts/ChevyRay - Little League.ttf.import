@@ -1,0 +1,34 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://dko4psusm0mby"
+path="res://.godot/imported/ChevyRay - Little League.ttf-91508eed20a1c1ae4d8ff7a4fd26ed5a.fontdata"
+
+[deps]
+
+source_file="res://fonts/ChevyRay - Little League.ttf"
+dest_files=["res://.godot/imported/ChevyRay - Little League.ttf-91508eed20a1c1ae4d8ff7a4fd26ed5a.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}
