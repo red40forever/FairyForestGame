@@ -28,8 +28,8 @@ func _ready() -> void:
 func initialize_slot():
 	var accepted = [resource_type, product_type]
 	slot = Slot.new(accepted, max_storage)
-	slot.add_resource(resource_type, initial_resources)
-	slot.add_resource(product_type, initial_products)
+	slot.add_resource_overflow_safe(resource_type, initial_resources)
+	slot.add_resource_overflow_safe(product_type, initial_products)
 
 func _on_day_changed(_count):
 	# New entities created if possible
@@ -46,7 +46,7 @@ func _on_day_changed(_count):
 		slot.remove_resource(product_type, (entities_to_create * new_entity_cost))
 	
 	# New product created by consuming resources if possible
-	slot.add_resource(product_type, slot.get_resource_count(resource_type))
+	slot.add_resource_overflow_safe(product_type, slot.get_resource_count(resource_type))
 	slot.set_resource_count(resource_type, 0)
 	
 	# Spawn available bees into the world
@@ -75,7 +75,7 @@ func _on_resources_received(incoming_resources: Slot):
 		if slot.accepted_types.has(type):
 			# Home's slot accepts resources
 			var old = slot.get_resource_count(type)
-			slot.add_resource(type, incoming_resources.get_resource_count(type))
+			slot.add_resource_overflow_safe(type, incoming_resources.get_resource_count(type))
 			# Resources removed from incoming slot, just in case
 			var change = slot.get_resource_count(type) - old
 			incoming_resources.remove_resource(type, change)

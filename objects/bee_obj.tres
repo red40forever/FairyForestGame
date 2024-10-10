@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="GridObjectAttributes" load_steps=3 format=3 uid="uid://domedscqvgna5"]
 
 [ext_resource type="Script" path="res://scripts/GridObjectAttributes.gd" id="1_giipn"]
-[ext_resource type="PackedScene" uid="uid://nsxlh2a4ul3n" path="res://scenes/components/bee.tscn" id="1_y6tvw"]
+[ext_resource type="PackedScene" uid="uid://cfrn4sxwqgm84" path="res://scenes/components/bee.tscn" id="1_mi4bn"]
 
 [resource]
 script = ExtResource("1_giipn")
 id = "bee_obj"
 name = "Bee Object"
-node = ExtResource("1_y6tvw")
+node = ExtResource("1_mi4bn")
