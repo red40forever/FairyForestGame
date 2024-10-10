@@ -67,8 +67,11 @@ func _on_tween_finished():
 	var map_coords = mgr.ground_layer.local_to_map(self.position)
 	var objects = mgr.get_objects_at(map_coords)
 	# If valid object type, do stuff
-	#for object in objects:
-		
+	for object in objects:
+		if object is InteractableGridObject:
+			var inter = object.request_interaction(slot)
+			if inter:
+				interactions_completed += 1
 
 # Override this function in subclasses to add more behavior 
 # without removing what is specified above.
