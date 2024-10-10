@@ -76,3 +76,6 @@ func add_resource_overflow_safe(resource_type: ResourceType, count: int) -> int:
 
 func get_resource_count(resource_type: ResourceType):
 	return stored_resources.get(resource_type, 0)
+
+func is_empty() -> bool:
+	return total_resource_count == 0
