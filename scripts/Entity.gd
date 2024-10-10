@@ -67,18 +67,8 @@ func _on_tween_finished():
 	var map_coords = mgr.ground_layer.local_to_map(self.position)
 	var objects = mgr.get_objects_at(map_coords)
 	# If valid object type, do stuff
-	for object in objects:
-		if object is HomeTile:
-			# If HomeTile contains the same type of entities as myself:
-			if object.entity_attributes == entity_attributes:
-				if interactions_completed >= entity_attributes.max_interactions:
-					return_home.emit(self, slot)
-					# This should delete the entity
-					return
-				# TODO maybe logic here for:
-				# - changing home tile
-				# - taking out resources
-		try_interact_with_object(object)
+	#for object in objects:
+		
 
 # Override this function in subclasses to add more behavior 
 # without removing what is specified above.
