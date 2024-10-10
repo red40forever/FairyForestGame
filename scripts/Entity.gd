@@ -5,25 +5,22 @@ extends GridObject
 @export var entity_attributes: EntityAttributes
 
 @export_group("Interactions")
-@export var interactable_resources: Array[Slot.ResourceType]
+@export var carryable_resources: Array[Slot.ResourceType]
+var interactions_completed: int = 0
+var idle: bool = true
+var slot: Slot
 
 # Movement
 var target: Vector2
 var home: Node
 var tween: Tween = null
 
-# Interactions
-var interactions_completed: int = 0
-var idle: bool = true
-var slot: Slot
-
 signal return_home(entity_reference_to_free: Entity)
 #signal deposit_resources(resources_to_deposit: Slot)
 
 func _ready():
 	target = self.position
-	# TODO debug, remove later
-	set_new_target(Vector2i(5,5))
+	slot = Slot.new(carryable_resources)
 
 func _process(delta: float) -> void:
 	if not idle:
