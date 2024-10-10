@@ -15,4 +15,10 @@ func _on_day_changed():
 	pass
 
 func request_interaction(incoming_slot: Slot) -> bool:
+	var retval = false
+	# If the interactor can receive something that I produce,
+	for type in incoming_slot.accepted_types:
+		if slot.accepted_types.has(type):
+			pass #TODO
+			# Attempt to give resource
 	return false # TODO
