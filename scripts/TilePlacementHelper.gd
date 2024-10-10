@@ -13,12 +13,6 @@ extends Node2D
 var last_grid_pos: Vector2i = Vector2i.ZERO
 
 
-func _ready():
-	var item_pile: ItemPile = place_at_coords(test_object, Vector2i(4, 4))
-	item_pile.deposit(Slot.ResourceType.HONEY, 2)
-	#item_pile.deposit(Slot.ResourceType.POLLEN, 1)
-
-
 func _process(_delta):
 	var mouse_pos = get_global_mouse_position()
 	var tilemap_pos = %GroundLayer.local_to_map(mouse_pos)
