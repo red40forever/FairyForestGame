@@ -6,6 +6,7 @@ extends GridObject
 
 @export_group("Interactions")
 @export var carryable_resources: Array[Slot.ResourceType]
+@export var max_storage: int = 1
 var interactions_completed: int = 0
 var idle: bool = true
 var slot: Slot
@@ -20,7 +21,7 @@ signal return_home(entity_reference_to_free: Entity)
 
 func _ready():
 	target = self.position
-	slot = Slot.new(carryable_resources)
+	slot = Slot.new(carryable_resources, max_storage)
 
 func _process(delta: float) -> void:
 	if not idle:
