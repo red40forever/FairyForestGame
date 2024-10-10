@@ -8,3 +8,5 @@ func supplemental_interaction_logic(incoming_slot: Slot) -> bool:
 # TODO on day change
 func _try_upgrade_tier():
 	pass
+
+func get_class_name(): return "Flower"

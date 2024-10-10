@@ -5,3 +5,5 @@ func try_interact_with_object(object: GridObject):
 	# TODO
 	if object is Beehive:
 		self.return_home.emit(self, slot)
+
+func get_class_name(): return "Bee"

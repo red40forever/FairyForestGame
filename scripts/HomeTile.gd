@@ -109,3 +109,5 @@ func request_interaction(inc_slot: Slot) -> bool:
 			if exchange > 0:
 				return true
 	return false
+
+func get_class_name(): return "HomeTile"

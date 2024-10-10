@@ -34,3 +34,5 @@ func request_interaction(incoming_slot: Slot) -> bool:
 # such as upgrading tiers
 func supplemental_interaction_logic(incoming_slot: Slot) -> bool:
 	return false
+
+func get_class_name(): return "ResourceTile"

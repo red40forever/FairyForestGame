@@ -7,7 +7,7 @@ extends GridObject
 @export_group("Interactions")
 @export var carryable_resources: Array[Slot.ResourceType]
 @export var max_storage: int = 1
-@export var effortless_tiles: Array[InteractableGridObject]
+@export var effortless_tiles: Array = [""] # THESE SHOULD BE STRINGS
 
 var interactions_completed: int = 0
 var idle: bool = true
@@ -91,7 +91,14 @@ func try_interact_with_object(object: InteractableGridObject) -> bool:
 	if interactions_completed < entity_attributes.max_interactions:
 		var inter = object.request_interaction(slot)
 		if inter:
-			if object is not HomeTile:
+			var found_match = false
+			for type_string in effortless_tiles:
+				var obj_string = object.get_class_name()
+				if obj_string == type_string:
+					found_match = true
+			if not found_match:
 				interactions_completed += 1
 			return true
 	return false
+
+func get_class_name(): return "Entity"
