@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1o8oncdhgk24"]
+
+[ext_resource type="Script" path="res://scripts/ResourceSprite.gd" id="1_ksg0g"]
+
+[node name="ResourceSprite" type="Sprite2D"]
+texture_filter = 1
+script = ExtResource("1_ksg0g")
+resource_type = 1

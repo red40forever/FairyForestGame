@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwutbusn3nuk0"]
+
+[ext_resource type="Script" path="res://scripts/ItemPile.gd" id="1_yymd0"]
+
+[node name="ItemPile" type="Node2D"]
+script = ExtResource("1_yymd0")
