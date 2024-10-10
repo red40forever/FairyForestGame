@@ -69,9 +69,11 @@ func _on_tween_finished():
 	# If valid object type, do stuff
 	for object in objects:
 		if object is InteractableGridObject:
-			var inter = object.request_interaction(slot)
-			if inter:
-				interactions_completed += 1
+			if interactions_completed < entity_attributes.max_interactions:
+				var inter = object.request_interaction(slot)
+				if inter:
+					interactions_completed += 1
+					break
 
 # Override this function in subclasses to add more behavior 
 # without removing what is specified above.
