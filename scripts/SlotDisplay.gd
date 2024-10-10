@@ -1,24 +1,72 @@
 class_name SlotDisplay
 extends Control
 
-var displayed_slot: Slot
+var displayed_slot: Slot:
+	set(value):
+		displayed_slot = value
+		_update_displayed_slot(value)
 
 var horizontal_containers = { }
 
-var open: bool = true
+var open: bool = false
 var animating: bool = false
 var original_position: Vector2
+
+var tween: Tween
 
 signal resource_clicked(resource: Slot.ResourceType)
 signal animation_finished(open: bool)
 
 
-func _ready():
-	displayed_slot.resource_count_updated.connect(_on_slot_resource_count_updated)
-	
+func _ready():	
 	# For open/close animation
 	original_position = position
 	visible = false
+
+
+func set_open(new_open: bool):
+	if new_open && !open:
+		animate_display_open()
+	elif !new_open && open:
+		animate_display_close()
+	open = new_open
+
+
+func animate_display_open():
+	if tween:
+		tween.kill()
+	
+	position = original_position + Vector2(0, 4)
+	
+	# Only bother displaying if the slot has resources in it
+	if displayed_slot.total_resource_count > 0:
+		visible = true
+		
+	tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "position", original_position, 0.1)
+	tween.set_parallel()
+	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+
+
+func animate_display_close():
+	if tween:
+		tween.kill()
+		
+	tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "position", position + Vector2(0, 4), 0.1)
+	tween.set_parallel()
+	tween.tween_property(self, "modulate", Color(Color.WHITE, 0), 0.1)
+	tween.set_parallel(false)
+	tween.tween_callback(func(): visible = false)
+
+
+func _update_displayed_slot(displayed_slot: Slot):
+	for child in %VBoxContainer.get_children():
+		child.queue_free()
 	
 	# Create a horizontal container for each resource
 	for resource: Slot.ResourceType in displayed_slot.stored_resources:
@@ -31,54 +79,14 @@ func _ready():
 		for i in range(resource_count):
 			var button = _create_resource_button(resource)
 			horizontal_container.add_child(button)
-
-
-func _process(_delta):
-	if Input.is_action_just_pressed("ui_up"):
-		set_open(true)
-	elif Input.is_action_just_pressed("ui_down"):
-		set_open(false)
 	
-	if Input.is_action_just_pressed("ui_accept"):
-		displayed_slot.remove_resource(Slot.ResourceType.HONEY, 1)
-	if Input.is_action_just_pressed("ui_cancel"):
-		displayed_slot.add_resource(Slot.ResourceType.HONEY, 1)
-
-
-func set_open(new_open: bool):
-	if new_open && !open:
-		animate_display_open()
-	elif !new_open && open:
-		animate_display_close()
-	open = new_open
-
-
-func animate_display_open():
-	position = original_position + Vector2(0, 4)
-	visible = true
-	var tween = get_tree().create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(self, "position", original_position, 0.1)
-	tween.set_parallel()
-	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
-
-
-func animate_display_close():
-	var tween = get_tree().create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(self, "position", position + Vector2(0, 4), 0.1)
-	tween.set_parallel()
-	tween.tween_property(self, "modulate", Color(Color.WHITE, 0), 0.1)
-	tween.set_parallel(false)
-	tween.tween_callback(func(): visible = false)
+	displayed_slot.resource_count_updated.connect(_on_slot_resource_count_updated)
 
 
 func _add_resource_icons(resource: Slot.ResourceType, count: int):
-	var button = _create_resource_button(resource)
 	var horizontal_container: HBoxContainer = horizontal_containers[resource]
 	for i in range(count):
+		var button = _create_resource_button(resource)
 		horizontal_containers[resource].add_child(button)
 	
 	horizontal_container.visible = true

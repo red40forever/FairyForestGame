@@ -18,9 +18,11 @@ extends InteractableGridObject
 @export var initial_products: int = 0
 @export var current_entities: int = 0 # how many entities belong to this home
 
+@export_group("References")
+@export var slot_display: SlotDisplay
+
 var slot: Slot
 var selected_withdraw_type: Slot.ResourceType
-@onready var display = %SlotDisplay
 
 func _ready() -> void:
 	super()
@@ -28,7 +30,13 @@ func _ready() -> void:
 	GameManager.day_manager.day_changed.connect(_on_day_changed)
 	initialize_slot()
 	selected_withdraw_type = product_type
-	display.resource_clicked.connect(_on_resource_clicked)
+	
+	slot_display.resource_clicked.connect(_on_resource_clicked)
+	if slot_display:
+		slot_display.displayed_slot = slot
+		print(slot_display.name, ": ", slot_display.displayed_slot)
+	else:
+		push_warning("HomeTile '", name, "' does not have a SlotDisplay.")
 
 func initialize_slot():
 	var accepted: Array[Slot.ResourceType] = [resource_type, product_type]
@@ -111,3 +119,8 @@ func request_interaction(inc_slot: Slot) -> bool:
 	return false
 
 func get_class_name(): return "HomeTile"
+
+func set_selected(new_selected: bool):
+	super(new_selected)
+	if slot_display:
+		slot_display.set_open(new_selected)

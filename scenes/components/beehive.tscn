@@ -1,25 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5f5qimwanrq6"]
+[gd_scene load_steps=6 format=3 uid="uid://b5f5qimwanrq6"]
 
 [ext_resource type="Script" path="res://scripts/Beehive.gd" id="1_2lwvp"]
 [ext_resource type="Material" uid="uid://you2tiklg27t" path="res://materials/mat_sprite_outline.tres" id="2_b60kh"]
 [ext_resource type="Texture2D" uid="uid://cxu0gdd5hr8gn" path="res://textures/obj_beehive.png" id="2_j27ht"]
+[ext_resource type="PackedScene" uid="uid://dcktwik0sg56c" path="res://scenes/components/selection_button.tscn" id="4_mlrpt"]
+[ext_resource type="PackedScene" uid="uid://c7hgnu1uoo1um" path="res://scenes/components/slot_display.tscn" id="4_x23x1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijh2h"]
-size = Vector2(25, 35)
-
-[node name="Beehive" type="Node2D" node_paths=PackedStringArray("main_sprite", "hover_area")]
+[node name="Beehive" type="Node2D" node_paths=PackedStringArray("slot_display", "main_sprite", "selection_button")]
 texture_filter = 1
 script = ExtResource("1_2lwvp")
+slot_display = NodePath("SlotDisplay")
 main_sprite = NodePath("Beehive")
-hover_area = NodePath("HoverArea")
+selection_button = NodePath("SelectionButton")
 
 [node name="Beehive" type="Sprite2D" parent="."]
 material = ExtResource("2_b60kh")
-position = Vector2(3, -10)
+position = Vector2(4, -10)
 texture = ExtResource("2_j27ht")
 
-[node name="HoverArea" type="Area2D" parent="."]
+[node name="SelectionButton" parent="." instance=ExtResource("4_mlrpt")]
+offset_left = -14.0
+offset_top = -28.0
+offset_right = 11.0
+offset_bottom = 7.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
-position = Vector2(-2.5, -10.5)
-shape = SubResource("RectangleShape2D_ijh2h")
+[node name="SlotDisplay" parent="." instance=ExtResource("4_x23x1")]
+anchors_preset = 0
+offset_top = -36.0
+offset_bottom = -29.0
