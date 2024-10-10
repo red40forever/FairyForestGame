@@ -22,3 +22,4 @@ unique_name_in_owner = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("5_63ucx")]
+unique_name_in_owner = true

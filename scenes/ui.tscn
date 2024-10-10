@@ -12,4 +12,5 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="PauseMenu" parent="." instance=ExtResource("1_dbow0")]
+unique_name_in_owner = true
 layout_mode = 1
