@@ -15,8 +15,10 @@ func _on_day_changed():
 	for type in produced_resources:
 		slot.add_resource_overflow_safe(type, daily_production)
 
+# Entities should call this function and pass in their Slot
+# to harvest resources from this tile.
+# Returns true if the interaction was successful and something happened, false otherwise
 func request_interaction(incoming_slot: Slot) -> bool:
-	var retval = false
 	# If the interactor can receive something that I produce,
 	for type in incoming_slot.accepted_types:
 		if slot.accepted_types.has(type):
