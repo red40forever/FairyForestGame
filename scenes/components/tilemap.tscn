@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=4 uid="uid://b573p5aulkgpe"]
+[gd_scene load_steps=13 format=4 uid="uid://b573p5aulkgpe"]
 
 [ext_resource type="Script" path="res://scripts/TilemapManager.gd" id="1_yheyg"]
 [ext_resource type="Material" uid="uid://qkfy6damforr" path="res://materials/mat_sprite_shadowed.tres" id="2_87clq"]
 [ext_resource type="Script" path="res://scripts/TilePlacementHelper.gd" id="2_fx0ts"]
 [ext_resource type="TileSet" uid="uid://dw7bpr6aqttif" path="res://textures/tileset_ground.tres" id="2_mglfb"]
+[ext_resource type="TileSet" uid="uid://c5tsw2upt8t56" path="res://textures/tileset_fog_of_war.tres" id="2_yo6mu"]
 [ext_resource type="Resource" uid="uid://ds4l0hhtgka7o" path="res://objects/item_pile_obj.tres" id="5_lhdm3"]
 [ext_resource type="Resource" uid="uid://2qarxujqm4m3" path="res://objects/beehive_obj.tres" id="5_mas4d"]
 [ext_resource type="Script" path="res://scripts/Recipe.gd" id="5_qh5j2"]
+[ext_resource type="Script" path="res://scripts/FogOfWarLayer.gd" id="5_v0tbm"]
 [ext_resource type="Texture2D" uid="uid://c68k1b54y31vc" path="res://textures/tile_selection.png" id="6_ourvx"]
 [ext_resource type="Script" path="res://scripts/PlacementIndicator.gd" id="7_grrs5"]
 
@@ -17,12 +19,13 @@ resource = 0
 cost = 2
 building = ExtResource("5_mas4d")
 
-[node name="Tilemap" type="Node2D" node_paths=PackedStringArray("ground_layer", "grid_object_container", "placement_helper")]
+[node name="Tilemap" type="Node2D" node_paths=PackedStringArray("ground_layer", "grid_object_container", "placement_helper", "fog_of_war_layer")]
 texture_filter = 1
 script = ExtResource("1_yheyg")
 ground_layer = NodePath("GroundLayer")
 grid_object_container = NodePath("GridObjectContainer")
 placement_helper = NodePath("TilePlacementHelper")
+fog_of_war_layer = NodePath("FogOfWarLayer")
 
 [node name="GroundLayer" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
@@ -34,6 +37,13 @@ tile_set = ExtResource("2_mglfb")
 unique_name_in_owner = true
 y_sort_enabled = true
 material = ExtResource("2_87clq")
+
+[node name="FogOfWarLayer" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAACAAgAAAAAAAAAAAABAAkAAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAAAAAAAAAADAAoAAAAAAAAAAAACAAkAAAAAAAAAAAADAAsAAAAAAAAAAAADAAwAAAAAAAAAAAADAA0AAAAAAAAAAAAEAAwAAAAAAAAAAAAEAA0AAAAAAAAAAAAEAA4AAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAoAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAGAAoAAAAAAAAAAAAFAAsAAAAAAAAAAAAFAAwAAAAAAAAAAAA=")
+tile_set = ExtResource("2_yo6mu")
+script = ExtResource("5_v0tbm")
 
 [node name="TilePlacementHelper" type="Node2D" parent="." node_paths=PackedStringArray("tilemap_manager", "placement_indicator")]
 unique_name_in_owner = true

@@ -1,0 +1,16 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxlf1nplc2t7a"]
+
+[ext_resource type="Script" path="res://scripts/audio_manager.gd" id="1_8f2wo"]
+[ext_resource type="EventAsset" uid="uid://bu3imqywf3t3v" path="res://addons/FMOD/editor/resources/events/{dd4a22dd-c9bd-4f7e-8abc-6427a57f0be4}.tres" id="2_tl7yp"]
+[ext_resource type="EventAsset" uid="uid://trmxpo4yoefm" path="res://addons/FMOD/editor/resources/events/{b31f7ece-26b5-4085-a83c-75e1e5d50eac}.tres" id="3_0q5cv"]
+[ext_resource type="EventAsset" uid="uid://ci2kv1nl080w5" path="res://addons/FMOD/editor/resources/events/{b8b1960e-1045-48a7-8625-653d69cfb70c}.tres" id="4_7bi5x"]
+[ext_resource type="EventAsset" uid="uid://bhfogrf378o51" path="res://addons/FMOD/editor/resources/events/{b72ff497-c754-47df-8897-f94273007e58}.tres" id="5_u64co"]
+[ext_resource type="EventAsset" uid="uid://cs7srk7sy1nbv" path="res://addons/FMOD/editor/resources/events/{ac3da66f-a89c-4ce7-bf63-ac56fc67cf31}.tres" id="6_6eu8w"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_8f2wo")
+menuMusicEvent = ExtResource("2_tl7yp")
+gameplayMusicEvent = ExtResource("3_0q5cv")
+dialogueMusicEventBee = ExtResource("4_7bi5x")
+dialogueMusicEventMole = ExtResource("5_u64co")
+ambienceEvent = ExtResource("6_6eu8w")

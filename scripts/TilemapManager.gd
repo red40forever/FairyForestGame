@@ -4,6 +4,7 @@ extends Node
 @export var ground_layer: TileMapLayer
 @export var grid_object_container: Node2D
 @export var placement_helper: TilePlacementHelper
+@export var fog_of_war_layer: FogOfWarLayer
 
 var grid_objects: Array[GridObject] = []
 
