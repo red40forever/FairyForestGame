@@ -27,14 +27,19 @@ signal selection_changed(old_selection: GridObject, new_selection: GridObject)
 func _ready():
 	camera.tile_clicked.connect(_on_tile_clicked)
 	
-	# debug
-	var mole_hill_res = Resources.find("objects")["mole_hill"]
-	var mole_res = Resources.find("objects")["mole"]
+	#Dialogic.start()
 	
-	var mole_hill: MoleHill = GameManager.tilemap_manager.create_object_at_coords(mole_hill_res, Vector2i(5, 6))
-	var mole: Mole = GameManager.tilemap_manager.create_object_at_coords(mole_res, Vector2i(4, 4))
+	# Create initial tiles
+	var beehive_res = Resources.find("objects")["beehive"]
+	var bee_res = Resources.find("objects")["bee"]
+	var flower_res = Resources.find("objects")["flower"]
+	
+	var beehive: Beehive = GameManager.tilemap_manager.create_object_at_coords(beehive_res, Vector2i(5, 7))
+	var bee1: Bee = GameManager.tilemap_manager.create_object_at_coords(bee_res, Vector2i(4, 4))
+	var bee2: Bee = GameManager.tilemap_manager.create_object_at_coords(bee_res, Vector2i(4, 7))
+	beehive.add_entity(bee1)
+	beehive.add_entity(bee2)
 	#item_pile.deposit(Slot.ResourceType.HONEY, 2)
-
 
 func _on_tile_clicked(coordinates: Vector2i):
 	if selected_object is Entity:

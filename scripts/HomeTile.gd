@@ -67,7 +67,7 @@ func _on_day_changed(_count):
 	slot.set_resource_count(resource_type, 0)
 	
 	# Spawn available bees into the world
-	var map_pos = GameManager.tilemap_manager.ground_layer.local_to_map(self.position)
+	var map_pos = grid_coordinates
 	# weird ass isometric positioning...
 	var possible_placement_positions = [map_pos + Vector2i(0, -2), map_pos + 
 		Vector2i(0, -1), map_pos + Vector2i(1, 0), map_pos + Vector2i(0, 1), 
@@ -76,14 +76,15 @@ func _on_day_changed(_count):
 	var placed_entities = 0
 	for coords in possible_placement_positions:
 		if len(GameManager.tilemap_manager.get_objects_at(coords)) <= 0:
+			if placed_entities >= current_entities:
+				return
 			# Position is empty; place a bee here
 			var entity = GameManager.tilemap_manager.create_object_at_coords(entity_grid_object_attributes, coords)
 			entity.set_home(self)
+			current_entities -= 1 # epic hacky solution
 			entity.set_attributes(entity_attributes)
-			entity.return_home.connect(_on_entity_returned_home)
+			#entity.return_home.connect(_on_entity_returned_home)
 			placed_entities += 1
-		if placed_entities >= current_entities:
-			break
 
 func _on_resources_received(incoming_resources: Slot):
 	# Add resources to home if possible
@@ -127,3 +128,15 @@ func set_selected(new_selected: bool):
 	super(new_selected)
 	if slot_display:
 		slot_display.set_open(new_selected)
+
+func add_entity(entity: Entity):
+	var old_home = entity.home
+	entity.home = self
+	# update old home
+	if old_home != null:
+		old_home.current_entities -= 1
+		entity.return_home.disconnect(old_home._on_entity_returned_home)
+	# update this home
+	current_entities += 1
+	entity.return_home.connect(_on_entity_returned_home)
+	# guh

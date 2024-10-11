@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GridObjectAttributes" load_steps=3 format=3 uid="uid://dxorotwx5hknd"]
+
+[ext_resource type="Script" path="res://scripts/GridObjectAttributes.gd" id="1_m5odo"]
+[ext_resource type="PackedScene" uid="uid://of6upw70km7e" path="res://scenes/components/mushroom.tscn" id="1_okpa2"]
+
+[resource]
+script = ExtResource("1_m5odo")
+id = "mushroom_obj"
+name = "Mushroom Object"
+node = ExtResource("1_okpa2")

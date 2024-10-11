@@ -47,10 +47,10 @@ func _process(delta: float) -> void:
 
 
 func set_new_target(new_target: Vector2i):
-	idle = false
-	
 	if new_target == Vector2i(target):
-		_on_tween_finished()
+		return
+	
+	idle = false
 	
 	# convert tilemap coords into world coords
 	target = GameManager.tilemap_manager.ground_layer.map_to_local(new_target)
@@ -79,8 +79,7 @@ func set_new_target(new_target: Vector2i):
 		main_sprite.flip_h = false
 
 func set_home(new_home: HomeTile) -> void:
-	home = new_home
-	return_home.connect(home._on_entity_returned_home)
+	new_home.add_entity(self)
 
 func set_attributes(new_attributes: EntityAttributes) -> void:
 	entity_attributes = new_attributes
@@ -114,6 +113,7 @@ func try_interact_with_object(object: InteractableGridObject) -> bool:
 	if interactions_completed < entity_attributes.max_interactions:
 		var inter = object.request_interaction(slot)
 		if inter:
+			# See if this interaction was effortless
 			var found_match = false
 			for type_string in effortless_tiles:
 				var obj_string = object.get_class_name()
