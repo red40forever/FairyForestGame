@@ -34,8 +34,10 @@ func _ready():
 	var bee_res = Resources.find("objects")["bee"]
 	
 	var beehive: Beehive = GameManager.tilemap_manager.create_object_at_coords(beehive_res, Vector2i(5, 7))
-	var bee: Bee = GameManager.tilemap_manager.create_object_at_coords(bee_res, Vector2i(4, 4))
-	beehive.add_entity(bee)
+	var bee1: Bee = GameManager.tilemap_manager.create_object_at_coords(bee_res, Vector2i(4, 4))
+	var bee2: Bee = GameManager.tilemap_manager.create_object_at_coords(bee_res, Vector2i(4, 7))
+	beehive.add_entity(bee1)
+	beehive.add_entity(bee2)
 	#item_pile.deposit(Slot.ResourceType.HONEY, 2)
 
 func _on_tile_clicked(coordinates: Vector2i):
