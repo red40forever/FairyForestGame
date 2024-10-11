@@ -110,6 +110,7 @@ func interact_with_empty_tile():
 	pass
 
 func try_interact_with_object(object: InteractableGridObject) -> bool:
+	
 	if interactions_completed < entity_attributes.max_interactions:
 		var inter = object.request_interaction(slot)
 		if inter:

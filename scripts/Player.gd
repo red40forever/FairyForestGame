@@ -37,6 +37,7 @@ func _ready():
 	var beehive: Beehive = GameManager.tilemap_manager.create_object_at_coords(beehive_res, Vector2i(5, 7))
 	var bee1: Bee = GameManager.tilemap_manager.create_object_at_coords(bee_res, Vector2i(4, 4))
 	var bee2: Bee = GameManager.tilemap_manager.create_object_at_coords(bee_res, Vector2i(4, 7))
+	var flower: Flower = GameManager.tilemap_manager.create_object_at_coords(flower_res, Vector2i(4, 10))
 	beehive.add_entity(bee1)
 	beehive.add_entity(bee2)
 	#item_pile.deposit(Slot.ResourceType.HONEY, 2)

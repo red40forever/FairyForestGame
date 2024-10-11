@@ -17,6 +17,7 @@ region = Rect2(0, 0, 64, 64)
 
 [node name="Flower" type="Sprite2D"]
 texture = SubResource("AtlasTexture_j34gs")
+offset = Vector2(0, 16)
 script = ExtResource("1_riqdc")
 produced_resources = Array[int]([1])
 sprite_tiers = [SubResource("AtlasTexture_2w4fn"), SubResource("AtlasTexture_4imxr")]
