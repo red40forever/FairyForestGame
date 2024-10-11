@@ -16,11 +16,12 @@ var selected_object: GridObject:
 		if new_object:
 			new_object.set_selected(true)
 		
+		var old_selection = selected_object
 		selected_object = new_object
 		
-		selection_changed.emit(selected_object)
+		selection_changed.emit(old_selection, selected_object)
 
-signal selection_changed(new_selection: GridObject)
+signal selection_changed(old_selection: GridObject, new_selection: GridObject)
 
 
 func _ready():

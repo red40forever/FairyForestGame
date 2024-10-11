@@ -10,6 +10,8 @@ var grid_coordinates: Vector2i
 
 var selected: bool = false
 
+signal clicked
+
 
 func _ready():
 	global_position = GameManager.tilemap_manager.ground_layer.map_to_local(grid_coordinates)
@@ -49,6 +51,7 @@ func set_selected(new_selected: bool):
 
 
 func on_pressed():
+	clicked.emit()
 	on_click()
 
 
