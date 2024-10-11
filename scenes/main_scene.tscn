@@ -10,6 +10,7 @@ y_sort_enabled = true
 
 [node name="Tilemap" parent="." instance=ExtResource("1_51j67")]
 unique_name_in_owner = true
+position = Vector2(-289, -144)
 
 [node name="DayCycleManager" parent="." instance=ExtResource("5_koqcr")]
 unique_name_in_owner = true

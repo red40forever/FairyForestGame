@@ -137,3 +137,4 @@ debug_trigger={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.26976, 0.36, 0.1908, 1)

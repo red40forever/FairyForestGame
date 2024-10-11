@@ -29,6 +29,8 @@ func _ready():
 	GameManager.initialize()
 	UIManager.initialize()
 	
+	GameManager.day_manager.day_changed.connect(_on_day_changed)
+	
 	camera.tile_clicked.connect(_on_tile_clicked)
 	
 	#Dialogic.start("IntroDialogue")
@@ -47,8 +49,12 @@ func _ready():
 	flower.slot.add_resource(Slot.ResourceType.POLLEN, 1)
 	#item_pile.deposit(Slot.ResourceType.HONEY, 2)
 	
-	Dialogic.start("IntroDialogue")
+	Dialogic.start("BeeFairy1")
 
 func _on_tile_clicked(coordinates: Vector2i):
 	if selected_object is Entity:
 		selected_object.set_new_target(coordinates)
+
+func _on_day_changed(day: int):
+	if day == 1:
+		Dialogic.start("BeeFairy2")

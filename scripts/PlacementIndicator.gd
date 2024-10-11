@@ -8,4 +8,4 @@ func move_to_grid_position(grid_position: Vector2i):
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(self, "global_position", placement_indicator_pos, animation_speed)
+	tween.tween_property(self, "position", placement_indicator_pos, animation_speed)
