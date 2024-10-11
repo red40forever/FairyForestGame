@@ -58,7 +58,9 @@ func _on_day_changed(_count):
 		else:
 			entities_to_create = possible_new_entities
 		current_entities = current_entities + entities_to_create
-		slot.remove_resource(product_type, (entities_to_create * new_entity_cost))
+		var to_remove = entities_to_create * new_entity_cost
+		if  to_remove > 0:
+			slot.remove_resource(product_type, to_remove)
 	
 	# New product created by consuming resources if possible
 	slot.add_resource_overflow_safe(product_type, slot.get_resource_count(resource_type))
