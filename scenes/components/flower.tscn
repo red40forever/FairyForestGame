@@ -1,7 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://db4dyxufox63w"]
+[gd_scene load_steps=6 format=3 uid="uid://db4dyxufox63w"]
 
 [ext_resource type="Script" path="res://scripts/Flower.gd" id="1_riqdc"]
+[ext_resource type="Texture2D" uid="uid://be0x5abb78v75" path="res://textures/obj_flowers.png" id="1_t7qlw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j34gs"]
+atlas = ExtResource("1_t7qlw")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2w4fn"]
+atlas = ExtResource("1_t7qlw")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4imxr"]
+atlas = ExtResource("1_t7qlw")
+region = Rect2(0, 0, 64, 64)
 
 [node name="Flower" type="Sprite2D"]
+texture = SubResource("AtlasTexture_j34gs")
+offset = Vector2(0, -16)
 script = ExtResource("1_riqdc")
 produced_resources = Array[int]([1])
+sprite_tiers = [SubResource("AtlasTexture_2w4fn"), SubResource("AtlasTexture_4imxr")]
+max_tier = 1

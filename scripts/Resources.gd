@@ -8,7 +8,8 @@ static var resources: Dictionary = {
 		"beehive":   preload("res://objects/beehive_obj.tres"),
 		"mole_hill": preload("res://objects/mole_hill_obj.tres"),
 		"item_pile": preload("res://objects/item_pile_obj.tres"),
-		"flower":    preload("res://objects/flower_obj.tres")
+		"flower":    preload("res://objects/flower_obj.tres"),
+		"mushroom":  preload("res://objects/mushroom_obj.tres")
 	},
 	"ui_resource_sprites": {
 		Slot.ResourceType.HONEY:  preload("res://textures/icon_honey.png"),

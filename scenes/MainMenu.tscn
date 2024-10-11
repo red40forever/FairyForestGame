@@ -68,5 +68,12 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_rkabx")
 icon = ExtResource("3_juoim")
 script = ExtResource("4_pmkuo")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.204795, 0.432187, 0.356371, 1)
+
 [connection signal="pressed" from="Control/PlayButton" to="Control/PlayButton" method="_on_pressed"]
 [connection signal="pressed" from="Control/QuitButton" to="Control/QuitButton" method="_on_pressed"]
