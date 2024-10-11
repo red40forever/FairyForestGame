@@ -1,7 +1,7 @@
 class_name Bee
 extends Entity
 
-@export var the_stupid_way: GridObjectAttributes
+var the_stupid_way: GridObjectAttributes = Resources.find("object")["item_pile"]
 
 func get_class_name(): return "Bee"
 

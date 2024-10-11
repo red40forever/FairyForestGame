@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://d4i2j8ocgcn8d"]
+[gd_scene load_steps=13 format=3 uid="uid://d4i2j8ocgcn8d"]
 
 [ext_resource type="Material" uid="uid://you2tiklg27t" path="res://materials/mat_sprite_outline.tres" id="1_4km2t"]
 [ext_resource type="Script" path="res://scripts/Mole.gd" id="1_tecxf"]
 [ext_resource type="Texture2D" uid="uid://cq7p871s5t4l3" path="res://textures/entity_mole.png" id="1_uhyer"]
 [ext_resource type="Resource" uid="uid://cl2tnst61vqop" path="res://objects/mole_entity_attributes.tres" id="2_7r4el"]
-[ext_resource type="Resource" path="res://objects/mole_hill_obj.tres" id="2_16k8n"]
 [ext_resource type="Texture2D" uid="uid://e6omutuh30c5" path="res://textures/entity_mole_shadow.png" id="4_e2j8e"]
 [ext_resource type="PackedScene" uid="uid://c7hgnu1uoo1um" path="res://scenes/components/slot_display.tscn" id="6_u7308"]
 [ext_resource type="PackedScene" path="res://scenes/components/selection_button.tscn" id="6_wjpq5"]
@@ -53,7 +52,6 @@ animations = [{
 [node name="Mole" type="Node2D" node_paths=PackedStringArray("slot_display", "main_sprite", "selection_button")]
 texture_filter = 1
 script = ExtResource("1_tecxf")
-the_stupid_way = ExtResource("2_16k8n")
 entity_attributes = ExtResource("2_7r4el")
 carryable_resources = Array[int]([2])
 effortless_tiles = ["MoleHill"]
