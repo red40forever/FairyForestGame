@@ -29,6 +29,7 @@ func progress_stage():
 	stage_completed.emit()
 	if stage == 1:
 		%TreeSprite.texture = preload("res://textures/tree_weak.png")
+		Dialogic.start("MoleFairy1")
 		stage_zero_completed.emit()
 	elif stage == 2:
 		%TreeSprite.texture = preload("res://textures/tree_alive.png")

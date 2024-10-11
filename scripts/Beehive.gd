@@ -13,7 +13,7 @@ func _ready():
 
 func _on_resource_count_updated(resource_type: Slot.ResourceType, old_count: int, new_count: int):
 	if resource_type == Slot.ResourceType.HONEY && new_count == 2:
-		Dialogic.start("BeeFairy4")
+		Dialogic.start("2HoneyInHive")
 
 
 func get_class_name(): return "Beehive"

@@ -60,3 +60,5 @@ func _on_day_changed(day: int):
 		Dialogic.start("BeeFairy2")
 	elif day == 2:
 		Dialogic.start("BeeFairy3")
+	elif day == 3:
+		Dialogic.start("BeeFairy4")
