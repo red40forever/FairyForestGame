@@ -23,7 +23,11 @@ func _ready():
 
 
 func on_click():
-	GameManager.player.selected_object = self
+	# Select this object when clicked, or deselect if it's already selected
+	if !selected:
+		GameManager.player.selected_object = self
+	else:
+		GameManager.player.selected_object = null
 
 
 func set_selected(new_selected: bool):
@@ -45,7 +49,6 @@ func set_selected(new_selected: bool):
 
 
 func on_pressed():
-	print("object handled")
 	on_click()
 
 
