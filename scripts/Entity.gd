@@ -47,6 +47,10 @@ func _process(delta: float) -> void:
 
 func set_new_target(new_target: Vector2i):
 	idle = false
+	
+	if new_target == Vector2i(target):
+		_on_tween_finished()
+	
 	# convert tilemap coords into world coords
 	target = GameManager.tilemap_manager.ground_layer.map_to_local(new_target)
 	
@@ -75,6 +79,7 @@ func set_new_target(new_target: Vector2i):
 
 func set_home(new_home: HomeTile) -> void:
 	home = new_home
+	return_home.connect(home._on_entity_returned_home)
 
 func set_attributes(new_attributes: EntityAttributes) -> void:
 	entity_attributes = new_attributes
@@ -117,7 +122,7 @@ func try_interact_with_object(object: InteractableGridObject) -> bool:
 				interactions_completed += 1
 			return true
 		elif object is HomeTile or object.get_class_name() == home_tile_name:
-			return_home.emit(self)
+			return_home.emit(self, slot)
 	return false
 
 func get_class_name(): return "Entity"

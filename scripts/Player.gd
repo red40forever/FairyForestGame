@@ -28,9 +28,10 @@ func _ready():
 	
 	# debug
 	var mole_hill_res = Resources.find("objects")["mole_hill"]
+	var mole_res = Resources.find("objects")["mole"]
 	
 	var mole_hill: MoleHill = GameManager.tilemap_manager.create_object_at_coords(mole_hill_res, Vector2i(5, 6))
-	
+	var mole: Mole = GameManager.tilemap_manager.create_object_at_coords(mole_res, Vector2i(4, 4))
 	#item_pile.deposit(Slot.ResourceType.HONEY, 2)
 
 

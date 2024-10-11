@@ -94,11 +94,13 @@ func _on_resources_received(incoming_resources: Slot):
 			slot.add_resource_overflow_safe(type, incoming_resources.get_resource_count(type))
 			# Resources removed from incoming slot, just in case
 			var change = slot.get_resource_count(type) - old
-			incoming_resources.remove_resource(type, change)
+			if change > 0:
+				incoming_resources.remove_resource(type, change)
 	
 
 func _on_entity_returned_home(incoming_entity: Entity, incoming_resources: Slot):
 	_on_resources_received(incoming_resources)
+	print("entity_returned_home called GUH")
 	# Remove entity from the scene tree
 	incoming_entity.queue_free()
 
