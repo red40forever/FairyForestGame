@@ -1,17 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://nsxlh2a4ul3n"]
+[gd_scene load_steps=10 format=3 uid="uid://nsxlh2a4ul3n"]
 
 [ext_resource type="Texture2D" uid="uid://4blcvs3gv4cn" path="res://textures/entity_bee.png" id="1_wvaxq"]
 [ext_resource type="Script" path="res://scripts/Bee.gd" id="1_xtxqw"]
 [ext_resource type="Resource" uid="uid://b3gwhkg85vo7l" path="res://objects/bee_entity_attributes.tres" id="2_5ioq7"]
+[ext_resource type="Resource" path="res://objects/item_pile_obj.tres" id="2_tv3jd"]
 [ext_resource type="Material" uid="uid://you2tiklg27t" path="res://materials/mat_sprite_outline.tres" id="2_wdvbs"]
 [ext_resource type="Texture2D" uid="uid://5bsw7fxff3f0" path="res://textures/entity_bee_shadow.png" id="3_ixp5y"]
 [ext_resource type="Script" path="res://scripts/BeeAnimation.gd" id="4_kbffd"]
 [ext_resource type="PackedScene" uid="uid://c7hgnu1uoo1um" path="res://scenes/components/slot_display.tscn" id="7_71oul"]
-[ext_resource type="PackedScene" uid="uid://dcktwik0sg56c" path="res://scenes/components/selection_button.tscn" id="7_i0l0b"]
+[ext_resource type="PackedScene" path="res://scenes/components/selection_button.tscn" id="7_i0l0b"]
 
 [node name="Bee" type="Node2D" node_paths=PackedStringArray("slot_display", "main_sprite", "selection_button")]
 texture_filter = 1
 script = ExtResource("1_xtxqw")
+the_stupid_way = ExtResource("2_tv3jd")
 entity_attributes = ExtResource("2_5ioq7")
 carryable_resources = Array[int]([0, 1, 3])
 effortless_tiles = ["Beehive", "Mushroom"]
