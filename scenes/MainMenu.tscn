@@ -73,6 +73,7 @@ z_index = -1
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 color = Color(0.204795, 0.432187, 0.356371, 1)
 
 [connection signal="pressed" from="Control/PlayButton" to="Control/PlayButton" method="_on_pressed"]

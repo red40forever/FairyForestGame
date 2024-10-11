@@ -18,8 +18,8 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 
 GameManager="*res://scripts/GameManager.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
-FMODRuntime="*res://addons/FMOD/runtime/fmod_runtime_manager.gd"
 UIManager="*res://scripts/UIManager.gd"
+FMODRuntime="*res://addons/FMOD/runtime/fmod_runtime_manager.gd"
 AudioManager="*res://scenes/components/audio_manager.tscn"
 
 [dialogic]
@@ -67,6 +67,8 @@ glossary/default_case_sensitive=true
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/stretch/scale_mode="integer"
 
 [editor_plugins]
