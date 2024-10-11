@@ -20,8 +20,8 @@ var mole_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# GameManager.tilemap_manager.grid_object_created.connect(add_entity)
-	# GameManager.tilemap_manager.grid_object_deleted.connect(remove_entity)
+	GameManager.tilemap_manager.grid_object_created.connect(add_entity)
+	GameManager.tilemap_manager.grid_object_deleted.connect(remove_entity)
 	ambienceInstance = FMODRuntime.create_instance(ambienceEvent)
 	ambienceInstance.start()
 
