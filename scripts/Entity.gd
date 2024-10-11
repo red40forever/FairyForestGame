@@ -19,6 +19,7 @@ var slot: Slot
 
 # Movement
 var target: Vector2
+var target_map_coords: Vector2i
 var home: HomeTile
 var tween: Tween = null
 
@@ -29,6 +30,7 @@ func _ready():
 	super()
 	
 	target = self.position
+	target_map_coords = grid_coordinates
 	
 	slot = Slot.new(carryable_resources, max_storage)
 	
@@ -43,16 +45,17 @@ func _process(delta: float) -> void:
 	if not idle:
 		if interactions_completed >= entity_attributes.max_interactions:
 			set_new_target(home.grid_coordinates)
-		self.grid_coordinates = GameManager.tilemap_manager.ground_layer.local_to_map(self.position)
+		#self.grid_coordinates = GameManager.tilemap_manager.ground_layer.local_to_map(self.position)
 
 
 func set_new_target(new_target: Vector2i):
-	if new_target == Vector2i(target):
+	if new_target == Vector2i(target_map_coords):
 		return
 	
 	idle = false
 	
 	# convert tilemap coords into world coords
+	target_map_coords = new_target
 	target = GameManager.tilemap_manager.ground_layer.map_to_local(new_target)
 	
 	# Create tween that moves sprite to target
@@ -87,13 +90,14 @@ func set_attributes(new_attributes: EntityAttributes) -> void:
 # When tween is finished, entity has stopped moving.
 func _on_tween_finished():
 	tween = null
+	grid_coordinates = target_map_coords
 	
 	if GameManager.player.selected_object == self:
 		GameManager.player.selected_object = null
 	
 	# Determine what type of tile we've stopped at, do stuff accordingly
 	var mgr = GameManager.tilemap_manager
-	var map_coords = mgr.ground_layer.local_to_map(self.position)
+	var map_coords = grid_coordinates
 	var objects = mgr.get_objects_at(map_coords)
 	
 	if len(objects) == 1:
