@@ -16,6 +16,10 @@ static var resources: Dictionary = {
 		Slot.ResourceType.POLLEN: preload("res://textures/icon_pollen.png"),
 		Slot.ResourceType.MUSHROOM: preload("res://textures/icon_mushroom.png"),
 		Slot.ResourceType.SPORE: preload("res://textures/icon_spore.png")
+	},
+	"entity_attributes": {
+		"bee": preload("res://objects/bee_entity_attributes.tres"),
+		"mole": preload("res://objects/mole_entity_attributes.tres")
 	}
 }
 
