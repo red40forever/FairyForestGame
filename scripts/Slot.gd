@@ -4,6 +4,7 @@ enum ResourceType {
 	HONEY,
 	POLLEN,
 	MUSHROOM,
+	SPORE,
 	NULL
 }
 
@@ -59,7 +60,7 @@ func set_resource_count(resource_type: ResourceType, count: int):
 # and returns any amount that was unable to be added if it overflows,
 # instead of throwing an error.
 func add_resource_overflow_safe(resource_type: ResourceType, count: int) -> int:
-	assert(count > 0, "Count must be positive.")
+	assert(count >= 0, "Count must be nonnegative.")
 	assert(stored_resources.has(resource_type), "Slot cannot take this ResourceType.")
 	
 	var overflow = max(0, (total_resource_count + count) - max_count)
@@ -69,9 +70,15 @@ func add_resource_overflow_safe(resource_type: ResourceType, count: int) -> int:
 	else:
 		to_add = count
 	
-	add_resource(resource_type, to_add)
+	if to_add == 0:
+		return 0
+	else:
+		add_resource(resource_type, to_add)
 	
 	return overflow
 
 func get_resource_count(resource_type: ResourceType):
 	return stored_resources.get(resource_type, 0)
+
+func is_empty() -> bool:
+	return total_resource_count == 0

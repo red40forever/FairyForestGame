@@ -19,6 +19,8 @@ var zoom_level_index: int = 0
 
 var is_dragging: bool = false
 
+signal tile_clicked(coordinates: Vector2i)
+
 
 func _ready():
 	set_zoom_level(0, false)
@@ -31,23 +33,28 @@ func _process(_delta):
 		zoom_out()
 
 
-func _input(event):
+func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			if event.is_pressed():
 				is_dragging = true
 			else:
 				is_dragging = false
+			get_viewport().set_input_as_handled()
 		elif event.button_index == MOUSE_BUTTON_LEFT:
-			# Place object on LMB release, not press
+			# Select tile on LMB release, not press
 			if event.is_pressed():
 				return
 			var tilemap_manager = GameManager.tilemap_manager
 			var global_pos = get_global_mouse_position()
 			var coords = tilemap_manager.ground_layer.local_to_map(global_pos)
-			tilemap_manager.placement_helper.place_at_coords(coords)
+			
+			tile_clicked.emit(coords)
+			
+			get_viewport().set_input_as_handled()
 	elif event is InputEventMouseMotion and is_dragging:
 		offset -= event.relative / zoom
+		get_viewport().set_input_as_handled()
 
 
 func zoom_in():

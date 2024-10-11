@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://of6upw70km7e"]
+
+[ext_resource type="Script" path="res://scripts/Mushroom.gd" id="1_p212r"]
+
+[node name="Mushroom" type="Sprite2D"]
+script = ExtResource("1_p212r")
+produced_resources = Array[int]([2, 3])

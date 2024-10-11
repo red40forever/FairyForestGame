@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjxu0dmclo3po"]
+
+[ext_resource type="Script" path="res://scripts/MoleHill.gd" id="1_r0pm5"]
+[ext_resource type="Resource" uid="uid://b1i6dh5eisins" path="res://objects/mole_obj.tres" id="2_66aop"]
+[ext_resource type="Resource" uid="uid://cl2tnst61vqop" path="res://objects/mole_entity_attributes.tres" id="3_ghfba"]
+[ext_resource type="PackedScene" uid="uid://c7hgnu1uoo1um" path="res://scenes/components/slot_display.tscn" id="4_3je8i"]
+[ext_resource type="Texture2D" uid="uid://u2mub2phouoi" path="res://textures/obj_mole_hill.png" id="5_bq3m4"]
+[ext_resource type="PackedScene" path="res://scenes/components/selection_button.tscn" id="5_bugc0"]
+[ext_resource type="Material" uid="uid://you2tiklg27t" path="res://materials/mat_sprite_outline.tres" id="6_e086p"]
+
+[node name="MoleHill" type="Node2D" node_paths=PackedStringArray("slot_display", "main_sprite", "selection_button")]
+texture_filter = 1
+script = ExtResource("1_r0pm5")
+entity_grid_object_attributes = ExtResource("2_66aop")
+entity_attributes = ExtResource("3_ghfba")
+resource_type = 4
+product_type = 2
+max_entities = 2
+slot_display = NodePath("SlotDisplay")
+main_sprite = NodePath("Sprite2D")
+selection_button = NodePath("SelectionButton")
+
+[node name="SlotDisplay" parent="." instance=ExtResource("4_3je8i")]
+offset_top = -18.0
+offset_bottom = -11.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="SelectionButton" parent="." instance=ExtResource("5_bugc0")]
+offset_left = -11.0
+offset_top = -8.0
+offset_right = 13.0
+offset_bottom = 6.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("6_e086p")
+position = Vector2(-2, -7)
+texture = ExtResource("5_bq3m4")

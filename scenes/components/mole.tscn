@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://d4i2j8ocgcn8d"]
+
+[ext_resource type="Material" uid="uid://you2tiklg27t" path="res://materials/mat_sprite_outline.tres" id="1_4km2t"]
+[ext_resource type="Script" path="res://scripts/Mole.gd" id="1_tecxf"]
+[ext_resource type="Texture2D" uid="uid://cq7p871s5t4l3" path="res://textures/entity_mole.png" id="1_uhyer"]
+[ext_resource type="Resource" uid="uid://cl2tnst61vqop" path="res://objects/mole_entity_attributes.tres" id="2_7r4el"]
+[ext_resource type="Texture2D" uid="uid://e6omutuh30c5" path="res://textures/entity_mole_shadow.png" id="4_e2j8e"]
+[ext_resource type="PackedScene" uid="uid://c7hgnu1uoo1um" path="res://scenes/components/slot_display.tscn" id="6_u7308"]
+[ext_resource type="PackedScene" uid="uid://dcktwik0sg56c" path="res://scenes/components/selection_button.tscn" id="6_wjpq5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktxgq"]
+atlas = ExtResource("1_uhyer")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b61li"]
+atlas = ExtResource("1_uhyer")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6gnw"]
+atlas = ExtResource("1_uhyer")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uwkj"]
+atlas = ExtResource("1_uhyer")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f78c7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktxgq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b61li")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6gnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uwkj")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
+}]
+
+[node name="Mole" type="Node2D" node_paths=PackedStringArray("slot_display", "main_sprite", "selection_button")]
+texture_filter = 1
+script = ExtResource("1_tecxf")
+entity_attributes = ExtResource("2_7r4el")
+carryable_resources = Array[int]([2])
+effortless_tiles = ["MoleHill"]
+slot_display = NodePath("SlotDisplay")
+main_sprite = NodePath("AnimatedSprite2D")
+selection_button = NodePath("SelectionButton")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = ExtResource("1_4km2t")
+position = Vector2(-3, -11)
+sprite_frames = SubResource("SpriteFrames_f78c7")
+animation = &"walk"
+frame = 2
+frame_progress = 0.308294
+
+[node name="Shadow" type="Sprite2D" parent="AnimatedSprite2D"]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(0, 4)
+texture = ExtResource("4_e2j8e")
+
+[node name="SelectionButton" parent="." instance=ExtResource("6_wjpq5")]
+offset_left = -13.0
+offset_top = -11.0
+offset_right = 15.0
+offset_bottom = 5.0
+
+[node name="SlotDisplay" parent="." instance=ExtResource("6_u7308")]
+offset_top = -19.0
+offset_bottom = -12.0

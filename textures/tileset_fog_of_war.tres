@@ -1,0 +1,14 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dve3frnu43vqs"]
+
+[ext_resource type="Texture2D" uid="uid://5ojsg3728qek" path="res://textures/tile_fog_of_war.png" id="1_8jpgm"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eybr1"]
+texture = ExtResource("1_8jpgm")
+texture_region_size = Vector2i(64, 41)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -5)
+
+[resource]
+tile_shape = 1
+tile_size = Vector2i(64, 32)
+sources/0 = SubResource("TileSetAtlasSource_eybr1")

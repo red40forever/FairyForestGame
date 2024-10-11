@@ -1,0 +1,20 @@
+[gd_resource type="ParameterAsset" load_steps=3 format=3 uid="uid://cgdhs3w2abtj"]
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_yyr5e"]
+data1 = 92715083
+data2 = 1028680570
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_o4s87"]
+name = "volume"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_yyr5e")
+minimum = -1.0
+maximum = 1.0
+default_value = 1.0
+flags = 4
+guid = "{64cd67bc-2564-491c-8179-6a2869abef45}"
+
+[resource]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_o4s87")
+path = "parameter:/volume"
+guid = "{64cd67bc-2564-491c-8179-6a2869abef45}"
+name = "volume"

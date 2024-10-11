@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpmjpi70uu10q"]
+[gd_scene load_steps=8 format=3 uid="uid://ccmxhhdjtom2t"]
 
 [ext_resource type="Script" path="res://scripts/play_button.gd" id="1_dehqj"]
 [ext_resource type="Texture2D" uid="uid://c7gwgco21cdx8" path="res://textures/ui_newgametrimmed.png" id="2_p8t5g"]

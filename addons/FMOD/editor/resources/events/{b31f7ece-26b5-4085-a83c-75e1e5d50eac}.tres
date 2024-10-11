@@ -1,0 +1,8 @@
+[gd_resource type="EventAsset" format=3 uid="uid://trmxpo4yoefm"]
+
+[resource]
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Gameplay"
+guid = "{b31f7ece-26b5-4085-a83c-75e1e5d50eac}"
+name = "Gameplay"

@@ -1,6 +1,10 @@
+class_name SlotDisplay
 extends Control
 
-var displayed_slot: Slot
+var displayed_slot: Slot:
+	set(value):
+		displayed_slot = value
+		_update_displayed_slot(value)
 
 var horizontal_containers = { }
 
@@ -8,48 +12,16 @@ var open: bool = false
 var animating: bool = false
 var original_position: Vector2
 
+var tween: Tween
+
+signal resource_clicked(resource: Slot.ResourceType)
 signal animation_finished(open: bool)
 
 
-func _ready():
-	# Testing
-	var accepted_types: Array[Slot.ResourceType] = [
-		Slot.ResourceType.HONEY,
-		Slot.ResourceType.POLLEN
-	]
-	displayed_slot = Slot.new(accepted_types, 5)
-	displayed_slot.add_resource(Slot.ResourceType.HONEY, 3)
-	displayed_slot.add_resource(Slot.ResourceType.POLLEN, 2)
-	
-	displayed_slot.resource_count_updated.connect(_on_slot_resource_count_updated)
-	
+func _ready():	
 	# For open/close animation
 	original_position = position
 	visible = false
-	
-	# Create a horizontal container for each resource
-	for resource: Slot.ResourceType in displayed_slot.stored_resources:
-		var horizontal_container = HBoxContainer.new()
-		horizontal_container.alignment = BoxContainer.ALIGNMENT_CENTER
-		%VBoxContainer.add_child(horizontal_container)
-		horizontal_containers[resource] = horizontal_container
-		
-		var resource_count = displayed_slot.stored_resources[resource]
-		for i in range(resource_count):
-			var resource_sprite = _create_resource_icon(resource)
-			horizontal_container.add_child(resource_sprite)
-
-
-func _process(_delta):
-	if Input.is_action_just_pressed("ui_up"):
-		set_open(true)
-	elif Input.is_action_just_pressed("ui_down"):
-		set_open(false)
-	
-	if Input.is_action_just_pressed("ui_accept"):
-		displayed_slot.remove_resource(Slot.ResourceType.HONEY, 1)
-	if Input.is_action_just_pressed("ui_cancel"):
-		displayed_slot.add_resource(Slot.ResourceType.HONEY, 1)
 
 
 func set_open(new_open: bool):
@@ -61,9 +33,16 @@ func set_open(new_open: bool):
 
 
 func animate_display_open():
+	if tween:
+		tween.kill()
+	
 	position = original_position + Vector2(0, 4)
-	visible = true
-	var tween = get_tree().create_tween()
+	
+	# Only bother displaying if the slot has resources in it
+	if displayed_slot.total_resource_count > 0:
+		visible = true
+		
+	tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(self, "position", original_position, 0.1)
@@ -72,7 +51,10 @@ func animate_display_open():
 
 
 func animate_display_close():
-	var tween = get_tree().create_tween()
+	if tween:
+		tween.kill()
+		
+	tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(self, "position", position + Vector2(0, 4), 0.1)
@@ -82,11 +64,30 @@ func animate_display_close():
 	tween.tween_callback(func(): visible = false)
 
 
+func _update_displayed_slot(displayed_slot: Slot):
+	for child in %VBoxContainer.get_children():
+		child.queue_free()
+	
+	# Create a horizontal container for each resource
+	for resource: Slot.ResourceType in displayed_slot.stored_resources:
+		var horizontal_container = HBoxContainer.new()
+		horizontal_container.alignment = BoxContainer.ALIGNMENT_CENTER
+		%VBoxContainer.add_child(horizontal_container)
+		horizontal_containers[resource] = horizontal_container
+		
+		var resource_count = displayed_slot.stored_resources[resource]
+		for i in range(resource_count):
+			var button = _create_resource_button(resource)
+			horizontal_container.add_child(button)
+	
+	displayed_slot.resource_count_updated.connect(_on_slot_resource_count_updated)
+
+
 func _add_resource_icons(resource: Slot.ResourceType, count: int):
-	var sprite = _create_resource_icon(resource)
 	var horizontal_container: HBoxContainer = horizontal_containers[resource]
 	for i in range(count):
-		horizontal_containers[resource].add_child(sprite)
+		var button = _create_resource_button(resource)
+		horizontal_containers[resource].add_child(button)
 	
 	horizontal_container.visible = true
 
@@ -110,10 +111,14 @@ func _on_slot_resource_count_updated(resource: Slot.ResourceType, old_count: int
 		_remove_resource_icons(resource, abs(count_change))
 
 
-func _create_resource_icon(resource: Slot.ResourceType) -> TextureRect:
-	var resource_sprite = TextureRect.new()
-	var sprites = Resources.find("ui_resource_sprites")
-	resource_sprite.texture = sprites[resource]
-	resource_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+func _on_resource_button_pressed(resource: Slot.ResourceType):
+	resource_clicked.emit(resource)
+
+
+func _create_resource_button(resource: Slot.ResourceType, should_use_pressed_signal: bool = true) -> Button:
+	var button = ResourceButton.new(resource)
 	
-	return resource_sprite
+	if should_use_pressed_signal:
+		button.pressed.connect(_on_resource_button_pressed.bind(resource))
+	
+	return button

@@ -2,26 +2,26 @@
 "@path": "res://addons/dialogic/Resources/character.gd",
 "@subpath": NodePath(""),
 "_translation_id": "",
-"color": Color(1, 1, 1, 1),
+"color": Color(0.921569, 0.494118, 0.501961, 1),
 "custom_info": {
 "sound_mood_default": "",
 "sound_moods": {},
 "style": "DialogStyle"
 },
-"default_portrait": "Placeholder",
+"default_portrait": "BeeFairySprite",
 "description": "The Bee Fairy",
-"display_name": "Beatrice",
+"display_name": "Tris",
 "mirror": false,
 "nicknames": [""],
 "offset": Vector2(0, 0),
 "portraits": {
-"Placeholder": {
+"BeeFairySprite": {
 "export_overrides": {
-"image": "\"res://addons/dialogic/Example Assets/portraits/rpg_portraits/base1.png\""
+"image": "\"res://addons/dialogic/Characters/bee_fairy_sprite.png\""
 },
 "mirror": false,
-"offset": Vector2(-100, -160),
-"scale": 0.5,
+"offset": Vector2(0, 50),
+"scale": 0.8,
 "scene": ""
 }
 },
