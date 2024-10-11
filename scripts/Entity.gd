@@ -36,6 +36,8 @@ func _ready():
 		slot_display.displayed_slot = slot
 	else:
 		push_warning("Entity '", name, "' does not have a SlotDisplay.")
+	
+	GameManager.player.selection_changed.connect(_on_selection_changed)
 
 func _process(delta: float) -> void:
 	if not idle:
@@ -129,3 +131,14 @@ func set_selected(new_selected: bool):
 	super(new_selected)
 	if slot_display:
 		slot_display.set_open(new_selected)
+	
+	var new_selection = GameManager.player.selected_object
+	if new_selection is HomeTile:
+		set_new_target(new_selection.grid_coordinates)
+		GameManager.player.selected_object = null
+
+
+func _on_selection_changed(old_selection: GridObject, new_selection: GridObject):
+	if old_selection == self and new_selection is HomeTile:
+		set_new_target(new_selection.grid_coordinates)
+		GameManager.player.selected_object = null
