@@ -3,6 +3,7 @@ extends GridObject
 
 @export_group("Attributes")
 @export var entity_attributes: EntityAttributes
+@export var home_tile_name: String = "HomeTile"
 
 @export_group("Interactions")
 @export var carryable_resources: Array[Slot.ResourceType]
@@ -107,6 +108,8 @@ func try_interact_with_object(object: InteractableGridObject) -> bool:
 			if not found_match:
 				interactions_completed += 1
 			return true
+		elif object is HomeTile or object.get_class_name() == home_tile_name:
+			return_home.emit(self)
 	return false
 
 func get_class_name(): return "Entity"
