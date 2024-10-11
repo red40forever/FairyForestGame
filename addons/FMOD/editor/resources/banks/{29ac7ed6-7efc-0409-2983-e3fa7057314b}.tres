@@ -2,7 +2,7 @@
 
 [resource]
 file_path = "res://addons/fairyforestaudio/Build/Desktop/Master.strings.bank"
-modified_time = 1728610244
+modified_time = 1728614356
 path = "bank:/Master.strings"
 guid = "{29ac7ed6-7efc-0409-2983-e3fa7057314b}"
 name = "Master.strings"

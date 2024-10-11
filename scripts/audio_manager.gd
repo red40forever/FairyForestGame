@@ -4,7 +4,7 @@ extends Node
 @export var gameplayMusicEvent: EventAsset
 @export var dialogueMusicEventBee: EventAsset
 @export var dialogueMusicEventMole: EventAsset
-@export var ambienceEvent: EventAsset
+@export var ambienceEvent: EventAsset	
 
 enum song {MENU, GAMEPLAY, DIALOGUE_BEE, DIALOGUE_MOLE}
 
@@ -24,7 +24,6 @@ func _ready() -> void:
 	GameManager.tilemap_manager.grid_object_deleted.connect(remove_entity)
 	ambienceInstance = FMODRuntime.create_instance(ambienceEvent)
 	ambienceInstance.start()
-	play(song.GAMEPLAY)
 
 func play(songName: song):
 	if(musicInstance != null):
