@@ -34,7 +34,6 @@ func _ready():
 	
 	if slot_display:
 		slot_display.displayed_slot = slot
-		print(slot_display.name, ": ", slot_display.displayed_slot)
 	else:
 		push_warning("Entity '", name, "' does not have a SlotDisplay.")
 

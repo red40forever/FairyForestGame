@@ -45,14 +45,10 @@ func _try_create_building_with_items():
 		# Do we have enough resources to do this recipe?
 		var resource_count = slot.get_resource_count(recipe.resource)
 		if resource_count >= recipe.cost:
-			print("Creating building from recipe '", recipe.id, "'")
 			slot.remove_resource(recipe.resource, recipe.cost)
 			placement_helper.place_at_coords(recipe.building, grid_coordinates)
 			queue_free()
 			return
-		else:
-			print("We don't have enough resources to build ", recipe.id)
-			print("Need: ", recipe.cost, ", Have: ", resource_count)
 
 ## Update the resource icons displayed on the tile.
 func _update_displayed_resources():

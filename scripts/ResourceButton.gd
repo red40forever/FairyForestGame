@@ -14,6 +14,7 @@ func _init(p_resource_type: Slot.ResourceType):
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	mouse_default_cursor_shape = CURSOR_POINTING_HAND
 	
+	# Sorry
 	add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	add_theme_stylebox_override("disabled_mirrored", StyleBoxEmpty.new())
 	add_theme_stylebox_override("disabled", StyleBoxEmpty.new())
