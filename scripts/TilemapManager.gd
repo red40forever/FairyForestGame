@@ -15,7 +15,7 @@ signal grid_object_deleted(grid_object: GridObject, coords: Vector2i)
 func create_object_at_coords(object_attributes: GridObjectAttributes, coords: Vector2i) -> GridObject:
 	var grid_object = object_attributes.node.instantiate()
 	grid_object.grid_coordinates = coords
-	grid_object.global_position = ground_layer.map_to_local(coords)
+	grid_object.position = ground_layer.map_to_local(coords)
 	grid_object_container.add_child(grid_object)
 	grid_objects.append(grid_object)
 	grid_object.tree_exiting.connect(_on_grid_object_deleted.bind(grid_object))

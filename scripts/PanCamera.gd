@@ -7,6 +7,8 @@ extends Camera2D
 
 @export_group("Panning")
 @export var pan_decceleration: float = 0.0
+@export var min_coords: Vector2
+@export var max_coords: Vector2
 
 var control_mode: CameraControlMode = CameraControlMode.SELECT
 
@@ -54,6 +56,9 @@ func _unhandled_input(event):
 			get_viewport().set_input_as_handled()
 	elif event is InputEventMouseMotion and is_dragging:
 		offset -= event.relative / zoom
+		offset.x = min(max(min_coords.x, offset.x), max_coords.x)
+		offset.y = min(max(min_coords.y, offset.y), max_coords.y)
+		
 		get_viewport().set_input_as_handled()
 
 

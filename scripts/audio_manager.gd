@@ -20,10 +20,10 @@ var mole_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# GameManager.tilemap_manager.grid_object_created.connect(add_entity)
-	# GameManager.tilemap_manager.grid_object_deleted.connect(remove_entity)
+	GameManager.game_started.connect(create_tilemap_connections)
 	ambienceInstance = FMODRuntime.create_instance(ambienceEvent)
 	ambienceInstance.start()
+	play(song.MENU)
 
 func play(songName: song):
 	if(musicInstance != null):
@@ -54,6 +54,11 @@ func beat_callback(args):
 			beat_counter = 1
 			FMODStudioModule.get_studio_system().set_parameter_by_name("Bee Count", clamp(bee_count, 0, 5), false)
 			FMODStudioModule.get_studio_system().set_parameter_by_name("Mole Count", clamp(mole_count, 0, 3), false)
+
+func create_tilemap_connections():
+	GameManager.tilemap_manager.grid_object_created.connect(add_entity)
+	GameManager.tilemap_manager.grid_object_deleted.connect(remove_entity)
+	play(song.GAMEPLAY)
 
 func add_entity(grid_object, coords):
 	if (grid_object is Bee):

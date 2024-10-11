@@ -19,9 +19,6 @@ signal stage_one_completed
 func _ready() -> void:
 	create_new_slots()
 
-func _process(delta: float) -> void:
-	pass
-
 func create_new_slots():
 	slot_honey = Slot.new([Slot.ResourceType.HONEY], resource_requirements_by_stage[stage]["honey"])
 	slot_pollen = Slot.new([Slot.ResourceType.POLLEN], resource_requirements_by_stage[stage]["pollen"])
@@ -31,8 +28,11 @@ func progress_stage():
 	stage += 1
 	stage_completed.emit()
 	if stage == 1:
+		%TreeSprite.texture = preload("res://textures/tree_weak.png")
+		Dialogic.start("MoleFairy1")
 		stage_zero_completed.emit()
 	elif stage == 2:
+		%TreeSprite.texture = preload("res://textures/tree_alive.png")
 		stage_one_completed.emit()
 	
 	if stage >= ending_stage:
