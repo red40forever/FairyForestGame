@@ -46,6 +46,8 @@ func _ready():
 	beehive.add_entity(bee2)
 	flower.slot.add_resource(Slot.ResourceType.POLLEN, 1)
 	#item_pile.deposit(Slot.ResourceType.HONEY, 2)
+	
+	Dialogic.start("IntroDialogue")
 
 func _on_tile_clicked(coordinates: Vector2i):
 	if selected_object is Entity:

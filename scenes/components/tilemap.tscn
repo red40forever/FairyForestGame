@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=4 uid="uid://b573p5aulkgpe"]
+[gd_scene load_steps=14 format=4 uid="uid://b573p5aulkgpe"]
 
 [ext_resource type="Script" path="res://scripts/TilemapManager.gd" id="1_yheyg"]
 [ext_resource type="Material" uid="uid://qkfy6damforr" path="res://materials/mat_sprite_shadowed.tres" id="2_87clq"]
 [ext_resource type="Script" path="res://scripts/TilePlacementHelper.gd" id="2_fx0ts"]
 [ext_resource type="TileSet" uid="uid://dw7bpr6aqttif" path="res://textures/tileset_ground.tres" id="2_mglfb"]
 [ext_resource type="TileSet" uid="uid://c5tsw2upt8t56" path="res://textures/tileset_fog_of_war.tres" id="2_yo6mu"]
+[ext_resource type="PackedScene" uid="uid://dpoq72j4g0vph" path="res://scenes/components/tree.tscn" id="4_thxy8"]
 [ext_resource type="Resource" uid="uid://ds4l0hhtgka7o" path="res://objects/item_pile_obj.tres" id="5_lhdm3"]
 [ext_resource type="Resource" uid="uid://2qarxujqm4m3" path="res://objects/beehive_obj.tres" id="5_mas4d"]
 [ext_resource type="Script" path="res://scripts/Recipe.gd" id="5_qh5j2"]
@@ -37,6 +38,9 @@ tile_set = ExtResource("2_mglfb")
 unique_name_in_owner = true
 y_sort_enabled = true
 material = ExtResource("2_87clq")
+
+[node name="Tree" parent="GridObjectContainer" instance=ExtResource("4_thxy8")]
+position = Vector2(286, 15)
 
 [node name="FogOfWarLayer" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
