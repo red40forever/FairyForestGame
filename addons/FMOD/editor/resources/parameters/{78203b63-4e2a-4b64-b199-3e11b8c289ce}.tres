@@ -1,0 +1,18 @@
+[gd_resource type="ParameterAsset" load_steps=3 format=3 uid="uid://c0iexij0gevjs"]
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_8hfgx"]
+data1 = 1694518101
+data2 = 1587714894
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_6ko2b"]
+name = "Mole Count"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_8hfgx")
+maximum = 3.0
+flags = 4
+guid = "{78203b63-4e2a-4b64-b199-3e11b8c289ce}"
+
+[resource]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_6ko2b")
+path = "parameter:/Mole Count"
+guid = "{78203b63-4e2a-4b64-b199-3e11b8c289ce}"
+name = "Mole Count"

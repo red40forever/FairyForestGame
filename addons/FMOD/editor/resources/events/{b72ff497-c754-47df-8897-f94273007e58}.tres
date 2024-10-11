@@ -1,9 +1,8 @@
 [gd_resource type="EventAsset" format=3 uid="uid://bhfogrf378o51"]
 
 [resource]
-is_oneshot = true
 min_distance = 1.0
 max_distance = 20.0
-path = "event:/Bee Dialogue"
+path = "event:/Mole Dialogue"
 guid = "{b72ff497-c754-47df-8897-f94273007e58}"
-name = "Bee Dialogue"
+name = "Mole Dialogue"

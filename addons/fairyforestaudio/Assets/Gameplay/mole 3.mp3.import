@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bh3142u8wmv3e"
+path="res://.godot/imported/mole 3.mp3-f309eace4f403beb2df1de9c663beeda.mp3str"
+
+[deps]
+
+source_file="res://addons/fairyforestaudio/Assets/Gameplay/mole 3.mp3"
+dest_files=["res://.godot/imported/mole 3.mp3-f309eace4f403beb2df1de9c663beeda.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,43 +1,16 @@
-[gd_resource type="ProjectCache" load_steps=11 format=3 uid="uid://dye1ai5uapsnh"]
+[gd_resource type="ProjectCache" load_steps=12 format=3 uid="uid://dye1ai5uapsnh"]
 
 [ext_resource type="BankAsset" uid="uid://bkuu5lnw6ne12" path="res://addons/FMOD/editor/resources/banks/{b1b15e02-0f87-484b-afca-690481a437d3}.tres" id="1_8fjm3"]
 [ext_resource type="BankAsset" uid="uid://b2gmr7t4wfhol" path="res://addons/FMOD/editor/resources/banks/{29ac7ed6-7efc-0409-2983-e3fa7057314b}.tres" id="2_2dr14"]
 [ext_resource type="BusAsset" uid="uid://d17rivnl20key" path="res://addons/FMOD/editor/resources/busses/{1ecdaa3d-ac80-4667-ae68-85b715be72bc}.tres" id="3_28i20"]
 [ext_resource type="BusAsset" uid="uid://d1sga7qseko8s" path="res://addons/FMOD/editor/resources/busses/{4d181d97-4758-487e-a9fb-57aab45094e5}.tres" id="4_44jfu"]
 [ext_resource type="EventAsset" uid="uid://bu3imqywf3t3v" path="res://addons/FMOD/editor/resources/events/{dd4a22dd-c9bd-4f7e-8abc-6427a57f0be4}.tres" id="5_3lbkh"]
-[ext_resource type="ParameterAsset" uid="uid://cgdhs3w2abtj" path="res://addons/FMOD/editor/resources/parameters/{64cd67bc-2564-491c-8179-6a2869abef45}.tres" id="6_m6rak"]
-
-[sub_resource type="EventAsset" id="EventAsset_a2jdk"]
-is_oneshot = true
-min_distance = 1.0
-max_distance = 20.0
-path = "event:/Bee Dialogue"
-guid = "{b72ff497-c754-47df-8897-f94273007e58}"
-name = "Bee Dialogue"
-
-[sub_resource type="EventAsset" id="EventAsset_544ir"]
-is_oneshot = true
-min_distance = 1.0
-max_distance = 20.0
-path = "event:/Mole Dialogue"
-guid = "{b8b1960e-1045-48a7-8625-653d69cfb70c}"
-name = "Mole Dialogue"
-
-[sub_resource type="EventAsset" id="EventAsset_splc7"]
-is_oneshot = true
-min_distance = 1.0
-max_distance = 20.0
-path = "event:/Overworld A"
-guid = "{b31f7ece-26b5-4085-a83c-75e1e5d50eac}"
-name = "Overworld A"
-
-[sub_resource type="EventAsset" id="EventAsset_q4ipi"]
-is_oneshot = true
-min_distance = 1.0
-max_distance = 20.0
-path = "event:/Overworld B"
-guid = "{d9fd9fc6-0421-403d-b531-1b131fd0f09e}"
-name = "Overworld B"
+[ext_resource type="EventAsset" uid="uid://ci2kv1nl080w5" path="res://addons/FMOD/editor/resources/events/{b8b1960e-1045-48a7-8625-653d69cfb70c}.tres" id="5_v4f7h"]
+[ext_resource type="EventAsset" uid="uid://cs7srk7sy1nbv" path="res://addons/FMOD/editor/resources/events/{ac3da66f-a89c-4ce7-bf63-ac56fc67cf31}.tres" id="5_xso6t"]
+[ext_resource type="EventAsset" uid="uid://trmxpo4yoefm" path="res://addons/FMOD/editor/resources/events/{b31f7ece-26b5-4085-a83c-75e1e5d50eac}.tres" id="6_fpt7x"]
+[ext_resource type="EventAsset" uid="uid://bhfogrf378o51" path="res://addons/FMOD/editor/resources/events/{b72ff497-c754-47df-8897-f94273007e58}.tres" id="8_5tl2w"]
+[ext_resource type="ParameterAsset" uid="uid://c1eskjeh5t1ro" path="res://addons/FMOD/editor/resources/parameters/{59e8519c-ad07-46fc-b1d8-7269c12ef1f1}.tres" id="10_m81u5"]
+[ext_resource type="ParameterAsset" uid="uid://c0iexij0gevjs" path="res://addons/FMOD/editor/resources/parameters/{78203b63-4e2a-4b64-b199-3e11b8c289ce}.tres" id="11_odq81"]
 
 [resource]
 banks = {
@@ -45,10 +18,10 @@ banks = {
 "{b1b15e02-0f87-484b-afca-690481a437d3}": ExtResource("1_8fjm3")
 }
 events = {
-"{b31f7ece-26b5-4085-a83c-75e1e5d50eac}": SubResource("EventAsset_splc7"),
-"{b72ff497-c754-47df-8897-f94273007e58}": SubResource("EventAsset_a2jdk"),
-"{b8b1960e-1045-48a7-8625-653d69cfb70c}": SubResource("EventAsset_544ir"),
-"{d9fd9fc6-0421-403d-b531-1b131fd0f09e}": SubResource("EventAsset_q4ipi"),
+"{ac3da66f-a89c-4ce7-bf63-ac56fc67cf31}": ExtResource("5_xso6t"),
+"{b31f7ece-26b5-4085-a83c-75e1e5d50eac}": ExtResource("6_fpt7x"),
+"{b72ff497-c754-47df-8897-f94273007e58}": ExtResource("8_5tl2w"),
+"{b8b1960e-1045-48a7-8625-653d69cfb70c}": ExtResource("5_v4f7h"),
 "{dd4a22dd-c9bd-4f7e-8abc-6427a57f0be4}": ExtResource("5_3lbkh")
 }
 busses = {
@@ -56,7 +29,8 @@ busses = {
 "{4d181d97-4758-487e-a9fb-57aab45094e5}": ExtResource("4_44jfu")
 }
 parameters = {
-"{64cd67bc-2564-491c-8179-6a2869abef45}": ExtResource("6_m6rak")
+"{59e8519c-ad07-46fc-b1d8-7269c12ef1f1}": ExtResource("10_m81u5"),
+"{78203b63-4e2a-4b64-b199-3e11b8c289ce}": ExtResource("11_odq81")
 }
 bank_tree = [{
 "children": [],
@@ -74,9 +48,21 @@ bank_tree = [{
 event_tree = [{
 "children": [],
 "item_type": 1,
+"node_name": "Ambience",
+"path": "event:/Ambience",
+"resource": ExtResource("5_xso6t")
+}, {
+"children": [],
+"item_type": 1,
 "node_name": "Bee Dialogue",
 "path": "event:/Bee Dialogue",
-"resource": SubResource("EventAsset_a2jdk")
+"resource": ExtResource("5_v4f7h")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Gameplay",
+"path": "event:/Gameplay",
+"resource": ExtResource("6_fpt7x")
 }, {
 "children": [],
 "item_type": 1,
@@ -88,19 +74,7 @@ event_tree = [{
 "item_type": 1,
 "node_name": "Mole Dialogue",
 "path": "event:/Mole Dialogue",
-"resource": SubResource("EventAsset_544ir")
-}, {
-"children": [],
-"item_type": 1,
-"node_name": "Overworld A",
-"path": "event:/Overworld A",
-"resource": SubResource("EventAsset_splc7")
-}, {
-"children": [],
-"item_type": 1,
-"node_name": "Overworld B",
-"path": "event:/Overworld B",
-"resource": SubResource("EventAsset_q4ipi")
+"resource": ExtResource("8_5tl2w")
 }]
 bus_tree = [{
 "children": [{
@@ -118,7 +92,13 @@ bus_tree = [{
 parameter_tree = [{
 "children": [],
 "item_type": 6,
-"node_name": "volume",
-"path": "parameter:/volume",
-"resource": ExtResource("6_m6rak")
+"node_name": "Bee Count",
+"path": "parameter:/Bee Count",
+"resource": ExtResource("10_m81u5")
+}, {
+"children": [],
+"item_type": 6,
+"node_name": "Mole Count",
+"path": "parameter:/Mole Count",
+"resource": ExtResource("11_odq81")
 }]

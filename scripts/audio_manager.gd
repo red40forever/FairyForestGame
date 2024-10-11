@@ -1,14 +1,15 @@
 extends Node
 
 @export var menuMusicEvent: EventAsset
-@export var overworldMusicEventA: EventAsset
-@export var overworldMusicEventB: EventAsset
-@export var DialogueMusicEventBee: EventAsset
-@export var DialogueMusicEventMole: EventAsset
+@export var gameplayMusicEvent: EventAsset
+@export var dialogueMusicEventBee: EventAsset
+@export var dialogueMusicEventMole: EventAsset
+@export var ambienceEvent: EventAsset
 
-enum song {MENU, GAMEPLAY_A, GAMEPLAY_B, DIALOGUE_BEE, DIALOGUE_MOLE}
+enum song {MENU, GAMEPLAY, DIALOGUE_BEE, DIALOGUE_MOLE}
 
 var musicInstance: EventInstance
+var ambienceInstance: EventInstance
 
 var beat_callable: Callable = Callable(self, "beat_callback")
 
@@ -21,31 +22,26 @@ var mole_count = 0
 func _ready() -> void:
 	GameManager.tilemap_manager.grid_object_created.connect(add_entity)
 	GameManager.tilemap_manager.grid_object_deleted.connect(remove_entity)
+	ambienceInstance = FMODRuntime.create_instance(ambienceEvent)
+	ambienceInstance.start()
+	play(song.GAMEPLAY)
 
 func play(songName: song):
 	if(musicInstance != null):
 		musicInstance.stop(FMODStudioModule.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 		musicInstance.release()
 
-	var shouldCallback = false
-
 	match songName:
 		song.MENU:
 			musicInstance = FMODRuntime.create_instance(menuMusicEvent)
-		song.GAMEPLAY_A:
-			musicInstance = FMODRuntime.create_instance(overworldMusicEventA)
-			shouldCallback = true
-		song.GAMEPLAY_B:
-			musicInstance = FMODRuntime.create_instance(overworldMusicEventB)
-			shouldCallback = true
+		song.GAMEPLAY:
+			musicInstance = FMODRuntime.create_instance(gameplayMusicEvent)
+			beat_counter = 0
+			musicInstance.set_callback(beat_callable, FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT)
 		song.DIALOGUE_BEE:
-			musicInstance = FMODRuntime.create_instance(DialogueMusicEventBee)
+			musicInstance = FMODRuntime.create_instance(dialogueMusicEventBee)
 		song.DIALOGUE_MOLE:
-			musicInstance = FMODRuntime.create_instance(DialogueMusicEventMole)
-
-	if shouldCallback:
-		beat_counter = 0
-		musicInstance.set_callback(beat_callable, FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT)
+			musicInstance = FMODRuntime.create_instance(dialogueMusicEventMole)
 
 	musicInstance.start()
 
@@ -57,12 +53,17 @@ func beat_callback(args):
 		beat_counter += 1
 		if(beat_counter == 5):
 			beat_counter = 1
-			# TODO make sure that switching songs makes it swap at the top of the bar bar
-			FMODStudioModule.get_studio_system().set_parameter_by_name("Bee Count", bee_count, false)
-			FMODStudioModule.get_studio_system().set_parameter_by_name("Mole Count", mole_count, false)
+			FMODStudioModule.get_studio_system().set_parameter_by_name("Bee Count", clamp(bee_count, 0, 5), false)
+			FMODStudioModule.get_studio_system().set_parameter_by_name("Mole Count", clamp(mole_count, 0, 3), false)
 
 func add_entity(grid_object, coords):
-	pass # TODO check bee/mole and increment based on that
+	if (grid_object is Bee):
+		bee_count += 1
+	if (grid_object is Mole):
+		mole_count += 1
 
 func remove_entity(grid_object, coords):
-	pass # TODO check bee/mole and decrement based on that
+	if (grid_object is Bee):
+		bee_count -= 1
+	if (grid_object is Mole):
+		mole_count -= 1
