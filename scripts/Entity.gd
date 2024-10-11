@@ -118,7 +118,6 @@ func interact_with_empty_tile():
 	pass
 
 func try_interact_with_object(object: InteractableGridObject) -> bool:
-	
 	if interactions_completed < entity_attributes.max_interactions:
 		var inter = object.request_interaction(slot)
 		if inter:
@@ -131,8 +130,8 @@ func try_interact_with_object(object: InteractableGridObject) -> bool:
 			if not found_match:
 				interactions_completed += 1
 			return true
-		elif object is HomeTile or object.get_class_name() == home_tile_name:
-			return_home.emit(self, slot)
+	elif object is HomeTile or object.get_class_name() == home_tile_name:
+		return_home.emit(self, slot)
 	return false
 
 func get_class_name(): return "Entity"
