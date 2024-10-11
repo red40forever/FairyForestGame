@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://bf0v8h46ee3ti"]
+[gd_scene load_steps=3 format=3 uid="uid://bf0v8h46ee3ti"]
 
 [ext_resource type="Script" path="res://scripts/HomeTile.gd" id="1_dgr4s"]
+[ext_resource type="Script" path="res://scripts/SlotDisplay.gd" id="2_47e8d"]
 
 [node name="HomeTile" type="Sprite2D"]
 script = ExtResource("1_dgr4s")
+
+[node name="SlotDisplay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_47e8d")

@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://nsxlh2a4ul3n"]
+
+[ext_resource type="Texture2D" uid="uid://4blcvs3gv4cn" path="res://textures/entity_bee.png" id="1_wvaxq"]
+[ext_resource type="Script" path="res://scripts/Bee.gd" id="1_xtxqw"]
+[ext_resource type="Resource" uid="uid://b3gwhkg85vo7l" path="res://objects/bee_entity_attributes.tres" id="2_5ioq7"]
+[ext_resource type="Material" uid="uid://you2tiklg27t" path="res://materials/mat_sprite_outline.tres" id="2_wdvbs"]
+[ext_resource type="Texture2D" uid="uid://5bsw7fxff3f0" path="res://textures/entity_bee_shadow.png" id="3_ixp5y"]
+[ext_resource type="Script" path="res://scripts/BeeAnimation.gd" id="4_kbffd"]
+[ext_resource type="PackedScene" uid="uid://c7hgnu1uoo1um" path="res://scenes/components/slot_display.tscn" id="7_71oul"]
+[ext_resource type="PackedScene" path="res://scenes/components/selection_button.tscn" id="7_i0l0b"]
+
+[node name="Bee" type="Node2D" node_paths=PackedStringArray("slot_display", "main_sprite", "selection_button")]
+texture_filter = 1
+script = ExtResource("1_xtxqw")
+entity_attributes = ExtResource("2_5ioq7")
+carryable_resources = Array[int]([0, 1, 3])
+effortless_tiles = ["Beehive", "Mushroom"]
+slot_display = NodePath("SlotDisplay")
+main_sprite = NodePath("Sprite2D")
+selection_button = NodePath("SelectionButton")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(0, -10)
+texture = ExtResource("3_ixp5y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = ExtResource("2_wdvbs")
+position = Vector2(0, -16)
+texture = ExtResource("1_wvaxq")
+script = ExtResource("4_kbffd")
+
+[node name="SelectionButton" parent="." instance=ExtResource("7_i0l0b")]
+offset_bottom = -3.0
+
+[node name="SlotDisplay" parent="." instance=ExtResource("7_71oul")]
+offset_left = -3.0
+offset_top = -40.0
+offset_right = 2.0
+offset_bottom = -33.0
+grow_horizontal = 1
+grow_vertical = 1

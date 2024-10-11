@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="ResourceRegistry" load_steps=2 format=3 uid="uid://dk0id3n2vx7pr"]
+[gd_resource type="Resource" script_class="Resources" load_steps=2 format=3 uid="uid://dk0id3n2vx7pr"]
 
 [ext_resource type="Script" path="res://scripts/Resources.gd" id="1_it38u"]
 
 [resource]
 script = ExtResource("1_it38u")
-resources = {}

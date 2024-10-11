@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw8o53xmq7dkg"]
+
+[ext_resource type="Script" path="res://scripts/ItemPile.gd" id="1_yymd0"]
+[ext_resource type="PackedScene" uid="uid://c7hgnu1uoo1um" path="res://scenes/components/slot_display.tscn" id="2_b2rut"]
+[ext_resource type="PackedScene" uid="uid://dcktwik0sg56c" path="res://scenes/components/selection_button.tscn" id="3_kjumd"]
+[ext_resource type="Texture2D" uid="uid://c68k1b54y31vc" path="res://textures/tile_selection.png" id="3_q5xw3"]
+
+[node name="ItemPile" type="Node2D" node_paths=PackedStringArray("slot_display", "selection_button")]
+script = ExtResource("1_yymd0")
+slot_display = NodePath("SlotDisplay")
+selection_button = NodePath("SelectionButton")
+
+[node name="SlotDisplay" parent="." instance=ExtResource("2_b2rut")]
+
+[node name="SelectionButton" parent="." instance=ExtResource("3_kjumd")]
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 16.0
+
+[node name="Area2D" type="Area2D" parent="SelectionButton"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SelectionButton/Area2D"]
+polygon = PackedVector2Array(32, 32, 0, 16, 32, 0, 64, 16)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_q5xw3")

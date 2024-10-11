@@ -1,8 +1,14 @@
+class_name TilePlacementHelper
 extends Node2D
 
+@export_category("Building")
+@export var building_recipes: Array[Recipe]
+
+@export_category("References")
 @export var tilemap_manager: TilemapManager
 @export var placement_indicator: Sprite2D
-@export var selected_object: GridObjectAttributes
+
+@export var test_object: GridObjectAttributes
 
 var last_grid_pos: Vector2i = Vector2i.ZERO
 
@@ -15,10 +21,24 @@ func _process(_delta):
 	last_grid_pos = tilemap_pos
 
 
-func place_at_coords(coordinates: Vector2i):
-	tilemap_manager.create_object_at_coords(selected_object, coordinates)
+func place_at_coords(grid_object_attributes: GridObjectAttributes, coordinates: Vector2i) -> GridObject:
+	return tilemap_manager.create_object_at_coords(grid_object_attributes, coordinates)
 
 
 func quantize_local_position(local_pos: Vector2):
 	var tilemap_pos = %GroundLayer.local_to_map(local_pos)
 	return %GroundLayer.map_to_local(tilemap_pos)
+
+
+func get_recipe_for_grid_object_attributes(grid_object_attributes: GridObjectAttributes):
+	for recipe in building_recipes:
+		if recipe.building.id == grid_object_attributes.id:
+			return recipe
+	return null
+
+
+func get_recipe_by_id(recipe_id: String):
+	for recipe in building_recipes:
+		if recipe.id == recipe_id:
+			return recipe
+	return null
