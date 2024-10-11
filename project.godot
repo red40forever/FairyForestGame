@@ -24,7 +24,9 @@ UIManager="*res://scripts/UIManager.gd"
 
 directories/dch_directory={
 "BeeFairy": "res://addons/dialogic/Characters/BeeFairy.dch",
+"MoleFairy": "res://addons/dialogic/Characters/MoleFairy.dch",
 "Narrator": "res://addons/dialogic/Characters/Narrator.dch",
+"OakFairy": "res://addons/dialogic/Characters/OakFairy.dch",
 "UnknownChars": "res://addons/dialogic/Characters/UnknownChars.dch"
 }
 directories/dtl_directory={
@@ -33,7 +35,9 @@ directories/dtl_directory={
 "BeeFairy2": "res://addons/dialogic/Timelines/BeeFairy2.dtl",
 "BeeFairy3": "res://addons/dialogic/Timelines/BeeFairy3.dtl",
 "BeeFairy4": "res://addons/dialogic/Timelines/BeeFairy4.dtl",
-"IntroDialogue": "res://addons/dialogic/Timelines/IntroDialogue.dtl"
+"Ending": "res://addons/dialogic/Timelines/Ending.dtl",
+"IntroDialogue": "res://addons/dialogic/Timelines/IntroDialogue.dtl",
+"MoleFairy1": "res://addons/dialogic/Timelines/MoleFairy1.dtl"
 }
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01

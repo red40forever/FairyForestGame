@@ -30,10 +30,16 @@ overrides = {}
 script = ExtResource("1_jlmy8")
 scene = ExtResource("5_xs0m1")
 overrides = {
+"box_color_custom": "Color(0.957031, 0.822449, 0.910769, 1)",
+"box_panel": "\"vn_textbox_default_panel.tres\"",
 "box_size": "Vector2(750, 150)",
-"normal_font": "\"res://fonts/ChevyRay - Softsquare Wide.ttf\"",
+"name_label_custom_font_size": "24.0",
+"name_label_font": "\"res://fonts/ChevyRay - Express.ttf\"",
+"name_label_use_global_color": "false",
+"name_label_use_global_font_size": "false",
+"normal_font": "\"res://fonts/ChevyRay - Express.ttf\"",
+"text_custom_color": "Color(0.1875, 0.122784, 0.0600586, 1)",
 "text_size": "20.0",
-"text_use_global_font": "false",
 "text_use_global_size": "false"
 }
 
@@ -60,6 +66,10 @@ overrides = {}
 [resource]
 script = ExtResource("10_8ha0h")
 name = "DialogStyle"
-base_overrides = {}
+base_overrides = {
+"global_bg_color": "Color(0.188235, 0.121569, 0.0588235, 1)",
+"global_font": "\"res://fonts/ChevyRay - Express.ttf\"",
+"global_font_color": "Color(0.956863, 0.823529, 0.890196, 1)"
+}
 layers = Array[ExtResource("1_jlmy8")]([SubResource("Resource_v4jov"), SubResource("Resource_1k8jo"), SubResource("Resource_qdkvn"), SubResource("Resource_vnyq4"), SubResource("Resource_3842y"), SubResource("Resource_n7hx6"), SubResource("Resource_ge7cs"), SubResource("Resource_gcocs")])
 metadata/_latest_layer = 3
