@@ -24,10 +24,6 @@ func create_new_slots():
 	slot_pollen = Slot.new([Slot.ResourceType.POLLEN], resource_requirements_by_stage[stage]["pollen"])
 	slot_honey = Slot.new([Slot.ResourceType.MUSHROOM], resource_requirements_by_stage[stage]["mushrooms"])
 
-func _process(delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		progress_stage()
-
 func progress_stage():
 	stage += 1
 	stage_completed.emit()

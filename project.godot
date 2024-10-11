@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="FairyForestGame"
-run/main_scene="res://scenes/main_scene.tscn"
+run/main_scene="res://scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 
 [autoload]
@@ -26,6 +26,11 @@ AudioManager="*res://scenes/components/audio_manager.tscn"
 
 directories/dch_directory={
 "BeeFairy": "res://addons/dialogic/Characters/BeeFairy.dch",
+"Characters/BeeFairy": "res://FairyForestGame2/addons/dialogic/Characters/BeeFairy.dch",
+"Characters/MoleFairy": "res://FairyForestGame2/addons/dialogic/Characters/MoleFairy.dch",
+"Characters/Narrator": "res://FairyForestGame2/addons/dialogic/Characters/Narrator.dch",
+"Characters/OakFairy": "res://FairyForestGame2/addons/dialogic/Characters/OakFairy.dch",
+"Characters/UnknownChars": "res://FairyForestGame2/addons/dialogic/Characters/UnknownChars.dch",
 "MoleFairy": "res://addons/dialogic/Characters/MoleFairy.dch",
 "Narrator": "res://addons/dialogic/Characters/Narrator.dch",
 "OakFairy": "res://addons/dialogic/Characters/OakFairy.dch",
@@ -39,7 +44,15 @@ directories/dtl_directory={
 "BeeFairy4": "res://addons/dialogic/Timelines/BeeFairy4.dtl",
 "Ending": "res://addons/dialogic/Timelines/Ending.dtl",
 "IntroDialogue": "res://addons/dialogic/Timelines/IntroDialogue.dtl",
-"MoleFairy1": "res://addons/dialogic/Timelines/MoleFairy1.dtl"
+"MoleFairy1": "res://addons/dialogic/Timelines/MoleFairy1.dtl",
+"Timelines/2HoneyInHive": "res://FairyForestGame2/addons/dialogic/Timelines/2HoneyInHive.dtl",
+"Timelines/BeeFairy1": "res://FairyForestGame2/addons/dialogic/Timelines/BeeFairy1.dtl",
+"Timelines/BeeFairy2": "res://FairyForestGame2/addons/dialogic/Timelines/BeeFairy2.dtl",
+"Timelines/BeeFairy3": "res://FairyForestGame2/addons/dialogic/Timelines/BeeFairy3.dtl",
+"Timelines/BeeFairy4": "res://FairyForestGame2/addons/dialogic/Timelines/BeeFairy4.dtl",
+"Timelines/Ending": "res://FairyForestGame2/addons/dialogic/Timelines/Ending.dtl",
+"Timelines/IntroDialogue": "res://FairyForestGame2/addons/dialogic/Timelines/IntroDialogue.dtl",
+"Timelines/MoleFairy1": "res://FairyForestGame2/addons/dialogic/Timelines/MoleFairy1.dtl"
 }
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01

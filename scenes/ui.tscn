@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://wk1n06a5tvtk"]
+[gd_scene load_steps=5 format=3 uid="uid://wk1n06a5tvtk"]
 
 [ext_resource type="PackedScene" uid="uid://cai78k8j65ea3" path="res://scenes/pause_menu.tscn" id="1_dbow0"]
 [ext_resource type="Texture2D" uid="uid://cngmucuuawwsy" path="res://textures/ui_button_new_day.png" id="2_nphff"]
 [ext_resource type="Script" path="res://scripts/button.gd" id="3_s0xle"]
-[ext_resource type="Texture2D" uid="uid://becedfwwqavw0" path="res://textures/end_screen.png" id="4_d381u"]
-[ext_resource type="Script" path="res://scripts/EndingThing.gd" id="5_8pebj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hh52u"]
 
@@ -36,16 +34,5 @@ scale = Vector2(3, 3)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_hh52u")
 icon = ExtResource("2_nphff")
 script = ExtResource("3_s0xle")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_d381u")
-script = ExtResource("5_8pebj")
 
 [connection signal="pressed" from="NewDayButton" to="NewDayButton" method="_on_pressed"]
