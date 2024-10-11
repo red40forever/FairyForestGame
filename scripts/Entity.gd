@@ -90,12 +90,19 @@ func _on_tween_finished():
 	var mgr = GameManager.tilemap_manager
 	var map_coords = mgr.ground_layer.local_to_map(self.position)
 	var objects = mgr.get_objects_at(map_coords)
+	
+	if len(objects) == 1:
+		interact_with_empty_tile()
+		return
+	
 	# If valid object type, do stuff
 	for object in objects:
 		if object is InteractableGridObject:
 			var inter = try_interact_with_object(object)
-			if inter == true:
-				break
+
+# override in child classes
+func interact_with_empty_tile():
+	pass
 
 func try_interact_with_object(object: InteractableGridObject) -> bool:
 	if interactions_completed < entity_attributes.max_interactions:

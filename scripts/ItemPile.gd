@@ -84,3 +84,5 @@ func request_interaction(incoming_slot: Slot) -> bool:
 		if exchange > 0:
 			return true
 	return false
+
+func get_class_name() -> String: return "ItemPile"

@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://cl2tnst61vqop" path="res://objects/mole_entity_attributes.tres" id="2_7r4el"]
 [ext_resource type="Texture2D" uid="uid://e6omutuh30c5" path="res://textures/entity_mole_shadow.png" id="4_e2j8e"]
 [ext_resource type="PackedScene" uid="uid://c7hgnu1uoo1um" path="res://scenes/components/slot_display.tscn" id="6_u7308"]
-[ext_resource type="PackedScene" uid="uid://dcktwik0sg56c" path="res://scenes/components/selection_button.tscn" id="6_wjpq5"]
+[ext_resource type="PackedScene" path="res://scenes/components/selection_button.tscn" id="6_wjpq5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ktxgq"]
 atlas = ExtResource("1_uhyer")
