@@ -1,4 +1,9 @@
 extends Control
 
-@onready var ui: Control = $"../MainScene/CanvasLayer/%UI"
-@onready var pause_menu: PauseMenu = $"../MainScene/CanvasLayer/%UI/%PauseMenu"
+@onready var ui: Control
+@onready var pause_menu: PauseMenu
+
+
+func initialize():
+	ui = $"../MainScene/CanvasLayer/%UI"
+	pause_menu = $"../MainScene/CanvasLayer/%UI/%PauseMenu"

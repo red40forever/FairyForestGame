@@ -27,6 +27,7 @@ signal selection_changed(old_selection: GridObject, new_selection: GridObject)
 func _ready():
 	# HACKY! who cares
 	GameManager.initialize()
+	UIManager.initialize()
 	
 	camera.tile_clicked.connect(_on_tile_clicked)
 	
