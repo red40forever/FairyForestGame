@@ -19,11 +19,27 @@ signal stage_one_completed
 func _ready() -> void:
 	create_new_slots()
 
+func _process(delta: float) -> void:
+	pass
+
 func create_new_slots():
 	slot_honey = Slot.new([Slot.ResourceType.HONEY], resource_requirements_by_stage[stage]["honey"])
 	slot_pollen = Slot.new([Slot.ResourceType.POLLEN], resource_requirements_by_stage[stage]["pollen"])
 	slot_honey = Slot.new([Slot.ResourceType.MUSHROOM], resource_requirements_by_stage[stage]["mushrooms"])
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func progress_stage():
+	stage += 1
+	stage_completed.emit()
+	if stage == 1:
+		stage_zero_completed.emit()
+	elif stage == 2:
+		stage_one_completed.emit()
+	
+	if stage >= ending_stage:
+		on_ending_stage_reached()
+		return
+	
+	create_new_slots()
+
+func on_ending_stage_reached():
+	pass #TODO

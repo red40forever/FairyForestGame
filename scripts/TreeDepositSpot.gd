@@ -14,6 +14,7 @@ func _ready() -> void:
 
 func get_class_name() -> String: return "TreeDepositSpot"
 
+# Interactor can deposit resources.
 func request_interaction(incoming_slot: Slot) -> bool:
 	for type in incoming_slot.accepted_types:
 		var resource_count = incoming_slot.get_resource_count(type)
@@ -23,7 +24,7 @@ func request_interaction(incoming_slot: Slot) -> bool:
 			var slot = slots[type]
 			var overflow = slot.add_resource_overflow_safe(type, resource_count)
 			var exchange = slot.get_resource_count(type) - overflow
-			slot.remove_resource(type, exchange)
 			if exchange > 0:
+				slot.remove_resource(type, exchange)
 				return true
 	return false 

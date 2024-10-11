@@ -25,6 +25,5 @@ offset_right = 11.0
 offset_bottom = 7.0
 
 [node name="SlotDisplay" parent="." instance=ExtResource("4_x23x1")]
-anchors_preset = 0
 offset_top = -36.0
 offset_bottom = -29.0

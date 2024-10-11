@@ -10,6 +10,8 @@ var grid_coordinates: Vector2i
 
 var selected: bool = false
 
+signal clicked
+
 
 func _ready():
 	global_position = GameManager.tilemap_manager.ground_layer.map_to_local(grid_coordinates)
@@ -23,7 +25,11 @@ func _ready():
 
 
 func on_click():
-	GameManager.player.selected_object = self
+	# Select this object when clicked, or deselect if it's already selected
+	if !selected:
+		GameManager.player.selected_object = self
+	else:
+		GameManager.player.selected_object = null
 
 
 func set_selected(new_selected: bool):
@@ -45,7 +51,7 @@ func set_selected(new_selected: bool):
 
 
 func on_pressed():
-	print("object handled")
+	clicked.emit()
 	on_click()
 
 

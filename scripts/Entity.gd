@@ -3,6 +3,7 @@ extends GridObject
 
 @export_group("Attributes")
 @export var entity_attributes: EntityAttributes
+@export var home_tile_name: String = "HomeTile"
 
 @export_group("Interactions")
 @export var carryable_resources: Array[Slot.ResourceType]
@@ -18,7 +19,7 @@ var slot: Slot
 
 # Movement
 var target: Vector2
-var home: Node
+var home: HomeTile
 var tween: Tween = null
 
 signal return_home(entity_reference_to_free: Entity)
@@ -33,20 +34,24 @@ func _ready():
 	
 	if slot_display:
 		slot_display.displayed_slot = slot
-		print(slot_display.name, ": ", slot_display.displayed_slot)
 	else:
 		push_warning("Entity '", name, "' does not have a SlotDisplay.")
+	
+	GameManager.player.selection_changed.connect(_on_selection_changed)
 
 func _process(delta: float) -> void:
 	if not idle:
 		if interactions_completed >= entity_attributes.max_interactions:
-			go_towards_home()
+			set_new_target(home.grid_coordinates)
 		self.grid_coordinates = GameManager.tilemap_manager.ground_layer.local_to_map(self.position)
 
-# TODO how to receive a new target? signal? from where? from player input?
+
 func set_new_target(new_target: Vector2i):
-	# TODO sprite faces direction of movement
 	idle = false
+	
+	if new_target == Vector2i(target):
+		_on_tween_finished()
+	
 	# convert tilemap coords into world coords
 	target = GameManager.tilemap_manager.ground_layer.map_to_local(new_target)
 	
@@ -63,23 +68,21 @@ func set_new_target(new_target: Vector2i):
 	var distance = (target - position).length()
 	tween = get_tree().create_tween()
 	var tween_duration = distance / entity_attributes.speed
+	tween.set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(self, "position", target, tween_duration)
 	tween.finished.connect(_on_tween_finished)
 	
 	# Visual flip depending on direction
-	if new_target.x <= grid_coordinates.x:
+	if target.x <= position.x:
 		main_sprite.flip_h = true
 	else:
 		main_sprite.flip_h = false
 
-func set_home(new_home: Node) -> void:
-	home = new_home
+func set_home(new_home: HomeTile) -> void:
+	new_home.add_entity(self)
 
 func set_attributes(new_attributes: EntityAttributes) -> void:
 	entity_attributes = new_attributes
-
-func go_towards_home() -> void:
-	target = home.position
 
 # When tween is finished, entity has stopped moving.
 func _on_tween_finished():
@@ -92,12 +95,19 @@ func _on_tween_finished():
 	var mgr = GameManager.tilemap_manager
 	var map_coords = mgr.ground_layer.local_to_map(self.position)
 	var objects = mgr.get_objects_at(map_coords)
+	
+	if len(objects) == 1:
+		interact_with_empty_tile()
+		return
+	
 	# If valid object type, do stuff
 	for object in objects:
 		if object is InteractableGridObject:
 			var inter = try_interact_with_object(object)
-			if inter == true:
-				break
+
+# override in child classes
+func interact_with_empty_tile():
+	pass
 
 func try_interact_with_object(object: InteractableGridObject) -> bool:
 	if interactions_completed < entity_attributes.max_interactions:
@@ -111,6 +121,8 @@ func try_interact_with_object(object: InteractableGridObject) -> bool:
 			if not found_match:
 				interactions_completed += 1
 			return true
+		elif object is HomeTile or object.get_class_name() == home_tile_name:
+			return_home.emit(self, slot)
 	return false
 
 func get_class_name(): return "Entity"
@@ -119,3 +131,14 @@ func set_selected(new_selected: bool):
 	super(new_selected)
 	if slot_display:
 		slot_display.set_open(new_selected)
+	
+	var new_selection = GameManager.player.selected_object
+	if new_selection is HomeTile:
+		set_new_target(new_selection.grid_coordinates)
+		GameManager.player.selected_object = null
+
+
+func _on_selection_changed(old_selection: GridObject, new_selection: GridObject):
+	if old_selection == self and new_selection is HomeTile:
+		set_new_target(new_selection.grid_coordinates)
+		GameManager.player.selected_object = null

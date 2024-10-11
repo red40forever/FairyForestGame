@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://u2mub2phouoi"
-path="res://.godot/imported/obj_mole_hole.png-5a6e11e50d56914b003d1e82aca1e154.ctex"
+uid="uid://cngmucuuawwsy"
+path="res://.godot/imported/ui_button_new_day.png-8e7a5edce8baa255f63f2822fec51912.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/obj_mole_hole.png"
-dest_files=["res://.godot/imported/obj_mole_hole.png-5a6e11e50d56914b003d1e82aca1e154.ctex"]
+source_file="res://textures/ui_button_new_day.png"
+dest_files=["res://.godot/imported/ui_button_new_day.png-8e7a5edce8baa255f63f2822fec51912.ctex"]
 
 [params]
 

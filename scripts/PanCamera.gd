@@ -49,13 +49,9 @@ func _unhandled_input(event):
 			var global_pos = get_global_mouse_position()
 			var coords = tilemap_manager.ground_layer.local_to_map(global_pos)
 			
-			print("camera handled")
 			tile_clicked.emit(coords)
 			
-			# TODO: Tile selection logic
-			
 			get_viewport().set_input_as_handled()
-			
 	elif event is InputEventMouseMotion and is_dragging:
 		offset -= event.relative / zoom
 		get_viewport().set_input_as_handled()
