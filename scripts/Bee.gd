@@ -1,7 +1,7 @@
 class_name Bee
 extends Entity
 
-var the_stupid_way: GridObjectAttributes = Resources.find("object")["item_pile"]
+var the_stupid_way: GridObjectAttributes = Resources.find("objects")["item_pile"]
 
 func get_class_name(): return "Bee"
 

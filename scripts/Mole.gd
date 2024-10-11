@@ -1,7 +1,7 @@
 class_name Mole
 extends Entity
 
-var the_stupid_way: GridObjectAttributes = Resources.find("object")["mole_hill"]
+var the_stupid_way: GridObjectAttributes = Resources.find("objects")["mole_hill"]
 
 func set_new_target(new_target: Vector2i):
 	super(new_target)
