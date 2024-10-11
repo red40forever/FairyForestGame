@@ -50,6 +50,10 @@ func set_new_target(new_target: Vector2i):
 	if new_target == Vector2i(target):
 		return
 	
+	var placement = GameManager.tilemap_manager.placement_helper
+	if !placement.is_tile_accessible(new_target):
+		return
+	
 	idle = false
 	
 	# convert tilemap coords into world coords

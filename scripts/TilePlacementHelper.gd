@@ -42,3 +42,7 @@ func get_recipe_by_id(recipe_id: String):
 		if recipe.id == recipe_id:
 			return recipe
 	return null
+
+
+func is_tile_accessible(coords: Vector2i):
+	return !%FogOfWarLayer.is_fog_at_tile(coords)

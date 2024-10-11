@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://dpmjpi70uu10q"]
+
+[ext_resource type="Script" path="res://scripts/play_button.gd" id="1_dehqj"]
+[ext_resource type="Texture2D" uid="uid://c7gwgco21cdx8" path="res://textures/ui_newgametrimmed.png" id="2_p8t5g"]
+[ext_resource type="Texture2D" uid="uid://bbj3d2up3bmn6" path="res://textures/ui_quitbuttontrimmed.png" id="3_juoim"]
+[ext_resource type="Script" path="res://scripts/quit_button.gd" id="4_pmkuo"]
+[ext_resource type="Texture2D" uid="uid://dkmmcs3tg7prb" path="res://textures/ui_book.png" id="5_m3rft"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exch6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rkabx"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 200.0
+offset_bottom = 740.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(235.5, 178.5)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_m3rft")
+
+[node name="PlayButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 75.0
+offset_top = 56.0
+offset_right = 214.0
+offset_bottom = 124.0
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_exch6")
+icon = ExtResource("2_p8t5g")
+script = ExtResource("1_dehqj")
+
+[node name="QuitButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -212.0
+offset_top = 56.0
+offset_right = -75.0
+offset_bottom = 124.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rkabx")
+icon = ExtResource("3_juoim")
+script = ExtResource("4_pmkuo")
+
+[connection signal="pressed" from="Control/PlayButton" to="Control/PlayButton" method="_on_pressed"]
+[connection signal="pressed" from="Control/QuitButton" to="Control/QuitButton" method="_on_pressed"]
