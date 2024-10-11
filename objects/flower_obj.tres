@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_pu62a")
 id = "flower_obj"
-name = "Flower Obj"
+name = "Flower Object"
 node = ExtResource("1_pgnnb")
