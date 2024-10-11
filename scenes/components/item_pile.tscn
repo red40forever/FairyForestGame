@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ItemPile.gd" id="1_yymd0"]
 [ext_resource type="PackedScene" uid="uid://c7hgnu1uoo1um" path="res://scenes/components/slot_display.tscn" id="2_b2rut"]
-[ext_resource type="PackedScene" uid="uid://dcktwik0sg56c" path="res://scenes/components/selection_button.tscn" id="3_kjumd"]
+[ext_resource type="PackedScene" path="res://scenes/components/selection_button.tscn" id="3_kjumd"]
 [ext_resource type="Texture2D" uid="uid://c68k1b54y31vc" path="res://textures/tile_selection.png" id="3_q5xw3"]
 
 [node name="ItemPile" type="Node2D" node_paths=PackedStringArray("slot_display", "selection_button")]
