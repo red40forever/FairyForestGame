@@ -1,6 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5f5qimwanrq6"]
 
 [ext_resource type="Script" path="res://scripts/Beehive.gd" id="1_2lwvp"]
+
 [ext_resource type="Material" uid="uid://you2tiklg27t" path="res://materials/mat_sprite_outline.tres" id="2_b60kh"]
 [ext_resource type="Texture2D" uid="uid://cxu0gdd5hr8gn" path="res://textures/obj_beehive.png" id="2_j27ht"]
 [ext_resource type="PackedScene" uid="uid://dcktwik0sg56c" path="res://scenes/components/selection_button.tscn" id="4_mlrpt"]

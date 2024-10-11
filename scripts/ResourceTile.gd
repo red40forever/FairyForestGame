@@ -16,7 +16,7 @@ func _ready() -> void:
 	GameManager.day_manager.day_changed.connect(_on_day_changed)
 	slot = Slot.new(produced_resources, max_storage)
 
-func _on_day_changed():
+func _on_day_changed(_count):
 	for type in produced_resources:
 		slot.add_resource_overflow_safe(type, daily_production)
 
