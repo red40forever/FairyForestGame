@@ -39,8 +39,8 @@ func request_interaction(incoming_slot: Slot) -> bool:
 			# Attempt to give it
 			var overflow = incoming_slot.add_resource_overflow_safe(type, slot.get_resource_count(type))
 			var exchange = slot.get_resource_count(type) - overflow
-			slot.remove_resource(type, exchange)
 			if exchange > 0:
+				slot.remove_resource(type, exchange)
 				return true
 	return false # If no exchange ever occurred
 
