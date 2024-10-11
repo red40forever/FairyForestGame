@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b573p5aulkgpe" path="res://scenes/components/tilemap.tscn" id="1_51j67"]
 [ext_resource type="PackedScene" uid="uid://b035nlib0i5rc" path="res://scenes/components/player.tscn" id="2_abeom"]
 [ext_resource type="PackedScene" uid="uid://wk1n06a5tvtk" path="res://scenes/ui.tscn" id="5_63ucx"]
-[ext_resource type="PackedScene" path="res://scenes/components/day_cycle_manager.tscn" id="5_koqcr"]
+[ext_resource type="PackedScene" uid="uid://c0qwjcmhrskp2" path="res://scenes/components/day_cycle_manager.tscn" id="5_koqcr"]
 
 [node name="MainScene" type="Node2D"]
 y_sort_enabled = true
@@ -16,6 +16,7 @@ unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("2_abeom")]
 unique_name_in_owner = true
+position = Vector2(280, 121)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
