@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8834995f-010b-485c-84ac-159d91a75c4a}">
+		<property name="assetPath">
+			<value>Gameplay/bee 3.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>240.03918367346938</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8a70f355-c8a8-4420-b3ff-be63f40746b9}</destination>
+		</relationship>
+	</object>
+</objects>

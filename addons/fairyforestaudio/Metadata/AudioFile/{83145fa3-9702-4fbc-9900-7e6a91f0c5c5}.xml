@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{83145fa3-9702-4fbc-9900-7e6a91f0c5c5}">
+		<property name="assetPath">
+			<value>bee fairy dialogue.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>38.66122448979592</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8a70f355-c8a8-4420-b3ff-be63f40746b9}</destination>
+		</relationship>
+	</object>
+</objects>

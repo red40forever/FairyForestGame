@@ -14,13 +14,13 @@ var beat_callable: Callable = Callable(self, "beat_callback")
 
 var beat_counter = 0
 
+var bee_count = 0
+var mole_count = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	GameManager.tilemap_manager.grid_object_created.connect(add_entity)
+	GameManager.tilemap_manager.grid_object_deleted.connect(remove_entity)
 
 func play(songName: song):
 	if(musicInstance != null):
@@ -30,6 +30,8 @@ func play(songName: song):
 	var shouldCallback = false
 
 	match songName:
+		song.MENU:
+			musicInstance = FMODRuntime.create_instance(menuMusicEvent)
 		song.GAMEPLAY_A:
 			musicInstance = FMODRuntime.create_instance(overworldMusicEventA)
 			shouldCallback = true
@@ -55,4 +57,12 @@ func beat_callback(args):
 		beat_counter += 1
 		if(beat_counter == 5):
 			beat_counter = 1
-			print("bar!")
+			# TODO make sure that switching songs makes it swap at the top of the bar bar
+			FMODStudioModule.get_studio_system().set_parameter_by_name("Bee Count", bee_count, false)
+			FMODStudioModule.get_studio_system().set_parameter_by_name("Mole Count", mole_count, false)
+
+func add_entity(grid_object, coords):
+	pass # TODO check bee/mole and increment based on that
+
+func remove_entity(grid_object, coords):
+	pass # TODO check bee/mole and decrement based on that

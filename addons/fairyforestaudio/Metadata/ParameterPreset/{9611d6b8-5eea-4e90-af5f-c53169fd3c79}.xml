@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{9611d6b8-5eea-4e90-af5f-c53169fd3c79}">
+		<property name="name">
+			<value>Mole Count</value>
+		</property>
+		<relationship name="folder">
+			<destination>{1785c34d-3469-40ec-b1e2-4d290b11ddb2}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{78203b63-4e2a-4b64-b199-3e11b8c289ce}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{78203b63-4e2a-4b64-b199-3e11b8c289ce}">
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>20</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
