@@ -32,6 +32,7 @@ func _ready():
 	# Create initial tiles
 	var beehive_res = Resources.find("objects")["beehive"]
 	var bee_res = Resources.find("objects")["bee"]
+	var flower_res = Resources.find("objects")["flower"]
 	
 	var beehive: Beehive = GameManager.tilemap_manager.create_object_at_coords(beehive_res, Vector2i(5, 7))
 	var bee1: Bee = GameManager.tilemap_manager.create_object_at_coords(bee_res, Vector2i(4, 4))
