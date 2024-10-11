@@ -10,7 +10,6 @@ func end_day():
 	day_ending.emit()
 
 func change_day():
-	print(day_count)
 	day_count += 1
 	
 	# Call all lingering entities home

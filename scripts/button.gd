@@ -12,5 +12,4 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	var daycycle = DayCycleManager.new()
-	daycycle.change_day()
+	GameManager.day_manager.change_day()

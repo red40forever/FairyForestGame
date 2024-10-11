@@ -58,3 +58,5 @@ func _on_tile_clicked(coordinates: Vector2i):
 func _on_day_changed(day: int):
 	if day == 1:
 		Dialogic.start("BeeFairy2")
+	elif day == 2:
+		Dialogic.start("BeeFairy3")
