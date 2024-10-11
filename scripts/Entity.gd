@@ -77,15 +77,7 @@ func set_new_target(new_target: Vector2i):
 		main_sprite.flip_h = false
 
 func set_home(new_home: HomeTile) -> void:
-	var old_home = home
-	home = new_home
-	home.current_entities += 1
-	
-	if old_home != null:
-		return_home.disconnect(old_home._on_entity_returned_home)
-		old_home.current_entities -= 1
-	
-	return_home.connect(home._on_entity_returned_home)
+	new_home.add_entity(self)
 
 func set_attributes(new_attributes: EntityAttributes) -> void:
 	entity_attributes = new_attributes
