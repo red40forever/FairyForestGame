@@ -76,8 +76,8 @@ func request_interaction(incoming_slot: Slot) -> bool:
 			continue
 		var overflow = slot.add_resource_overflow_safe(type, resource_count)
 		var exchange = slot.get_resource_count(type) - overflow
-		slot.remove_resource(type, exchange)
 		if exchange > 0:
+			slot.remove_resource(type, exchange)
 			return true
 	return false
 

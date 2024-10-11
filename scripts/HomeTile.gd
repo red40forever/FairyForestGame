@@ -58,7 +58,9 @@ func _on_day_changed(_count):
 		else:
 			entities_to_create = possible_new_entities
 		current_entities = current_entities + entities_to_create
-		slot.remove_resource(product_type, (entities_to_create * new_entity_cost))
+		var to_remove = entities_to_create * new_entity_cost
+		if  to_remove > 0:
+			slot.remove_resource(product_type, to_remove)
 	
 	# New product created by consuming resources if possible
 	slot.add_resource_overflow_safe(product_type, slot.get_resource_count(resource_type))
@@ -114,8 +116,8 @@ func request_interaction(inc_slot: Slot) -> bool:
 			# Attempt to give resource to interactor
 			var overflow = inc_slot.add_resource_overflow_safe(type, slot.get_resource_count(type))
 			var exchange = slot.get_resource_count(type) - overflow
-			slot.remove_resource(type, exchange)
 			if exchange > 0:
+				slot.remove_resource(type, exchange)
 				return true
 	return false
 
