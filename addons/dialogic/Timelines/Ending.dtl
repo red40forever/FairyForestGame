@@ -1,6 +1,6 @@
 join BeeFairy left
 join MoleFairy right [z_index="2"]
-BeeFairy: YES! I’m so happy the garden is safe! Thank you two so much for all your help. 
+BeeFairy: YES! I’m so happy the garden is safe! Thank you two so much for all your help.
 MoleFairy: Oh my goodness, I can’t believe we actually did it! I-I mean, I knew we could do it all along!
 BeeFairy: See! If everyone all works together, then we can overcome--
 join OakFairy center
@@ -11,9 +11,10 @@ BeeFairy: Exactly! Do you know your name now, Oak Tree Fairy?
 OakFairy: I think… my name is Cora!
 BeeFairy: OOH! I get it! Like an acorn!
 OakFairy: Thank you two for all your help! I’m so happy we've become friends.
-Narrator: And so, the lonely fairy, determined to save the oak, found her place in the forest, there among her friends. 
-Narrator: Every fairy, every animal, every plant and mushroom together was able to save the tree from destruction, and in doing so grow the garden stronger than ever. 
-Narrator: In the end, what she loved, and what she worked so hard to help, became inextricable from who she was. And so the Oak Fairy was born. 
+Narrator: And so, the lonely fairy, determined to save the oak, found her place in the forest, there among her friends.
+Narrator: Every fairy, every animal, every plant and mushroom together was able to save the tree from destruction, and in doing so grow the garden stronger than ever.
+Narrator: In the end, what she loved, and what she worked so hard to help, became inextricable from who she was. And so the Oak Fairy was born.
 Narrator: Just like the creatures on the forest floor, closeness and interdependency became a part of her life, and moved her forward. With her friends below the tree, she was more fulfilled than she had ever been.
 Narrator: ...
 Narrator: Oh, and of course, they all lived happily ever after. \:)
+[signal arg="win"]
