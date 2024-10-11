@@ -80,7 +80,7 @@ func _on_day_changed(_count):
 			var entity = GameManager.tilemap_manager.create_object_at_coords(entity_grid_object_attributes, coords)
 			entity.set_home(self)
 			entity.set_attributes(entity_attributes)
-			entity.return_home.connect(_on_entity_returned_home)
+			#entity.return_home.connect(_on_entity_returned_home)
 			placed_entities += 1
 		if placed_entities >= current_entities:
 			break
