@@ -10,7 +10,6 @@ func _ready() -> void:
 # TODO add upgrade flag when next to molehill
 func upgrade_check():
 	var map_pos = grid_coordinates
-	var upgrade = false
 	var upgrade_range = [map_pos + Vector2i(0, -2), map_pos + 
 	Vector2i(0, -1), map_pos + Vector2i(1, 0), map_pos + Vector2i(0, 1), 
 	map_pos + Vector2i(0, 2), map_pos + Vector2i(-1, 1), map_pos + 
@@ -19,7 +18,6 @@ func upgrade_check():
 	for coords in range(upgrade_range.size()):
 		var curr_obj = GameManager.tilemap_manager.get_objects_at(upgrade_range[coords])
 		if curr_obj is MoleHill:
-			upgrade = true
 			upgrade_tier()
 			break	
 

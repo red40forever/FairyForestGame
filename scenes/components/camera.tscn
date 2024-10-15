@@ -9,14 +9,4 @@ drag_vertical_enabled = true
 script = ExtResource("1_754dv")
 zoom_levels = PackedInt32Array(2, 3, 5, 8)
 
-[node name="FmodListener2D" type="FmodListener2D" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-script = null
+[node name="StudioListener2D" type="StudioListener2D" parent="."]

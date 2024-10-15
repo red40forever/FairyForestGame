@@ -19,6 +19,6 @@ func change_day():
 	day_changed.emit(day_count)
 	
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("debug_trigger"):
 		change_day()

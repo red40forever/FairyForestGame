@@ -77,7 +77,7 @@ enabled=PackedStringArray("res://addons/FMOD/plugin.cfg", "res://addons/dialogic
 
 [fmod]
 
-settings/banks_path="res://banks/Desktop"
+settings/banks_path="res://FMOD Builds/Desktop"
 settings/fmod_output_type=0
 settings/fmod_debug_flags=0
 settings/fmod_debug_mode=1
@@ -90,7 +90,7 @@ settings/dsp_buffer_length=512
 settings/dsp_buffer_count=4
 settings/real_channel_count=32
 settings/virtual_channel_count=128
-settings/enable_live_update=true
+settings/enable_live_update=false
 settings/live_update_port=9264
 settings/enable_memory_tracking=false
 settings/encryption_key=""
