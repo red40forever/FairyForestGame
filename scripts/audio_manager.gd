@@ -60,13 +60,13 @@ func create_tilemap_connections():
 	GameManager.tilemap_manager.grid_object_deleted.connect(remove_entity)
 	play(song.GAMEPLAY)
 
-func add_entity(grid_object, coords):
+func add_entity(grid_object, _coords):
 	if (grid_object is Bee):
 		bee_count += 1
 	if (grid_object is Mole):
 		mole_count += 1
 
-func remove_entity(grid_object, coords):
+func remove_entity(grid_object, _coords):
 	if (grid_object is Bee):
 		bee_count -= 1
 	if (grid_object is Mole):
