@@ -4,7 +4,7 @@ extends ResourceTile
 func _ready() -> void:
 	produced_resources = [Slot.ResourceType.POLLEN]
 	super()
-	GameManager.day_manager.day_changed.connect(upgrade_check())
+	GameManager.day_manager.day_changed.connect(upgrade_check)
 
 
 # TODO add upgrade flag when next to molehill
