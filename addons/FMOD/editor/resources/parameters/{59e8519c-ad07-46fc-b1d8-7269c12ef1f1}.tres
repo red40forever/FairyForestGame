@@ -1,18 +1,18 @@
 [gd_resource type="ParameterAsset" load_steps=3 format=3 uid="uid://c1eskjeh5t1ro"]
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_6ph3u"]
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_81jt3"]
 data1 = 796156864
 data2 = 3967568748
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_sw2xt"]
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_svrd2"]
 name = "Bee Count"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_6ph3u")
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_81jt3")
 maximum = 5.0
 flags = 4
 guid = "{59e8519c-ad07-46fc-b1d8-7269c12ef1f1}"
 
 [resource]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_sw2xt")
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_svrd2")
 path = "parameter:/Bee Count"
 guid = "{59e8519c-ad07-46fc-b1d8-7269c12ef1f1}"
 name = "Bee Count"
