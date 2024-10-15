@@ -16,3 +16,6 @@ mono_crash.*.json
 
 # Temporary files
 *.tmp
+
+# FMOD
+~libfmod.windows.template_release.dll
