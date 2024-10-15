@@ -33,8 +33,6 @@ func _ready():
 	
 	camera.tile_clicked.connect(_on_tile_clicked)
 	
-	#Dialogic.start("IntroDialogue")
-	
 	# Create initial tiles
 	var beehive_res = Resources.find("objects")["beehive"]
 	var bee_res = Resources.find("objects")["bee"]
@@ -49,7 +47,7 @@ func _ready():
 	flower.slot.add_resource(Slot.ResourceType.POLLEN, 1)
 	#item_pile.deposit(Slot.ResourceType.HONEY, 2)
 	
-	Dialogic.start("BeeFairy1")
+	#Dialogic.start("BeeFairy1")
 
 func _on_tile_clicked(coordinates: Vector2i):
 	if selected_object is Entity:

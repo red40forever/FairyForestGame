@@ -35,6 +35,20 @@ position = Vector2(-288, -176)
 tile_map_data = PackedByteArray("AAABAAkAAQAEAAAAAAACAAgAAQAHAAAAAAACAAoAAQAGAAAAAAACAAkAAQAFAAAAAAADAAoAAQAGAAAAAAADAAwAAQAHAAAAAAADAAsAAQAHAAAAAAACAAsAAQAEAAAAAAACAAcAAQAHAAAAAAADAAgAAQAEAAAAAAADAAkAAQAFAAAAAAAEAAoAAQAHAAAAAAAEAAkAAQAHAAAAAAAEAAgAAQAGAAAAAAADAAcAAQAEAAAAAAADAAYAAQAGAAAAAAADAAUAAQAFAAAAAAAEAAYAAQAHAAAAAAAEAAcAAQAHAAAAAAAFAAgAAQAGAAAAAAAFAAkAAQAEAAAAAAAFAAoAAQAFAAAAAAAEAAsAAQAHAAAAAAAEAAwAAQAEAAAAAAADAA0AAQAFAAAAAAAEAA4AAQAHAAAAAAAEAA0AAQAHAAAAAAAFAAwAAQAHAAAAAAAFAAsAAQAHAAAAAAAGAAoAAQAHAAAAAAAGAAgAAQAHAAAAAAAGAAkAAQAEAAAAAAAFAAcAAQAHAAAAAAAFAAYAAQAHAAAAAAAEAAUAAQAHAAAAAAAEAAQAAQAEAAAAAAA=")
 tile_set = ExtResource("2_mglfb")
 
+[node name="TilePlacementHelper" type="Node2D" parent="." node_paths=PackedStringArray("tilemap_manager", "placement_indicator")]
+unique_name_in_owner = true
+script = ExtResource("2_fx0ts")
+building_recipes = Array[ExtResource("5_qh5j2")]([SubResource("Resource_nogep")])
+tilemap_manager = NodePath("..")
+placement_indicator = NodePath("PlacementIndicator")
+test_object = ExtResource("5_lhdm3")
+
+[node name="PlacementIndicator" type="Sprite2D" parent="TilePlacementHelper"]
+modulate = Color(1, 1, 1, 0.235294)
+texture = ExtResource("6_ourvx")
+script = ExtResource("7_grrs5")
+animation_speed = 0.05
+
 [node name="GridObjectContainer" type="Node2D" parent="."]
 unique_name_in_owner = true
 y_sort_enabled = true
@@ -51,17 +65,3 @@ position = Vector2(-288, -176)
 tile_map_data = PackedByteArray("AAACAAgAAAAAAAAAAAABAAkAAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAAAAAAAAAADAAoAAAAAAAAAAAACAAkAAAAAAAAAAAADAAsAAAAAAAAAAAADAAwAAAAAAAAAAAADAA0AAAAAAAAAAAAEAAwAAAAAAAAAAAAEAA0AAAAAAAAAAAAEAA4AAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAoAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAGAAoAAAAAAAAAAAAFAAsAAAAAAAAAAAAFAAwAAAAAAAAAAAA=")
 tile_set = ExtResource("2_yo6mu")
 script = ExtResource("5_v0tbm")
-
-[node name="TilePlacementHelper" type="Node2D" parent="." node_paths=PackedStringArray("tilemap_manager", "placement_indicator")]
-unique_name_in_owner = true
-script = ExtResource("2_fx0ts")
-building_recipes = Array[ExtResource("5_qh5j2")]([SubResource("Resource_nogep")])
-tilemap_manager = NodePath("..")
-placement_indicator = NodePath("PlacementIndicator")
-test_object = ExtResource("5_lhdm3")
-
-[node name="PlacementIndicator" type="Sprite2D" parent="TilePlacementHelper"]
-modulate = Color(1, 1, 1, 0.235294)
-texture = ExtResource("6_ourvx")
-script = ExtResource("7_grrs5")
-animation_speed = 0.05
