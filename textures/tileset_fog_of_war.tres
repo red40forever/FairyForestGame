@@ -1,24 +1,14 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c5tsw2upt8t56"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dm3pig8chujjd"]
 
 [ext_resource type="Texture2D" uid="uid://5ojsg3728qek" path="res://textures/tile_fog_of_war.png" id="1_8jpgm"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yglt5"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fepv5"]
 texture = ExtResource("1_8jpgm")
 texture_region_size = Vector2i(64, 42)
-4:1/0 = 0
-5:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-2:3/0 = 0
-3:3/0 = 0
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -3)
 
 [resource]
 tile_shape = 1
 tile_size = Vector2i(64, 32)
-sources/0 = SubResource("TileSetAtlasSource_yglt5")
+sources/0 = SubResource("TileSetAtlasSource_fepv5")
