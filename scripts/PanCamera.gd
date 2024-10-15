@@ -7,6 +7,8 @@ extends Camera2D
 
 @export_group("Panning")
 @export var pan_decceleration: float = 0.0
+@export var min_coords: Vector2
+@export var max_coords: Vector2
 
 var control_mode: CameraControlMode = CameraControlMode.SELECT
 
@@ -49,11 +51,15 @@ func _unhandled_input(event):
 			var global_pos = get_global_mouse_position()
 			var coords = tilemap_manager.ground_layer.local_to_map(global_pos)
 			
+			print("clicked tile")
 			tile_clicked.emit(coords)
 			
 			get_viewport().set_input_as_handled()
 	elif event is InputEventMouseMotion and is_dragging:
 		offset -= event.relative / zoom
+		offset.x = min(max(min_coords.x, offset.x), max_coords.x)
+		offset.y = min(max(min_coords.y, offset.y), max_coords.y)
+		
 		get_viewport().set_input_as_handled()
 
 

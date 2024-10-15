@@ -45,4 +45,6 @@ func get_recipe_by_id(recipe_id: String):
 
 
 func is_tile_accessible(coords: Vector2i):
-	return !%FogOfWarLayer.is_fog_at_tile(coords)
+	var not_fog = !%FogOfWarLayer.is_fog_at_tile(coords)
+	var placeable = %GroundLayer.get_cell_source_id(coords) != -1
+	return not_fog && placeable

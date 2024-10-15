@@ -23,6 +23,7 @@ func upgrade_check():
 			upgrade_tier()
 			break	
 
+
 # TODO already called on day change
 func upgrade_tier():
 	
