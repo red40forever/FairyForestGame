@@ -16,6 +16,7 @@ func _ready() -> void:
 	slot.resource_count_updated.connect(_on_slot_resource_count_updated)
 	
 	slot_display.displayed_slot = slot
+	GameManager.day_manager.day_changed.connect(_on_day_changed)
 
 
 ## Attempt to deposit a resource into this object's slot.
@@ -71,13 +72,14 @@ func _update_displayed_resources():
 
 func request_interaction(incoming_slot: Slot) -> bool:
 	for type in incoming_slot.accepted_types:
+		var old = slot.get_resource_count(type)
 		var resource_count = incoming_slot.get_resource_count(type)
 		if resource_count == 0:
 			continue
 		var overflow = slot.add_resource_overflow_safe(type, resource_count)
-		var exchange = slot.get_resource_count(type) - overflow
+		var exchange = slot.get_resource_count(type) - old
 		if exchange > 0:
-			slot.remove_resource(type, exchange)
+			incoming_slot.remove_resource(type, exchange)
 			return true
 	return false
 

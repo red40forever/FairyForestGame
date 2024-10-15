@@ -25,9 +25,13 @@ signal selection_changed(old_selection: GridObject, new_selection: GridObject)
 
 
 func _ready():
-	camera.tile_clicked.connect(_on_tile_clicked)
+	# HACKY! who cares
+	GameManager.initialize()
+	UIManager.initialize()
 	
-	#Dialogic.start("IntroDialogue")
+	GameManager.day_manager.day_changed.connect(_on_day_changed)
+	
+	camera.tile_clicked.connect(_on_tile_clicked)
 	
 	# Create initial tiles
 	var beehive_res = Resources.find("objects")["beehive"]
@@ -42,7 +46,17 @@ func _ready():
 	beehive.add_entity(bee2)
 	flower.slot.add_resource(Slot.ResourceType.POLLEN, 1)
 	#item_pile.deposit(Slot.ResourceType.HONEY, 2)
+	
+	#Dialogic.start("BeeFairy1")
 
 func _on_tile_clicked(coordinates: Vector2i):
 	if selected_object is Entity:
 		selected_object.set_new_target(coordinates)
+
+func _on_day_changed(day: int):
+	if day == 1:
+		Dialogic.start("BeeFairy2")
+	elif day == 2:
+		Dialogic.start("BeeFairy3")
+	elif day == 3:
+		Dialogic.start("BeeFairy4")

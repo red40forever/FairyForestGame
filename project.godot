@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="FairyForestGame"
-run/main_scene="res://scenes/main_scene.tscn"
+run/main_scene="res://scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 
 [autoload]
 
 GameManager="*res://scripts/GameManager.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
-FMODRuntime="*res://addons/FMOD/runtime/fmod_runtime_manager.gd"
 UIManager="*res://scripts/UIManager.gd"
+FMODRuntime="*res://addons/FMOD/runtime/fmod_runtime_manager.gd"
 AudioManager="*res://scenes/components/audio_manager.tscn"
 
 [dialogic]
@@ -67,6 +67,8 @@ glossary/default_case_sensitive=true
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/stretch/scale_mode="integer"
 
 [editor_plugins]
@@ -135,3 +137,5 @@ debug_trigger={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.26976, 0.36, 0.1908, 1)
+environment/transparent_background=false

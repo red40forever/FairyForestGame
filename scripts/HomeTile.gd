@@ -17,6 +17,7 @@ extends InteractableGridObject
 @export var initial_resources: int = 0
 @export var initial_products: int = 0
 @export var current_entities: int = 0 # how many entities belong to this home
+var current_entities_list: Array = [] # entities that are spawned in the world
 
 @export_group("References")
 @export var slot_display: SlotDisplay
@@ -85,6 +86,7 @@ func _on_day_changed(_count):
 			entity.set_attributes(entity_attributes)
 			#entity.return_home.connect(_on_entity_returned_home)
 			placed_entities += 1
+			current_entities_list.append(entity)
 
 func _on_resources_received(incoming_resources: Slot):
 	# Add resources to home if possible
@@ -103,6 +105,7 @@ func _on_resources_received(incoming_resources: Slot):
 func _on_entity_returned_home(incoming_entity: Entity, incoming_resources: Slot):
 	_on_resources_received(incoming_resources)
 	print("entity_returned_home called GUH")
+	current_entities_list.remove_at(current_entities_list.find(incoming_entity))
 	# Remove entity from the scene tree
 	incoming_entity.queue_free()
 
@@ -114,9 +117,12 @@ func _on_resource_clicked(resource: Slot.ResourceType):
 func request_interaction(inc_slot: Slot) -> bool:
 	for type in inc_slot.accepted_types:
 		if type == selected_withdraw_type:
-			# Attempt to give resource to interactor
+			var old_val = inc_slot.get_resource_count(type)
+			# Attempt to give resource to interactor:
+			# Add my resources to incoming slot
 			var overflow = inc_slot.add_resource_overflow_safe(type, slot.get_resource_count(type))
-			var exchange = slot.get_resource_count(type) - overflow
+			# How much did we change by?
+			var exchange = inc_slot.get_resource_count(type) - old_val
 			if exchange > 0:
 				slot.remove_resource(type, exchange)
 				return true
@@ -136,7 +142,12 @@ func add_entity(entity: Entity):
 	if old_home != null:
 		old_home.current_entities -= 1
 		entity.return_home.disconnect(old_home._on_entity_returned_home)
+		var list = old_home.current_entities_list
+		if list.has(entity):
+			var index = list.find(entity)
+			old_home.current_entities_list.remove_at(index)
 	# update this home
 	current_entities += 1
 	entity.return_home.connect(_on_entity_returned_home)
+	current_entities_list.append(entity)
 	# guh

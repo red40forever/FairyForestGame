@@ -14,7 +14,7 @@ signal clicked
 
 
 func _ready():
-	global_position = GameManager.tilemap_manager.ground_layer.map_to_local(grid_coordinates)
+	position = GameManager.tilemap_manager.ground_layer.map_to_local(grid_coordinates)
 	
 	if selection_button:
 		selection_button.pressed.connect(on_pressed)
