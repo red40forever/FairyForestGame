@@ -46,7 +46,7 @@ func request_interaction(incoming_slot: Slot) -> bool:
 
 # Subclasses can override to provide more logic, 
 # such as when to upgrade tiers
-func supplemental_interaction_logic(incoming_slot: Slot) -> bool:
+func supplemental_interaction_logic(_incoming_slot: Slot) -> bool:
 	return false
 
 func get_class_name(): return "ResourceTile"

@@ -15,7 +15,7 @@ var original_position: Vector2
 var tween: Tween
 
 signal resource_clicked(resource: Slot.ResourceType)
-signal animation_finished(open: bool)
+# unused signal animation_finished(open: bool)
 
 
 func _ready():	
@@ -64,23 +64,23 @@ func animate_display_close():
 	tween.tween_callback(func(): visible = false)
 
 
-func _update_displayed_slot(displayed_slot: Slot):
+func _update_displayed_slot(p_displayed_slot: Slot):
 	for child in %VBoxContainer.get_children():
 		child.queue_free()
 	
 	# Create a horizontal container for each resource
-	for resource: Slot.ResourceType in displayed_slot.stored_resources:
+	for resource: Slot.ResourceType in p_displayed_slot.stored_resources:
 		var horizontal_container = HBoxContainer.new()
 		horizontal_container.alignment = BoxContainer.ALIGNMENT_CENTER
 		%VBoxContainer.add_child(horizontal_container)
 		horizontal_containers[resource] = horizontal_container
 		
-		var resource_count = displayed_slot.stored_resources[resource]
+		var resource_count = p_displayed_slot.stored_resources[resource]
 		for i in range(resource_count):
 			var button = _create_resource_button(resource)
 			horizontal_container.add_child(button)
 	
-	displayed_slot.resource_count_updated.connect(_on_slot_resource_count_updated)
+	p_displayed_slot.resource_count_updated.connect(_on_slot_resource_count_updated)
 
 
 func _add_resource_icons(resource: Slot.ResourceType, count: int):
@@ -93,7 +93,7 @@ func _add_resource_icons(resource: Slot.ResourceType, count: int):
 
 
 func _remove_resource_icons(resource: Slot.ResourceType, count: int):
-	var children_to_delete: Array[TextureRect] = []
+	# var children_to_delete: Array[TextureRect] = []
 	var horizontal_container: HBoxContainer = horizontal_containers[resource]
 	for i in range(count):
 		var child_to_delete = horizontal_container.get_child(0)

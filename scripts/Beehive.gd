@@ -14,8 +14,8 @@ func _ready():
 	slot.resource_count_updated.connect(_on_resource_count_updated)
 
 
-func _on_resource_count_updated(resource_type: Slot.ResourceType, old_count: int, new_count: int):
-	if resource_type == Slot.ResourceType.HONEY && new_count == 2:
+func _on_resource_count_updated(p_resource_type: Slot.ResourceType, _old_count: int, new_count: int):
+	if p_resource_type == Slot.ResourceType.HONEY && new_count == 2:
 		Dialogic.start("2HoneyInHive")
 
 
