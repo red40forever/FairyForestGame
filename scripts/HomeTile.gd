@@ -120,7 +120,7 @@ func request_interaction(inc_slot: Slot) -> bool:
 			var old_val = inc_slot.get_resource_count(type)
 			# Attempt to give resource to interactor:
 			# Add my resources to incoming slot
-			var overflow = inc_slot.add_resource_overflow_safe(type, slot.get_resource_count(type))
+			# var overflow = inc_slot.add_resource_overflow_safe(type, slot.get_resource_count(type))
 			# How much did we change by?
 			var exchange = inc_slot.get_resource_count(type) - old_val
 			if exchange > 0:
