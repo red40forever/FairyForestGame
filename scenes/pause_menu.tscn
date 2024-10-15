@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cai78k8j65ea3"]
+[gd_scene load_steps=9 format=3 uid="uid://cai78k8j65ea3"]
 
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="1_sanwq"]
 [ext_resource type="Texture2D" uid="uid://da063j1cubogk" path="res://textures/ui_white_panel_bg.png" id="1_wv40e"]
 [ext_resource type="FontFile" uid="uid://c42yu4n3i21fd" path="res://fonts/Retro Gaming.ttf" id="2_d0r6i"]
+[ext_resource type="Texture2D" uid="uid://cqwtpssf0nbwk" path="res://textures/main_menu_layer.png" id="4_b6uou"]
+[ext_resource type="Texture2D" uid="uid://he3qoa6xxp2d" path="res://textures/yes_button.png" id="5_0258l"]
+[ext_resource type="Texture2D" uid="uid://bvtpstw5xoj4b" path="res://textures/no_button.png" id="6_uipan"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8084i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rbm0f"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -140,6 +147,43 @@ theme_override_fonts/font = ExtResource("2_d0r6i")
 theme_override_font_sizes/font_size = 22
 text = "Yes"
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(392, 485)
+scale = Vector2(4, 4)
+texture = ExtResource("4_b6uou")
+
+[node name="YesButton2" type="Button" parent="Control"]
+layout_mode = 2
+offset_left = 163.0
+offset_top = 520.0
+offset_right = 222.0
+offset_bottom = 570.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_d0r6i")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8084i")
+icon = ExtResource("5_0258l")
+
+[node name="NoButton2" type="Button" parent="Control"]
+layout_mode = 2
+offset_left = 459.0
+offset_top = 519.0
+offset_right = 509.0
+offset_bottom = 569.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_d0r6i")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rbm0f")
+icon = ExtResource("6_uipan")
+
 [connection signal="pressed" from="PausePanel/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="QuitConfirmPanel/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
 [connection signal="pressed" from="QuitConfirmPanel/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="Control/YesButton2" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="Control/NoButton2" to="." method="_on_no_button_pressed"]

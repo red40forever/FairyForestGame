@@ -53,7 +53,8 @@ func _on_yes_button_pressed():
 
 
 func _on_no_button_pressed():
-	set_state(State.PAUSED_MAIN)
+	set_state(State.CLOSED)
+	GameManager.paused = false
 
 
 func _on_quit_button_pressed():
