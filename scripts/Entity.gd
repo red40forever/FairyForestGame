@@ -41,7 +41,7 @@ func _ready():
 	
 	GameManager.player.selection_changed.connect(_on_selection_changed)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not idle:
 		if interactions_completed >= entity_attributes.max_interactions:
 			set_new_target(home.grid_coordinates)
@@ -111,7 +111,7 @@ func _on_tween_finished():
 	# If valid object type, do stuff
 	for object in objects:
 		if object is InteractableGridObject:
-			var inter = try_interact_with_object(object)
+			try_interact_with_object(object)
 
 # override in child classes
 func interact_with_empty_tile():
@@ -123,9 +123,9 @@ func try_interact_with_object(object: InteractableGridObject) -> bool:
 		if inter:
 			# See if this interaction was effortless
 			var found_match = false
-			for type_string in effortless_tiles:
+			for string in effortless_tiles:
 				var obj_string = object.get_class_name()
-				if obj_string == type_string:
+				if obj_string == string:
 					found_match = true
 			if not found_match:
 				interactions_completed += 1

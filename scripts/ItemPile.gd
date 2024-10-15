@@ -2,15 +2,15 @@ class_name ItemPile
 extends HomeTile
 
 const max_ground_items: int = 2
-const item_display_spread: Vector2 = Vector2(10, 6)
+const item_display_spread: Vector2i = Vector2i(10, 6)
 
 func _ready() -> void:
 	super()
 	
 	# Item pile accepts all resource types
 	var accepted_types: Array[Slot.ResourceType]
-	for resource_type in Slot.ResourceType:
-		accepted_types.append(Slot.ResourceType[resource_type])
+	for resource in Slot.ResourceType:
+		accepted_types.append(Slot.ResourceType[resource])
 	
 	slot = Slot.new(accepted_types, max_ground_items)
 	slot.resource_count_updated.connect(_on_slot_resource_count_updated)
@@ -30,7 +30,7 @@ func deposit(resource: Slot.ResourceType, count: int) -> bool:
 	return true
 
 
-func _on_slot_resource_count_updated(resource_type: Slot.ResourceType, old_count: int, new_count: int):
+func _on_slot_resource_count_updated(_p_resource_type: Slot.ResourceType, _old_count: int, _new_count: int):
 	_update_displayed_resources()
 
 
@@ -58,14 +58,14 @@ func _update_displayed_resources():
 	
 	var rng = RandomNumberGenerator.new()
 	rng.seed = 1
-	for resource_type in slot.stored_resources:
-		var resource_count = slot.get_resource_count(resource_type)
+	for i_resource_type in slot.stored_resources:
+		var resource_count = slot.get_resource_count(i_resource_type)
 		for i in range(resource_count):
-			var resource_sprite = ResourceSprite.new(resource_type)
+			var resource_sprite = ResourceSprite.new(i_resource_type)
 			
 			add_child(resource_sprite)
 			
-			resource_sprite.position = Vector2(
+			resource_sprite.position = Vector2i(
 				rng.randi_range(-item_display_spread.x, item_display_spread.x),
 				rng.randi_range(-item_display_spread.y, item_display_spread.y)
 			)
@@ -76,7 +76,7 @@ func request_interaction(incoming_slot: Slot) -> bool:
 		var resource_count = incoming_slot.get_resource_count(type)
 		if resource_count == 0:
 			continue
-		var overflow = slot.add_resource_overflow_safe(type, resource_count)
+		#var overflow = slot.add_resource_overflow_safe(type, resource_count)
 		var exchange = slot.get_resource_count(type) - old
 		if exchange > 0:
 			incoming_slot.remove_resource(type, exchange)
