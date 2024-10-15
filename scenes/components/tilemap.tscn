@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=4 uid="uid://b573p5aulkgpe"]
+[gd_scene load_steps=14 format=4 uid="uid://b573p5aulkgpe"]
 
 [ext_resource type="Script" path="res://scripts/TilemapManager.gd" id="1_yheyg"]
 [ext_resource type="Material" uid="uid://qkfy6damforr" path="res://materials/mat_sprite_shadowed.tres" id="2_87clq"]
 [ext_resource type="Script" path="res://scripts/TilePlacementHelper.gd" id="2_fx0ts"]
 [ext_resource type="TileSet" uid="uid://dw7bpr6aqttif" path="res://textures/tileset_ground.tres" id="2_mglfb"]
-[ext_resource type="TileSet" uid="uid://c5tsw2upt8t56" path="res://textures/tileset_fog_of_war.tres" id="2_yo6mu"]
+[ext_resource type="TileSet" uid="uid://dm3pig8chujjd" path="res://textures/tileset_fog_of_war.tres" id="2_yo6mu"]
+[ext_resource type="PackedScene" uid="uid://dpoq72j4g0vph" path="res://scenes/components/tree.tscn" id="4_thxy8"]
 [ext_resource type="Resource" uid="uid://ds4l0hhtgka7o" path="res://objects/item_pile_obj.tres" id="5_lhdm3"]
 [ext_resource type="Resource" uid="uid://2qarxujqm4m3" path="res://objects/beehive_obj.tres" id="5_mas4d"]
 [ext_resource type="Script" path="res://scripts/Recipe.gd" id="5_qh5j2"]
@@ -30,20 +31,9 @@ fog_of_war_layer = NodePath("FogOfWarLayer")
 [node name="GroundLayer" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
 y_sort_enabled = true
+position = Vector2(-288, -176)
 tile_map_data = PackedByteArray("AAABAAkAAQAEAAAAAAACAAgAAQAHAAAAAAACAAoAAQAGAAAAAAACAAkAAQAFAAAAAAADAAoAAQAGAAAAAAADAAwAAQAHAAAAAAADAAsAAQAHAAAAAAACAAsAAQAEAAAAAAACAAcAAQAHAAAAAAADAAgAAQAEAAAAAAADAAkAAQAFAAAAAAAEAAoAAQAHAAAAAAAEAAkAAQAHAAAAAAAEAAgAAQAGAAAAAAADAAcAAQAEAAAAAAADAAYAAQAGAAAAAAADAAUAAQAFAAAAAAAEAAYAAQAHAAAAAAAEAAcAAQAHAAAAAAAFAAgAAQAGAAAAAAAFAAkAAQAEAAAAAAAFAAoAAQAFAAAAAAAEAAsAAQAHAAAAAAAEAAwAAQAEAAAAAAADAA0AAQAFAAAAAAAEAA4AAQAHAAAAAAAEAA0AAQAHAAAAAAAFAAwAAQAHAAAAAAAFAAsAAQAHAAAAAAAGAAoAAQAHAAAAAAAGAAgAAQAHAAAAAAAGAAkAAQAEAAAAAAAFAAcAAQAHAAAAAAAFAAYAAQAHAAAAAAAEAAUAAQAHAAAAAAAEAAQAAQAEAAAAAAA=")
 tile_set = ExtResource("2_mglfb")
-
-[node name="GridObjectContainer" type="Node2D" parent="."]
-unique_name_in_owner = true
-y_sort_enabled = true
-material = ExtResource("2_87clq")
-
-[node name="FogOfWarLayer" type="TileMapLayer" parent="."]
-unique_name_in_owner = true
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAACAAgAAAAAAAAAAAABAAkAAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAAAAAAAAAADAAoAAAAAAAAAAAACAAkAAAAAAAAAAAADAAsAAAAAAAAAAAADAAwAAAAAAAAAAAADAA0AAAAAAAAAAAAEAAwAAAAAAAAAAAAEAA0AAAAAAAAAAAAEAA4AAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAoAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAGAAoAAAAAAAAAAAAFAAsAAAAAAAAAAAAFAAwAAAAAAAAAAAA=")
-tile_set = ExtResource("2_yo6mu")
-script = ExtResource("5_v0tbm")
 
 [node name="TilePlacementHelper" type="Node2D" parent="." node_paths=PackedStringArray("tilemap_manager", "placement_indicator")]
 unique_name_in_owner = true
@@ -58,3 +48,20 @@ modulate = Color(1, 1, 1, 0.235294)
 texture = ExtResource("6_ourvx")
 script = ExtResource("7_grrs5")
 animation_speed = 0.05
+
+[node name="GridObjectContainer" type="Node2D" parent="."]
+unique_name_in_owner = true
+y_sort_enabled = true
+material = ExtResource("2_87clq")
+position = Vector2(-288, -176)
+
+[node name="Tree" parent="GridObjectContainer" instance=ExtResource("4_thxy8")]
+position = Vector2(286, 15)
+
+[node name="FogOfWarLayer" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
+y_sort_enabled = true
+position = Vector2(-288, -176)
+tile_map_data = PackedByteArray("AAACAAgAAAAAAAAAAAABAAkAAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAAAAAAAAAADAAoAAAAAAAAAAAACAAkAAAAAAAAAAAADAAsAAAAAAAAAAAADAAwAAAAAAAAAAAADAA0AAAAAAAAAAAAEAAwAAAAAAAAAAAAEAA0AAAAAAAAAAAAEAA4AAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAoAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAGAAoAAAAAAAAAAAAFAAsAAAAAAAAAAAAFAAwAAAAAAAAAAAA=")
+tile_set = ExtResource("2_yo6mu")
+script = ExtResource("5_v0tbm")

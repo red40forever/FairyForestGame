@@ -3,6 +3,10 @@ extends Entity
 
 var the_stupid_way: GridObjectAttributes = Resources.find("objects")["mole_hill"]
 
+func _ready() -> void:
+	carryable_resources = [Slot.ResourceType.MUSHROOM]
+	super()
+
 func set_new_target(new_target: Vector2i):
 	super(new_target)
 	main_sprite.play("walk")
