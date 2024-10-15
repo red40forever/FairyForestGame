@@ -50,8 +50,9 @@ func _ready():
 	#Dialogic.start("BeeFairy1")
 
 func _on_tile_clicked(coordinates: Vector2i):
-	if selected_object is Entity:
-		selected_object.set_new_target(coordinates)
+	if is_instance_valid(selected_object):
+		if selected_object is Entity:
+			selected_object.set_new_target(coordinates)
 
 func _on_day_changed(day: int):
 	if day == 1:
