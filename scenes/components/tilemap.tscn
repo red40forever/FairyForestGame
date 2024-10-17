@@ -6,7 +6,7 @@
 [ext_resource type="TileSet" uid="uid://dw7bpr6aqttif" path="res://textures/tileset_ground.tres" id="2_mglfb"]
 [ext_resource type="TileSet" uid="uid://dm3pig8chujjd" path="res://textures/tileset_fog_of_war.tres" id="2_yo6mu"]
 [ext_resource type="PackedScene" uid="uid://dpoq72j4g0vph" path="res://scenes/components/tree.tscn" id="4_thxy8"]
-[ext_resource type="Resource" uid="uid://djniym284os53" path="res://objects/item_pile_obj.tres" id="5_lhdm3"]
+[ext_resource type="Resource" uid="uid://ds4l0hhtgka7o" path="res://objects/item_pile_obj.tres" id="5_lhdm3"]
 [ext_resource type="Resource" uid="uid://2qarxujqm4m3" path="res://objects/beehive_obj.tres" id="5_mas4d"]
 [ext_resource type="Script" path="res://scripts/Recipe.gd" id="5_qh5j2"]
 [ext_resource type="Script" path="res://scripts/FogOfWarLayer.gd" id="5_v0tbm"]

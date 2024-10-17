@@ -1,12 +1,34 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccmxhhdjtom2t"]
+[gd_scene load_steps=20 format=3 uid="uid://ccmxhhdjtom2t"]
 
-[ext_resource type="Script" path="res://scripts/play_button.gd" id="1_dehqj"]
-[ext_resource type="Texture2D" uid="uid://c7gwgco21cdx8" path="res://textures/ui_newgametrimmed.png" id="2_p8t5g"]
-[ext_resource type="Texture2D" uid="uid://bbj3d2up3bmn6" path="res://textures/ui_quitbuttontrimmed.png" id="3_juoim"]
-[ext_resource type="Script" path="res://scripts/quit_button.gd" id="4_pmkuo"]
+[ext_resource type="Texture2D" uid="uid://c7gwgco21cdx8" path="res://textures/ui_button_new_game.png" id="2_p8t5g"]
+[ext_resource type="Texture2D" uid="uid://bbj3d2up3bmn6" path="res://textures/ui_button_quit.png" id="3_juoim"]
+[ext_resource type="Script" path="res://scripts/QuitButton.gd" id="4_pmkuo"]
+[ext_resource type="PackedScene" uid="uid://bhcig4674vsg0" path="res://scenes/main_scene.tscn" id="4_sp4gw"]
+[ext_resource type="Script" path="res://scripts/PlayButton.gd" id="4_tjimq"]
 [ext_resource type="Texture2D" uid="uid://dkmmcs3tg7prb" path="res://textures/ui_book.png" id="5_m3rft"]
+[ext_resource type="PackedScene" path="res://scenes/components/fade_overlay.tscn" id="7_40tei"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ulcs7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2lhf6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pf1k2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b4oqq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c6pqe"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exch6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a636l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t4aod"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_co4yp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4e48x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x0s4k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rkabx"]
 
@@ -17,6 +39,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.204795, 0.432187, 0.356371, 1)
 
 [node name="Control" type="Control" parent="."]
 texture_filter = 1
@@ -35,24 +64,31 @@ position = Vector2(235.5, 178.5)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_m3rft")
 
-[node name="PlayButton" type="Button" parent="Control"]
-z_index = 1
+[node name="PlayButton" type="Button" parent="Control" node_paths=PackedStringArray("root_node", "fade_overlay")]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 75.0
 offset_top = 56.0
-offset_right = 214.0
-offset_bottom = 124.0
+offset_right = 206.0
+offset_bottom = 116.0
 grow_vertical = 2
 scale = Vector2(1.2, 1.2)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ulcs7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2lhf6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_pf1k2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_b4oqq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_c6pqe")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_exch6")
 icon = ExtResource("2_p8t5g")
-script = ExtResource("1_dehqj")
+script = ExtResource("4_tjimq")
+main_scene = ExtResource("4_sp4gw")
+root_node = NodePath("../..")
+fade_overlay = NodePath("../../FadeOverlay")
+highlight_tint = Color(1, 1, 0.65098, 1)
 
 [node name="QuitButton" type="Button" parent="Control"]
-z_index = 1
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -61,22 +97,24 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -212.0
 offset_top = 56.0
-offset_right = -75.0
-offset_bottom = 124.0
+offset_right = -81.0
+offset_bottom = 116.0
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(1.2, 1.2)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a636l")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_t4aod")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_co4yp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4e48x")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_x0s4k")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rkabx")
 icon = ExtResource("3_juoim")
 script = ExtResource("4_pmkuo")
+highlight_tint = Color(1, 1, 0.65098, 1)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -1
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-mouse_filter = 2
-color = Color(0.204795, 0.432187, 0.356371, 1)
+[node name="FadeOverlay" parent="." instance=ExtResource("7_40tei")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="Control/PlayButton" to="Control/PlayButton" method="_on_pressed"]
 [connection signal="pressed" from="Control/QuitButton" to="Control/QuitButton" method="_on_pressed"]

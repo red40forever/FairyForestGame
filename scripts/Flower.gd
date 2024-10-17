@@ -19,7 +19,7 @@ func upgrade_check():
 		var curr_obj = GameManager.tilemap_manager.get_objects_at(upgrade_range[coords])
 		if curr_obj is MoleHill:
 			upgrade_tier()
-			break	
+			break
 
 
 # TODO already called on day change

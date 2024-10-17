@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GridObjectAttributes" load_steps=3 format=3 uid="uid://c1qcj0ke5p7dx"]
 
-[ext_resource type="PackedScene" uid="uid://b5fh68sqky1vk" path="res://scenes/components/mole_hill.tscn" id="1_1aug0"]
+[ext_resource type="PackedScene" uid="uid://bjxu0dmclo3po" path="res://scenes/components/mole_hill.tscn" id="1_1aug0"]
 [ext_resource type="Script" path="res://scripts/GridObjectAttributes.gd" id="1_wkhxs"]
 
 [resource]
