@@ -4,11 +4,10 @@ extends ResourceTile
 func _ready() -> void:
 	produced_resources = [Slot.ResourceType.POLLEN]
 	super()
-	GameManager.day_manager.day_changed.connect(upgrade_check)
-
 
 # TODO add upgrade flag when next to molehill
-func upgrade_check():
+# formerly named "upgrade_check" - changed to match new override convetion
+func _on_day_changed(_count):
 	var map_pos = grid_coordinates
 	var upgrade_range = [map_pos + Vector2i(0, -2), map_pos + 
 	Vector2i(0, -1), map_pos + Vector2i(1, 0), map_pos + Vector2i(0, 1), 
