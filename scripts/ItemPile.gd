@@ -16,8 +16,6 @@ func _ready() -> void:
 	slot.resource_count_updated.connect(_on_slot_resource_count_updated)
 	
 	slot_display.displayed_slot = slot
-	GameManager.day_manager.day_changed.connect(_on_day_changed)
-
 
 ## Attempt to deposit a resource into this object's slot.
 ## Returns a boolean stating whether the resource was deposited successfully

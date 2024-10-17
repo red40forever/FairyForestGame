@@ -28,7 +28,6 @@ var selected_withdraw_type: Slot.ResourceType
 func _ready() -> void:
 	super()
 	
-	GameManager.day_manager.day_changed.connect(_on_day_changed)
 	initialize_slot()
 	selected_withdraw_type = product_type
 	
@@ -48,6 +47,8 @@ func initialize_slot():
 		slot.add_resource_overflow_safe(product_type, initial_products)
 
 func _on_day_changed(_count):
+	super(_count)
+	
 	# New entities created if possible
 	var product_count = slot.get_resource_count(product_type)
 	if product_count >= new_entity_cost:

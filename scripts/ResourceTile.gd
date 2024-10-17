@@ -13,7 +13,8 @@ var slot: Slot
 @export var max_tier = 2
 
 func _ready() -> void:
-	GameManager.day_manager.day_changed.connect(_on_day_changed)
+	super()
+	
 	slot = Slot.new(produced_resources, max_storage)
 
 func _on_day_changed(_count):

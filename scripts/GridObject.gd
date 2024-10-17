@@ -12,7 +12,6 @@ var selected: bool = false
 
 signal clicked
 
-
 func _ready():
 	position = GameManager.tilemap_manager.ground_layer.map_to_local(grid_coordinates)
 	
@@ -22,7 +21,13 @@ func _ready():
 		selection_button.mouse_exited.connect(on_hover_finish)
 	else:
 		push_warning("GridObject '", name, "' has no hover area specified.")
+	
+	GameManager.day_manager.day_changed.connect(_on_day_changed)
 
+
+# Called on day change, override to implement day change logic
+func _on_day_changed(_count):
+	pass
 
 func on_click():
 	# Select this object when clicked, or deselect if it's already selected
