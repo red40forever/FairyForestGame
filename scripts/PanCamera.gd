@@ -37,22 +37,23 @@ func _process(_delta):
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT:
-			if event.is_pressed():
-				is_dragging = true
-			else:
-				is_dragging = false
-			get_viewport().set_input_as_handled()
-		elif event.button_index == MOUSE_BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT:
 			# Select tile on LMB release, not press
 			if event.is_pressed():
 				return
 			var tilemap_manager = GameManager.tilemap_manager
-			var global_pos = get_global_mouse_position()
-			var coords = tilemap_manager.ground_layer.local_to_map(global_pos)
+			var ground_layer = tilemap_manager.ground_layer
+			var local_mouse_pos = ground_layer.to_local(get_global_mouse_position())
+			var coords = ground_layer.local_to_map(local_mouse_pos)
 			
 			tile_clicked.emit(coords)
 			
+			get_viewport().set_input_as_handled()
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			if event.is_pressed():
+				is_dragging = true
+			else:
+				is_dragging = false
 			get_viewport().set_input_as_handled()
 	elif event is InputEventMouseMotion and is_dragging:
 		offset -= event.relative / zoom
