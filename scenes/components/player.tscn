@@ -8,3 +8,5 @@ script = ExtResource("1_uwor8")
 camera = NodePath("Camera2D")
 
 [node name="Camera2D" parent="." instance=ExtResource("2_wcy5h")]
+min_coords = Vector2(-100, -100)
+max_coords = Vector2(100, 100)
