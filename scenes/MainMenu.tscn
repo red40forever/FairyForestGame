@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bhcig4674vsg0" path="res://scenes/main_scene.tscn" id="4_sp4gw"]
 [ext_resource type="Script" path="res://scripts/PlayButton.gd" id="4_tjimq"]
 [ext_resource type="Texture2D" uid="uid://dkmmcs3tg7prb" path="res://textures/ui_book.png" id="5_m3rft"]
-[ext_resource type="PackedScene" path="res://scenes/components/fade_overlay.tscn" id="7_40tei"]
+[ext_resource type="PackedScene" uid="uid://d1i0qo4uu8wep" path="res://scenes/components/fade_overlay.tscn" id="7_40tei"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ulcs7"]
 

@@ -47,7 +47,7 @@ func _ready():
 	flower.slot.add_resource(Slot.ResourceType.POLLEN, 1)
 	#item_pile.deposit(Slot.ResourceType.HONEY, 2)
 	
-	Dialogic.start("BeeFairy1")
+	#Dialogic.start("BeeFairy1")
 
 func _on_tile_clicked(coordinates: Vector2i):
 	if is_instance_valid(selected_object):

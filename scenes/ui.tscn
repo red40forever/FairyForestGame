@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cai78k8j65ea3" path="res://scenes/pause_menu.tscn" id="1_dbow0"]
 [ext_resource type="Texture2D" uid="uid://cngmucuuawwsy" path="res://textures/ui_button_new_day.png" id="2_nphff"]
 [ext_resource type="Script" path="res://scripts/button.gd" id="3_s0xle"]
-[ext_resource type="PackedScene" uid="uid://bejcnbkk06tgn" path="res://scenes/components/fade_overlay.tscn" id="4_ki58v"]
+[ext_resource type="PackedScene" uid="uid://d1i0qo4uu8wep" path="res://scenes/components/fade_overlay.tscn" id="4_ki58v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hh52u"]
 
