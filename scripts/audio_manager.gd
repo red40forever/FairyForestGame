@@ -30,20 +30,24 @@ func play(songName: song):
 		musicInstance.stop(FMODStudioModule.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 		musicInstance.release()
 
-	if(songName != null):
-		match songName:
-			song.MENU:
-				musicInstance = FMODRuntime.create_instance(menuMusicEvent)
-			song.GAMEPLAY:
-				musicInstance = FMODRuntime.create_instance(gameplayMusicEvent)
-				beat_counter = 0
-				musicInstance.set_callback(beat_callable, FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT)
-			song.DIALOGUE_BEE:
-				musicInstance = FMODRuntime.create_instance(dialogueMusicEventBee)
-			song.DIALOGUE_MOLE:
-				musicInstance = FMODRuntime.create_instance(dialogueMusicEventMole)
-		musicInstance.start()
-	else:
+	match songName:
+		song.MENU:
+			musicInstance = FMODRuntime.create_instance(menuMusicEvent)
+		song.GAMEPLAY:
+			musicInstance = FMODRuntime.create_instance(gameplayMusicEvent)
+			beat_counter = 0
+			musicInstance.set_callback(beat_callable, FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT)
+		song.DIALOGUE_BEE:
+			musicInstance = FMODRuntime.create_instance(dialogueMusicEventBee)
+		song.DIALOGUE_MOLE:
+			musicInstance = FMODRuntime.create_instance(dialogueMusicEventMole)
+
+	musicInstance.start()
+
+func stop():
+	if(musicInstance != null):
+		musicInstance.stop(FMODStudioModule.FMOD_STUDIO_STOP_ALLOWFADEOUT)
+		musicInstance.release()
 		musicInstance = null
 
 func setParameter(parameterName: String, value: Variant):

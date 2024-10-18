@@ -1,6 +1,6 @@
 join BeeFairy left
 join MoleFairy right [z_index="2"]
-do AudioManager.play(null)
+do AudioManager.stop()
 BeeFairy: YES! I’m so happy the garden is safe! Thank you two so much for all your help.
 MoleFairy: Oh my goodness, I can’t believe we actually did it! I-I mean, I knew we could do it all along!
 BeeFairy: See! If everyone all works together, then we can overcome--

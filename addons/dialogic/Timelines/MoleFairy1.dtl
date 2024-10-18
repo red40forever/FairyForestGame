@@ -1,3 +1,4 @@
+do AudioManager.stop()
 UnknownChars: Eeeeeeeeeeek!
 join BeeFairy left
 BeeFairy: What was that!?
