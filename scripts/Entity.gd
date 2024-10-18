@@ -44,11 +44,15 @@ func _ready():
 func _process(_delta: float) -> void:
 	if not idle:
 		if interactions_completed >= entity_attributes.max_interactions:
-			set_new_target(home.grid_coordinates)
+			set_new_target_position(home.grid_coordinates)
 		#self.grid_coordinates = GameManager.tilemap_manager.ground_layer.local_to_map(self.position)
 
 
-func set_new_target(new_target: Vector2i):
+func set_new_target(new_target: InteractableGridObject):
+	set_new_target_position(new_target.grid_coordinates)
+
+
+func set_new_target_position(new_target: Vector2i):
 	if new_target == Vector2i(target_map_coords):
 		return
 	
@@ -90,6 +94,13 @@ func set_home(new_home: HomeTile) -> void:
 
 func set_attributes(new_attributes: EntityAttributes) -> void:
 	entity_attributes = new_attributes
+
+func on_click():
+	# Select this object when clicked, or deselect if it's already selected
+	if !selected:
+		GameManager.player.selected_object = self
+	else:
+		GameManager.player.selected_object = null
 
 # When tween is finished, entity has stopped moving.
 func _on_tween_finished():
@@ -141,13 +152,13 @@ func set_selected(new_selected: bool):
 	if slot_display:
 		slot_display.set_open(new_selected)
 	
-	var new_selection = GameManager.player.selected_object
-	if new_selection is HomeTile:
-		set_new_target(new_selection.grid_coordinates)
-		GameManager.player.selected_object = null
+	#var new_selection = GameManager.player.selected_object
+	#if new_selection is InteractableGridObject:
+		#set_new_target_position(new_selection.grid_coordinates)
+		#GameManager.player.selected_object = null
 
 
 func _on_selection_changed(old_selection: GridObject, new_selection: GridObject):
 	if old_selection == self and new_selection is HomeTile:
-		set_new_target(new_selection.grid_coordinates)
+		set_new_target_position(new_selection.grid_coordinates)
 		GameManager.player.selected_object = null

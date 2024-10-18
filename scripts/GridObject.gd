@@ -29,12 +29,10 @@ func _ready():
 func _on_day_changed(_count):
 	pass
 
+
+# Overridden in inheriting classes
 func on_click():
-	# Select this object when clicked, or deselect if it's already selected
-	if !selected:
-		GameManager.player.selected_object = self
-	else:
-		GameManager.player.selected_object = null
+	pass
 
 
 func set_selected(new_selected: bool):

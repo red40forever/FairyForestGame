@@ -7,7 +7,7 @@ func _ready() -> void:
 	carryable_resources = [Slot.ResourceType.MUSHROOM]
 	super()
 
-func set_new_target(new_target: Vector2i):
+func set_new_target_position(new_target: Vector2i):
 	super(new_target)
 	main_sprite.play("walk")
 

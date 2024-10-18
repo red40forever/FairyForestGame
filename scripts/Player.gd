@@ -49,10 +49,17 @@ func _ready():
 	
 	#Dialogic.start("BeeFairy1")
 
+
+func set_target_of_selected_entity(target_object: InteractableGridObject):
+	if selected_object is Entity:
+		selected_object.set_new_target(target_object)
+
+
 func _on_tile_clicked(coordinates: Vector2i):
 	if is_instance_valid(selected_object):
 		if selected_object is Entity:
-			selected_object.set_new_target(coordinates)
+			selected_object.set_new_target_position(coordinates)
+
 
 func _on_day_changed(day: int):
 	if day == 1:
