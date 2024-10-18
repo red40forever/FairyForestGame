@@ -4,7 +4,7 @@ extends Node
 @export var gameplayMusicEvent: EventAsset
 @export var dialogueMusicEventBee: EventAsset
 @export var dialogueMusicEventMole: EventAsset
-@export var ambienceEvent: EventAsset	
+@export var ambienceEvent: EventAsset
 
 enum song {MENU, GAMEPLAY, DIALOGUE_BEE, DIALOGUE_MOLE}
 
@@ -44,6 +44,12 @@ func play(songName: song):
 
 	musicInstance.start()
 
+func stop():
+	if(musicInstance != null):
+		musicInstance.stop(FMODStudioModule.FMOD_STUDIO_STOP_ALLOWFADEOUT)
+		musicInstance.release()
+		musicInstance = null
+
 func setParameter(parameterName: String, value: Variant):
 	FMODStudioModule.get_studio_system().set_parameter_by_name(parameterName, value, false)
 
@@ -58,7 +64,6 @@ func beat_callback(args):
 func create_tilemap_connections():
 	GameManager.tilemap_manager.grid_object_created.connect(add_entity)
 	GameManager.tilemap_manager.grid_object_deleted.connect(remove_entity)
-	play(song.GAMEPLAY)
 
 func add_entity(grid_object, _coords):
 	if (grid_object is Bee):

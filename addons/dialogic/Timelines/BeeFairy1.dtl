@@ -1,7 +1,9 @@
+do AudioManager.stop()
 Narrator: Once upon a time, a lonely fairy wandered through the woods, lost and with nowhere to go.
 Narrator: She came upon an oak tree, standing tall and alone. Though it was old and withered, she felt as if she could see it as it once was-- proud and kind, giving life and protection to all that grew below it.
 Narrator: Underneath the tree, her heart brimmed with newfound comfort. She decided to use the little magic she had to restore the garden, and the tree that watched over it, to a thriving ecosystem.
 join BeeFairy left [z_index="2"]
+do AudioManager.play(AudioManager.song.DIALOGUE_BEE)
 BeeFairy: There you are, you two! I've been buzzing around all day trying to find you!
 BeeFairy: Looks like you've set up shop here, huh? It's a little... barren around here, but I guess there is a little flower...
 BeeFairy: OH! Hello! I'm sorry I didn't see you there! Do you live here? What's your name?
@@ -16,3 +18,4 @@ BeeFairy: Once you have more honey, you can use it to grow the colony! But I'm g
 BeeFairy: ...
 BeeFairy: ........
 BeeFairy: Ugh, this is my least favorite part.
+do AudioManager.play(AudioManager.song.GAMEPLAY)

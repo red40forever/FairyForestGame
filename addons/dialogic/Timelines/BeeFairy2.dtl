@@ -1,7 +1,9 @@
 join BeeFairy left [z_index="2"]
+do AudioManager.play(AudioManager.song.DIALOGUE_BEE)
 BeeFairy: AAAAAA! Look at that beautiful honey! Doesn't it make you just wanna fly around in circles? Good work, little guys!
 BeeFairy: OKAY, this is the best part. Now that you have 2 honey, you can make a new hive! All they need is an empty space, far enough away from the other hives. The colonies don't like to be too close to each other, you see.
 BeeFairy: It makes them all confused. They're all like, 'bzzzz!!!! bzzz!!! bzz!!!'\
 \
 // To build a new hive, transport the honey to an empty space.
 BeeFairy: You can also use honey to multiply your bee population! Leaving 2 honey in a hive overnight will attract a new bee. Bees are all about honey, y'know. It's like their bread and butter. Or like, their bread and honey. Well... you get what I mean.
+do AudioManager.play(AudioManager.song.GAMEPLAY)
