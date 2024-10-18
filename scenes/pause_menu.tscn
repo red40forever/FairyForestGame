@@ -84,7 +84,6 @@ text = "Quit
 
 [node name="QuitConfirmPanel" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -99,83 +98,29 @@ offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="QuitConfirmPanel"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_wv40e")
-patch_margin_left = 1
-patch_margin_top = 1
-patch_margin_right = 1
-patch_margin_bottom = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="QuitConfirmPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 14
-
-[node name="TitleText" type="Label" parent="QuitConfirmPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_d0r6i")
-theme_override_font_sizes/font_size = 33
-text = "Are you sure?"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="QuitConfirmPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 60
-alignment = 1
-
-[node name="NoButton" type="Button" parent="QuitConfirmPanel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_d0r6i")
-theme_override_font_sizes/font_size = 22
-text = "No"
-
-[node name="YesButton" type="Button" parent="QuitConfirmPanel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_d0r6i")
-theme_override_font_sizes/font_size = 22
-text = "Yes"
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Control"]
-position = Vector2(392, 485)
+[node name="Sprite2D" type="Sprite2D" parent="QuitConfirmPanel"]
+position = Vector2(161, 60)
 scale = Vector2(4, 4)
 texture = ExtResource("4_b6uou")
 
-[node name="YesButton2" type="Button" parent="Control"]
+[node name="YesButton2" type="Button" parent="QuitConfirmPanel"]
 layout_mode = 2
-offset_left = 163.0
-offset_top = 520.0
-offset_right = 222.0
-offset_bottom = 570.0
+offset_left = -68.0
+offset_top = 95.0
+offset_right = -9.0
+offset_bottom = 145.0
 scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_d0r6i")
 theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8084i")
 icon = ExtResource("5_0258l")
 
-[node name="NoButton2" type="Button" parent="Control"]
+[node name="NoButton2" type="Button" parent="QuitConfirmPanel"]
 layout_mode = 2
-offset_left = 459.0
-offset_top = 519.0
-offset_right = 509.0
-offset_bottom = 569.0
+offset_left = 228.0
+offset_top = 94.0
+offset_right = 278.0
+offset_bottom = 144.0
 scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_d0r6i")
 theme_override_font_sizes/font_size = 22
@@ -183,7 +128,5 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_rbm0f")
 icon = ExtResource("6_uipan")
 
 [connection signal="pressed" from="PausePanel/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="QuitConfirmPanel/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
-[connection signal="pressed" from="QuitConfirmPanel/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
-[connection signal="pressed" from="Control/YesButton2" to="." method="_on_yes_button_pressed"]
-[connection signal="pressed" from="Control/NoButton2" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="QuitConfirmPanel/YesButton2" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="QuitConfirmPanel/NoButton2" to="." method="_on_no_button_pressed"]

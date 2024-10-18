@@ -9,22 +9,31 @@ enum State {
 }
 var state: State
 
+var canPause = false
 
 func _ready():
 	# Don't stop processing on pause
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	Dialogic.timeline_started.connect(dialogue_started)
+	Dialogic.timeline_ended.connect(dialogue_ended)
 	
 	set_open(false)
 
+func dialogue_started():
+	canPause = false
+
+func dialogue_ended():
+	canPause = true
 
 func _process(_delta):
-	if Input.is_action_just_pressed("pause_game"):
-		if state == State.CLOSED:
-			set_state(State.PAUSED_MAIN)
-			GameManager.paused = true
-		else:
-			set_state(State.CLOSED)
-			GameManager.paused = false
+	if(canPause):
+		if Input.is_action_just_pressed("pause_game"):
+			if state == State.CLOSED:
+				set_state(State.PAUSED_MAIN)
+				GameManager.paused = true
+			else:
+				set_state(State.CLOSED)
+				GameManager.paused = false
 
 
 func set_state(new_state: State):
