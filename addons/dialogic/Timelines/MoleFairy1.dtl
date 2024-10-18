@@ -2,6 +2,7 @@ UnknownChars: Eeeeeeeeeeek!
 join BeeFairy left
 BeeFairy: What was that!?
 join MoleFairy right [z_index="2"]
+do AudioManager.play(AudioManager.song.DIALOGUE_MOLE)
 MoleFairy: Oh.. my apologies! I heard the rumbling in the ground and it quite frightened me. This tree’s roots grew so suddenly! That’s quite amazing!
 MoleFairy: Oh! I don’t believe we met. I’m Myla. I watch over all the moles that live in this forest. I recognize you! You’re always buzzing around outside our molehills!
 MoleFairy: I prefer to stay underground in the chambers that my mole friends dig. They’re quite comfy, you know.
@@ -25,3 +26,4 @@ BeeFairy: OOH! This is perfect! Bees are great at transporting spores from place
 MoleFairy: Exactly! That’s how new mushrooms can propagate.
 MoleFairy: Now all we need to do is grow this little ecosystem stronger. We can do this!
 BeeFairy: YEAH!!! WOOO-HOOO!
+do AudioManager.play(AudioManager.song.GAMEPLAY)

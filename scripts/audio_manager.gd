@@ -4,7 +4,7 @@ extends Node
 @export var gameplayMusicEvent: EventAsset
 @export var dialogueMusicEventBee: EventAsset
 @export var dialogueMusicEventMole: EventAsset
-@export var ambienceEvent: EventAsset	
+@export var ambienceEvent: EventAsset
 
 enum song {MENU, GAMEPLAY, DIALOGUE_BEE, DIALOGUE_MOLE}
 
@@ -30,19 +30,21 @@ func play(songName: song):
 		musicInstance.stop(FMODStudioModule.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 		musicInstance.release()
 
-	match songName:
-		song.MENU:
-			musicInstance = FMODRuntime.create_instance(menuMusicEvent)
-		song.GAMEPLAY:
-			musicInstance = FMODRuntime.create_instance(gameplayMusicEvent)
-			beat_counter = 0
-			musicInstance.set_callback(beat_callable, FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT)
-		song.DIALOGUE_BEE:
-			musicInstance = FMODRuntime.create_instance(dialogueMusicEventBee)
-		song.DIALOGUE_MOLE:
-			musicInstance = FMODRuntime.create_instance(dialogueMusicEventMole)
-
-	musicInstance.start()
+	if(songName != null):
+		match songName:
+			song.MENU:
+				musicInstance = FMODRuntime.create_instance(menuMusicEvent)
+			song.GAMEPLAY:
+				musicInstance = FMODRuntime.create_instance(gameplayMusicEvent)
+				beat_counter = 0
+				musicInstance.set_callback(beat_callable, FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT)
+			song.DIALOGUE_BEE:
+				musicInstance = FMODRuntime.create_instance(dialogueMusicEventBee)
+			song.DIALOGUE_MOLE:
+				musicInstance = FMODRuntime.create_instance(dialogueMusicEventMole)
+		musicInstance.start()
+	else:
+		musicInstance = null
 
 func setParameter(parameterName: String, value: Variant):
 	FMODStudioModule.get_studio_system().set_parameter_by_name(parameterName, value, false)
@@ -58,7 +60,6 @@ func beat_callback(args):
 func create_tilemap_connections():
 	GameManager.tilemap_manager.grid_object_created.connect(add_entity)
 	GameManager.tilemap_manager.grid_object_deleted.connect(remove_entity)
-	play(song.GAMEPLAY)
 
 func add_entity(grid_object, _coords):
 	if (grid_object is Bee):

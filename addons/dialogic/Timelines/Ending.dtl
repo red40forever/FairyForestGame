@@ -1,9 +1,11 @@
 join BeeFairy left
 join MoleFairy right [z_index="2"]
+do AudioManager.play(null)
 BeeFairy: YES! I’m so happy the garden is safe! Thank you two so much for all your help.
 MoleFairy: Oh my goodness, I can’t believe we actually did it! I-I mean, I knew we could do it all along!
 BeeFairy: See! If everyone all works together, then we can overcome--
 join OakFairy center
+do AudioManager.play(AudioManager.song.MENU)
 MoleFairy: !!!
 BeeFairy: You transformed! It’s like… the love and care you had for the tree was so strong, it changed who you were!
 MoleFairy: I’m so happy you found your purpose here. And I’m so happy that this garden is alive and beautiful!
