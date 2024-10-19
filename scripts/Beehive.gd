@@ -3,7 +3,8 @@ extends HomeTile
 
 func _ready():
 	entity_grid_object_attributes = Resources.find("objects")["bee"]
-	entity_attributes = Resources.find("entity_attributes")["bee"]
+	var temp = Resources.find("entity_attributes")["bee"]
+	entity_attributes = temp
 	resource_type = Slot.ResourceType.POLLEN
 	product_type = Slot.ResourceType.HONEY
 	selected_withdraw_type = Slot.ResourceType.POLLEN
