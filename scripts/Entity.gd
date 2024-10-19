@@ -1,5 +1,5 @@
 class_name Entity
-extends SelectableGridObject
+extends GridObject
 
 @export_group("Attributes")
 @export var entity_attributes: EntityAttributes
@@ -94,6 +94,13 @@ func set_home(new_home: HomeTile) -> void:
 
 func set_attributes(new_attributes: EntityAttributes) -> void:
 	entity_attributes = new_attributes
+
+func on_click():
+	# Select this object when clicked, or deselect if it's already selected
+	if !selected:
+		GameManager.player.selected_object = self
+	else:
+		GameManager.player.selected_object = null
 
 # When tween is finished, entity has stopped moving.
 func _on_tween_finished():

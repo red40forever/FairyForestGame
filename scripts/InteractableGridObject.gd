@@ -1,5 +1,5 @@
 class_name InteractableGridObject
-extends SelectableGridObject
+extends GridObject
 
 # InteractableGridObjects are GridObjects that can change/exchange resources
 # from Slots during an interaction.
