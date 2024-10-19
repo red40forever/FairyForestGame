@@ -15,12 +15,12 @@ void fragment() {
 			vec2(0.0, TEXTURE_PIXEL_SIZE.y),
 			vec2(TEXTURE_PIXEL_SIZE.x, TEXTURE_PIXEL_SIZE.y)
 		};
-		
+
 		float alpha_sum = 0.0;
 		for (int i = 0; i < sample_positions.length(); i++) {
 			alpha_sum += texture(TEXTURE, UV + sample_positions[i]).a;
 		}
-		
+
 		if (alpha_sum > 0.0) {
 			COLOR = outline_color;
 		}

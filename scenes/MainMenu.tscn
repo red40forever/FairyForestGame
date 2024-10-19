@@ -115,6 +115,7 @@ highlight_tint = Color(1, 1, 0.65098, 1)
 [node name="FadeOverlay" parent="." instance=ExtResource("7_40tei")]
 visible = false
 layout_mode = 1
+fade_in_on_start = true
 
 [connection signal="pressed" from="Control/PlayButton" to="Control/PlayButton" method="_on_pressed"]
 [connection signal="pressed" from="Control/QuitButton" to="Control/QuitButton" method="_on_pressed"]

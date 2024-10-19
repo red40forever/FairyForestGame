@@ -16,10 +16,10 @@ void fragment() {
 	// Get size of texture in pixels
 	float size_x = float(textureSize(TEXTURE, 0).x);
 	float size_y = float(textureSize(TEXTURE, 0).y);
-	
+
 	// Create a new "UV" which remaps every UV value to a snapped pixel value
 	vec2 UVr = vec2(floor(UV.x * magic * size_x)/(magic * size_x), floor(UV.y*size_y)/size_y);
-	
+
 	float clamped_skew = shadow_skew / shadow_scale.y + 1.0;
 	vec2 expand_corrected_uv = vec2(UVr.x * clamped_skew, UVr.y);
 	float skew = (expand_corrected_uv.y * shadow_skew) - shadow_skew;
@@ -27,7 +27,7 @@ void fragment() {
 	shadow_uv.x = (expand_corrected_uv.x + skew) * shadow_scale.x + (1.0 - shadow_scale.x);
 	shadow_uv.y = expand_corrected_uv.y * shadow_scale.y + (1.0 - shadow_scale.y);
 	shadow_uv += shadow_offset;
-	
+
 	vec4 original_color = texture(TEXTURE, expand_corrected_uv);
 	if (original_color.a > 0.0) {
 		if (expand_corrected_uv.x > 1.0 || expand_corrected_uv.x < 0.0 || expand_corrected_uv.y > 1.0 || expand_corrected_uv.y < 0.0) {

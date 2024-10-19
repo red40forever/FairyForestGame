@@ -9,7 +9,7 @@ signal day_ending()
 func end_day():
 	day_ending.emit()
 
-func change_day():
+func next_day():
 	day_count += 1
 	
 	# Call all lingering entities home
@@ -20,5 +20,6 @@ func change_day():
 	
 
 func _process(_delta):
-	if Input.is_action_just_pressed("debug_trigger"):
-		change_day()
+	if OS.has_feature("editor"):
+		if Input.is_action_just_pressed("debug_trigger"):
+			next_day()
