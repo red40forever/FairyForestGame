@@ -10,8 +10,11 @@ var can_pause: bool = true
 func _ready():
 	# Don't stop processing on pause
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	Dialogic.timeline_started.connect(_on_dialogue_started)
 	Dialogic.timeline_ended.connect(_on_dialogue_ended)
+	
+	visible = false
 
 
 func _on_dialogue_started():
@@ -33,11 +36,14 @@ func _process(_delta):
 func set_open(new_open: bool):
 	open = new_open
 	if open:
+		visible = true
 		%QuitConfirmDialog.animate_open()
 		GameManager.paused = true
 	else:
 		%QuitConfirmDialog.animate_close()
 		GameManager.paused = false
+		await %QuitConfirmDialog.animation_finished
+		visible = false
 
 
 func _on_yes_button_pressed():
