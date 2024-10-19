@@ -11,9 +11,7 @@ var slot_honey = Slot
 var slot_pollen = Slot
 var slot_mushrooms = Slot
 
-signal stage_completed # emitted when any stage is completed
-signal stage_zero_completed
-signal stage_one_completed
+signal stage_completed(stage: int) # emitted when any stage is completed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,15 +24,13 @@ func create_new_slots():
 
 func progress_stage():
 	stage += 1
-	stage_completed.emit()
+	stage_completed.emit(stage)
 	#if stage == 1:
 		#%TreeSprite.texture = preload("res://textures/tree_weak.png")
 		#Dialogic.start("MoleFairy1")
-		#stage_zero_completed.emit()
 	if stage == 1:
 		%TreeSprite.texture = preload("res://textures/tree_alive.png")
 		Dialogic.start("Ending")
-		stage_one_completed.emit()
 	
 	if stage >= ending_stage:
 		on_ending_stage_reached()
