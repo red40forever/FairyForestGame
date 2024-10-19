@@ -14,8 +14,9 @@ var last_grid_pos: Vector2i = Vector2i.ZERO
 
 
 func _process(_delta):
-	var mouse_pos = get_global_mouse_position()
-	var tilemap_pos = %GroundLayer.local_to_map(mouse_pos)
+	var ground_layer = GameManager.tilemap_manager.ground_layer
+	var local_mouse_pos = ground_layer.to_local(get_global_mouse_position())
+	var tilemap_pos = %GroundLayer.local_to_map(local_mouse_pos)
 	if tilemap_pos != last_grid_pos:
 		placement_indicator.move_to_grid_position(tilemap_pos)
 	last_grid_pos = tilemap_pos

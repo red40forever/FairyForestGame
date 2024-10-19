@@ -27,6 +27,7 @@ offset_left = -9.0
 offset_top = -25.0
 offset_right = 9.0
 offset_bottom = 3.0
+mouse_default_cursor_shape = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8kvdh")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ittn6")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_61ukp")
