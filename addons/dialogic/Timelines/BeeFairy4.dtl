@@ -1,4 +1,4 @@
 join BeeFairy left [z_index="2"]
 do AudioManager.play(AudioManager.song.DIALOGUE_BEE)
-BeeFairy: This garden is looking so beautiful already! All my bees are abuzz with excitement. If we keep growing it bigger and stronger, we can help the tree grow too. All we need to do is give it back some resources.
+BeeFairy: This garden is looking so beautiful already! All my [color=palegoldenrod]bees[/color] are abuzz with excitement. If we keep growing it bigger and stronger, we can help the [color=palegreen]tree[/color] grow too. All we need to do is give it back some resources.
 do AudioManager.play(AudioManager.song.GAMEPLAY)

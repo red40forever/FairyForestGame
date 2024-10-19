@@ -1,5 +1,5 @@
 join BeeFairy left [z_index="2"]
 do AudioManager.play(AudioManager.song.DIALOGUE_BEE)
-BeeFairy: That flower patch is doing it's best to produce pollen for the hive, but it might be better if it had some friends. A couple other flower patches next to it will make a big flower garden that can produce lots of pollen for us!
-BeeFairy: Bees are pros at growing new flowers. All you have to do is have them drop a couple pollen puffs on an empty space, wait, and poof! FLOWER MAGIC!!
+BeeFairy: That [color=plum]flower[/color] patch is doing it's best to produce [color=palegoldenrod]pollen[/color] for the hive, but it might be better if it had some friends. A couple other [color=plum]flower[/color] patches next to it will make a big [color=plum]flower[/color] garden that can produce lots of [color=palegoldenrod]pollen[/color] for us!
+BeeFairy: Bees are pros at growing new [color=plum]flowers[/color]. All you have to do is have them drop a couple [color=palegoldenrod]pollen[/color] puffs on an empty space, wait, and poof! [color=plum]FLOWER[/color] MAGIC!!
 do AudioManager.play(AudioManager.song.GAMEPLAY)
