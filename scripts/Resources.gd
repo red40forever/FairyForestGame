@@ -12,20 +12,17 @@ static var resources: Dictionary = {
 		"mushroom":  preload("res://objects/mushroom_obj.tres")
 	},
 	"ui_resource_sprites": {
-		Slot.ResourceType.HONEY:    preload("res://textures/icon_honey.png"),
-		Slot.ResourceType.POLLEN:   preload("res://textures/icon_pollen.png"),
+		Slot.ResourceType.HONEY:  preload("res://textures/icon_honey.png"),
+		Slot.ResourceType.POLLEN: preload("res://textures/icon_pollen.png"),
 		Slot.ResourceType.MUSHROOM: preload("res://textures/icon_mushroom.png"),
-		Slot.ResourceType.SPORE:    preload("res://textures/icon_spore.png")
+		Slot.ResourceType.SPORE: preload("res://textures/icon_spore.png")
 	},
-	# TODO: figure out why using load() and a cast is necessary
 	"entity_attributes": {
-		"bee":  load("res://objects/bee_entity_attributes.tres") as EntityAttributes,
-		"mole": load("res://objects/mole_entity_attributes.tres") as EntityAttributes
+		"bee": preload("res://objects/bee_entity_attributes.tres"),
+		"mole": preload("res://objects/mole_entity_attributes.tres")
 	}
 }
 
 
 static func find(key):
-	var temp2 = resources
-	var temp = resources.get(key)
-	return temp
+	return resources.get(key)
