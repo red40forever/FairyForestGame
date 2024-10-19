@@ -5,9 +5,10 @@ extends Resource
 @export var name: String
 @export var node: PackedScene
 
-
 func has_title() -> bool:
-	return true
+	return (name != "")
 
 func get_full_name() -> String:
-	return "GridObject"
+	if (name == ""):
+		return "GridObject"
+	return name
