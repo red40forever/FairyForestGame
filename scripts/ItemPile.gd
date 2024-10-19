@@ -46,7 +46,7 @@ func _try_create_building_with_items():
 		if resource_count >= recipe.cost:
 			slot.remove_resource(recipe.resource, recipe.cost)
 			placement_helper.place_at_coords(recipe.building, grid_coordinates)
-			queue_free()
+			despawn()
 			return
 
 ## Update the resource icons displayed on the tile.

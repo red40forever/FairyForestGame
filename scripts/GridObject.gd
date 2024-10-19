@@ -9,8 +9,10 @@ extends Node2D
 var grid_coordinates: Vector2i
 
 var selected: bool = false
+var is_despawned: bool = false
 
 signal clicked
+signal despawned
 
 func _ready():
 	position = GameManager.tilemap_manager.ground_layer.map_to_local(grid_coordinates)
@@ -32,7 +34,11 @@ func _on_day_changed(_count):
 
 # Overridden in inheriting classes
 func on_click():
-	pass
+	# Select this object when clicked, or deselect if it's already selected
+	if !selected:
+		GameManager.player.selected_object = self
+	else:
+		GameManager.player.selected_object = null
 
 
 func set_selected(new_selected: bool):
@@ -51,6 +57,12 @@ func set_selected(new_selected: bool):
 		main_sprite.material.set("shader_parameter/enabled", true)
 	else:
 		main_sprite.material.set("shader_parameter/enabled", false)
+
+
+func despawn():
+	is_despawned = true
+	despawned.emit()	
+	queue_free()
 
 
 func on_pressed():

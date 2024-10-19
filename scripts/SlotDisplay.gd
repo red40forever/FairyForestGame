@@ -75,7 +75,10 @@ func _update_displayed_slot(p_displayed_slot: Slot):
 		%VBoxContainer.add_child(horizontal_container)
 		horizontal_containers[resource] = horizontal_container
 		
-		var resource_count = p_displayed_slot.stored_resources[resource]
+		# If there are no resources in the horizontal container, hide it
+		var resource_count = p_displayed_slot.get_resource_count(resource)
+		horizontal_container.visible = false
+		
 		for i in range(resource_count):
 			var button = _create_resource_button(resource)
 			horizontal_container.add_child(button)
@@ -90,6 +93,7 @@ func _add_resource_icons(resource: Slot.ResourceType, count: int):
 		horizontal_containers[resource].add_child(button)
 	
 	horizontal_container.visible = true
+	visible = true
 
 
 func _remove_resource_icons(resource: Slot.ResourceType, count: int):
@@ -101,6 +105,9 @@ func _remove_resource_icons(resource: Slot.ResourceType, count: int):
 	
 	if horizontal_container.get_children().size() - count == 0:
 		horizontal_container.visible = false
+	
+	if displayed_slot.total_resource_count == 0:
+		visible = false
 
 
 func _on_slot_resource_count_updated(resource: Slot.ResourceType, old_count: int, new_count: int):

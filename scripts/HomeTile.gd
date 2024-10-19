@@ -101,13 +101,13 @@ func _on_resources_received(incoming_resources: Slot):
 			var change = slot.get_resource_count(type) - old
 			if change > 0:
 				incoming_resources.remove_resource(type, change)
-	
+
 
 func _on_entity_returned_home(incoming_entity: Entity, incoming_resources: Slot):
 	_on_resources_received(incoming_resources)
 	current_entities_list.remove_at(current_entities_list.find(incoming_entity))
 	# Remove entity from the scene tree
-	incoming_entity.queue_free()
+	incoming_entity.despawn()
 
 func _on_resource_clicked(resource: Slot.ResourceType):
 	selected_withdraw_type = resource
@@ -133,6 +133,7 @@ func get_class_name(): return "HomeTile"
 func set_selected(new_selected: bool):
 	super(new_selected)
 	if slot_display:
+		print("SELECTED!")
 		slot_display.set_open(new_selected)
 
 func add_entity(entity: Entity):
@@ -148,6 +149,7 @@ func add_entity(entity: Entity):
 			old_home.current_entities_list.remove_at(index)
 	# update this home
 	current_entities += 1
+	print("added entity '", entity.name, "' to tile: ", name)
 	entity.return_home.connect(_on_entity_returned_home)
 	current_entities_list.append(entity)
 	# guh

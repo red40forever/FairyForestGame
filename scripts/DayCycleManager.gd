@@ -15,9 +15,10 @@ func next_day():
 	day_count += 1
 	
 	# Call all lingering entities home
-	for ent in GameManager.tilemap_manager.grid_objects:
-		if ent is Entity:
-			ent.return_home.emit(ent, ent.slot)
+	var grid_objects = GameManager.tilemap_manager.grid_objects
+	var entities = grid_objects.filter(func(entity): return entity is Entity)
+	for entity: Entity in entities:
+		entity.return_home.emit(entity, entity.slot)
 	
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)

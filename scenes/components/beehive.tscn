@@ -25,5 +25,9 @@ offset_right = 11.0
 offset_bottom = 7.0
 
 [node name="SlotDisplay" parent="." instance=ExtResource("4_x23x1")]
-offset_top = -36.0
-offset_bottom = -29.0
+offset_left = -5.0
+offset_top = -40.0
+offset_right = 0.0
+offset_bottom = -33.0
+grow_horizontal = 1
+grow_vertical = 1

@@ -63,7 +63,7 @@ func beat_callback(args):
 
 func create_tilemap_connections():
 	GameManager.tilemap_manager.grid_object_created.connect(add_entity)
-	GameManager.tilemap_manager.grid_object_deleted.connect(remove_entity)
+	GameManager.tilemap_manager.grid_object_despawned.connect(remove_entity)
 
 func add_entity(grid_object, _coords):
 	if (grid_object is Bee):

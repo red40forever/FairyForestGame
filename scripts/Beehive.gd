@@ -8,8 +8,9 @@ func _ready():
 	product_type = Slot.ResourceType.HONEY
 	selected_withdraw_type = Slot.ResourceType.POLLEN
 	super()
-	if randf() > 0.5:
-		main_sprite.flip_h = true
+	#if randf() > 0.5:
+		#main_sprite.flip_h = true
+		#slot_display.position.x *= -1
 	
 	slot.resource_count_updated.connect(_on_resource_count_updated)
 

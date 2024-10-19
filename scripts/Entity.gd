@@ -23,7 +23,7 @@ var target_map_coords: Vector2i
 var home: HomeTile
 var tween: Tween = null
 
-signal return_home(entity_reference_to_free: Entity)
+signal return_home(entity: Entity, slot: Slot)
 #signal deposit_resources(resources_to_deposit: Slot)
 
 func _ready():
@@ -40,6 +40,8 @@ func _ready():
 		push_warning("Entity '", name, "' does not have a SlotDisplay.")
 	
 	GameManager.player.selection_changed.connect(_on_selection_changed)
+	
+	_do_spawn_animation()
 
 func _process(_delta: float) -> void:
 	if not idle:
@@ -94,13 +96,6 @@ func set_home(new_home: HomeTile) -> void:
 
 func set_attributes(new_attributes: EntityAttributes) -> void:
 	entity_attributes = new_attributes
-
-func on_click():
-	# Select this object when clicked, or deselect if it's already selected
-	if !selected:
-		GameManager.player.selected_object = self
-	else:
-		GameManager.player.selected_object = null
 
 # When tween is finished, entity has stopped moving.
 func _on_tween_finished():
@@ -158,7 +153,34 @@ func set_selected(new_selected: bool):
 		#GameManager.player.selected_object = null
 
 
+func despawn():
+	print("despawning ", name)
+	
+	is_despawned = true
+	despawned.emit()	
+	
+	await _do_despawn_animation()
+
+	queue_free()
+
 func _on_selection_changed(old_selection: GridObject, new_selection: GridObject):
 	if old_selection == self and new_selection is HomeTile:
 		set_new_target_position(new_selection.grid_coordinates)
 		GameManager.player.selected_object = null
+
+
+func _do_spawn_animation():
+	var spawn_tween = get_tree().create_tween()
+	spawn_tween.set_ease(Tween.EASE_OUT)
+	spawn_tween.set_trans(Tween.TRANS_CUBIC)
+	spawn_tween.tween_property(self, "scale", scale, 0.25)
+	scale = Vector2.ZERO
+
+
+func _do_despawn_animation():
+	var despawn_tween = get_tree().create_tween()
+	despawn_tween.set_ease(Tween.EASE_OUT)
+	despawn_tween.set_trans(Tween.TRANS_QUAD)
+	despawn_tween.tween_property(self, "scale", Vector2.ZERO, 0.25)
+	
+	await despawn_tween.finished

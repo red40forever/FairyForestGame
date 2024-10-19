@@ -11,5 +11,5 @@ func request_interaction(_slot: Slot) -> bool:
 
 
 func on_click():
-	super()
 	GameManager.player.set_target_of_selected_entity(self)
+	super()
