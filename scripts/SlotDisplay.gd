@@ -93,7 +93,9 @@ func _add_resource_icons(resource: Slot.ResourceType, count: int):
 		horizontal_containers[resource].add_child(button)
 	
 	horizontal_container.visible = true
-	visible = true
+	
+	if open:
+		visible = true
 
 
 func _remove_resource_icons(resource: Slot.ResourceType, count: int):
