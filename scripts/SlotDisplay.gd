@@ -104,10 +104,6 @@ func _remove_resource_icons(resource: Slot.ResourceType, count: int):
 
 
 func _on_slot_resource_count_updated(resource: Slot.ResourceType, old_count: int, new_count: int):
-	print(get_parent().name)
-	print(resource)
-	print(old_count)
-	print(new_count)
 	var count_change = new_count - old_count
 	if count_change > 0:
 		_add_resource_icons(resource, count_change)

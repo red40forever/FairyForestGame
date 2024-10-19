@@ -105,7 +105,6 @@ func _on_resources_received(incoming_resources: Slot):
 
 func _on_entity_returned_home(incoming_entity: Entity, incoming_resources: Slot):
 	_on_resources_received(incoming_resources)
-	print("entity_returned_home called GUH")
 	current_entities_list.remove_at(current_entities_list.find(incoming_entity))
 	# Remove entity from the scene tree
 	incoming_entity.queue_free()
