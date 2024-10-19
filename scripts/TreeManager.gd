@@ -25,10 +25,10 @@ func create_new_slots():
 func progress_stage():
 	stage += 1
 	stage_completed.emit(stage)
-	#if stage == 1:
-		#%TreeSprite.texture = preload("res://textures/tree_weak.png")
-		#Dialogic.start("MoleFairy1")
 	if stage == 1:
+		%TreeSprite.texture = preload("res://textures/tree_weak.png")
+		Dialogic.start("MoleFairy1")
+	elif stage == 2:
 		%TreeSprite.texture = preload("res://textures/tree_alive.png")
 		Dialogic.start("Ending")
 	
