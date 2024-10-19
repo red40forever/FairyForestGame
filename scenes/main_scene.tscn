@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhcig4674vsg0"]
+[gd_scene load_steps=6 format=3 uid="uid://bhcig4674vsg0"]
 
 [ext_resource type="PackedScene" uid="uid://b573p5aulkgpe" path="res://scenes/components/tilemap.tscn" id="1_51j67"]
 [ext_resource type="PackedScene" uid="uid://b035nlib0i5rc" path="res://scenes/components/player.tscn" id="2_abeom"]
+[ext_resource type="Material" uid="uid://b0oyl10b4ohfm" path="res://materials/mat_screen_night.tres" id="4_hefq7"]
 [ext_resource type="PackedScene" uid="uid://wk1n06a5tvtk" path="res://scenes/ui.tscn" id="5_63ucx"]
 [ext_resource type="PackedScene" uid="uid://c0qwjcmhrskp2" path="res://scenes/components/day_cycle_manager.tscn" id="5_koqcr"]
 
@@ -18,6 +19,16 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScreenPostProcessing" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+material = ExtResource("4_hefq7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("5_63ucx")]
 unique_name_in_owner = true

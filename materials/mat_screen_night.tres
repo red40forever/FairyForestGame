@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b0oyl10b4ohfm"]
+
+[ext_resource type="Shader" path="res://materials/shaders/shader_screen_night.gdshader" id="1_2w47p"]
+
+[resource]
+shader = ExtResource("1_2w47p")
+shader_parameter/night_tint = Color(0.3618, 0.3456, 0.54, 1)
+shader_parameter/night_tint_amount = 0.0
