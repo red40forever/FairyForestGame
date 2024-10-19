@@ -11,3 +11,10 @@ extends Resource
 
 @export_group("Interactions")
 @export var max_interactions: int
+
+
+func has_title() -> bool:
+	return true
+
+func get_full_name() -> String:
+	return "EntityAttributes"
