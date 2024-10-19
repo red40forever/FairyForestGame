@@ -9,11 +9,11 @@ var selected_object: GridObject:
 			return
 		
 		# We only want to deselect the old object if it isn't null
-		if selected_object:
+		if is_instance_valid(selected_object):
 			selected_object.set_selected(false)
 		
 		# We only want to select the new object if it isn't null
-		if new_object:
+		if is_instance_valid(new_object):
 			new_object.set_selected(true)
 		
 		var old_selection = selected_object

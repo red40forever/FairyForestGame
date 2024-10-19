@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ItemPile.gd" id="1_yymd0"]
 [ext_resource type="PackedScene" uid="uid://c7hgnu1uoo1um" path="res://scenes/components/slot_display.tscn" id="2_b2rut"]
-[ext_resource type="PackedScene" path="res://scenes/components/selection_button.tscn" id="3_kjumd"]
+[ext_resource type="PackedScene" uid="uid://dcktwik0sg56c" path="res://scenes/components/selection_button.tscn" id="3_kjumd"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3ed2d"]
 
