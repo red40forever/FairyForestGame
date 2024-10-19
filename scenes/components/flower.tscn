@@ -30,7 +30,7 @@ main_sprite = NodePath(".")
 selection_button = NodePath("SelectionButton")
 
 [node name="SelectionButton" parent="." instance=ExtResource("3_0aadk")]
-offset_left = -13.0
-offset_top = -15.0
-offset_right = 13.0
+offset_left = -22.0
+offset_top = -22.0
+offset_right = 22.0
 offset_bottom = 6.0
