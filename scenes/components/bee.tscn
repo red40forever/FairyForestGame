@@ -26,15 +26,17 @@ texture_filter = 1
 position = Vector2(0, -10)
 texture = ExtResource("3_ixp5y")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." node_paths=PackedStringArray("parentEntity", "particles")]
 texture_filter = 1
 material = ExtResource("2_wdvbs")
 position = Vector2(0, -16)
 texture = ExtResource("1_wvaxq")
 script = ExtResource("4_kbffd")
+parentEntity = NodePath("..")
+particles = NodePath("BeeParticles")
 
-[node name="BeeParticles" parent="." instance=ExtResource("7_t6b0p")]
-position = Vector2(0, -11)
+[node name="BeeParticles" parent="Sprite2D" instance=ExtResource("7_t6b0p")]
+position = Vector2(0, 5)
 
 [node name="SelectionButton" parent="." instance=ExtResource("7_i0l0b")]
 offset_bottom = -3.0

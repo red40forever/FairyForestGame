@@ -16,7 +16,6 @@ func _ready():
 	
 	visible = false
 
-
 func _on_dialogue_started():
 	can_pause = false
 
