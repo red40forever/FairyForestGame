@@ -47,7 +47,8 @@ func _ready():
 	flower.slot.add_resource(Slot.ResourceType.POLLEN, 1)
 	#item_pile.deposit(Slot.ResourceType.HONEY, 2)
 	
-	Dialogic.start("BeeFairy1")
+	if !GameManager.debug_flags["skip_intro_dialogue"]:
+		Dialogic.start("BeeFairy1")
 
 
 func set_target_of_selected_entity(target_object: InteractableGridObject):
