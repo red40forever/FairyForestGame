@@ -33,6 +33,17 @@ func get_objects_at(coordinates: Vector2i):
 	return objects_at_coords
 
 
+func is_tile_free_and_accessible(coordinates: Vector2i, include_occupied: bool = false):
+	if !GameManager.is_tile_accessible(coordinates):
+		return false
+	
+	var objects_at_space = get_objects_at(coordinates).size()
+	if objects_at_space > 0 && !include_occupied:
+		return false
+	
+	return true
+
+
 func _on_grid_object_despawned(grid_object: GridObject):
 	grid_objects.erase(grid_object)
 	grid_object_despawned.emit(grid_object, grid_object.grid_coordinates)

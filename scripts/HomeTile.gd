@@ -68,26 +68,41 @@ func _on_day_changed():
 	slot.add_resource_overflow_safe(product_type, slot.get_resource_count(resource_type))
 	slot.set_resource_count(resource_type, 0)
 	
-	# Spawn available bees into the world
-	var map_pos = grid_coordinates
-	# weird ass isometric positioning...
-	var possible_placement_positions = [map_pos + Vector2i(0, -2), map_pos + 
-		Vector2i(0, -1), map_pos + Vector2i(1, 0), map_pos + Vector2i(0, 1), 
-		map_pos + Vector2i(0, 2), map_pos + Vector2i(-1, 1), map_pos + 
-		Vector2i(-1, 0), map_pos + Vector2i(-1, -1)]
-	var placed_entities = 0
-	for coords in possible_placement_positions:
-		if len(GameManager.tilemap_manager.get_objects_at(coords)) <= 0:
-			if placed_entities >= current_entities:
-				return
-			# Position is empty; place a bee here
-			var entity = GameManager.tilemap_manager.create_object_at_coords(entity_grid_object_attributes, coords)
-			entity.set_home(self)
-			current_entities -= 1 # epic hacky solution
-			entity.set_attributes(entity_attributes)
-			#entity.return_home.connect(_on_entity_returned_home)
-			placed_entities += 1
-			current_entities_list.append(entity)
+	# Spawn available entities into the world
+	# TODO: Avoid despawning/spawning entities every day. That causes continuity issues.
+	# BUG:  As a result, at the end of the day, undeposited resources in Entity slots will get destroyed.
+	var possible_placement_positions = get_surrounding_free_and_accessible_tiles()
+	var ran_out_of_tiles = false
+	var entities_to_place = current_entities
+	while entities_to_place > 0:
+		for coords in possible_placement_positions:
+			if entities_to_place == 0:
+				break
+			
+			# Position is empty; place an entity here
+			_place_entity_at_coords(coords)
+			entities_to_place -= 1
+		
+		if ran_out_of_tiles:
+			push_error(
+				"HomeTile ", name, " at position ", grid_coordinates, " does not have enough space to spawn all entities. ",
+				entities_to_place, " entities were not spawned."
+			)
+			break
+		
+		# Ran out of tiles, expand search to include occupied
+		ran_out_of_tiles = true
+		possible_placement_positions = get_surrounding_free_and_accessible_tiles(true)
+
+
+func _place_entity_at_coords(coords: Vector2i):
+	var entity = GameManager.tilemap_manager.create_object_at_coords(entity_grid_object_attributes, coords)
+	entity.set_home(self)
+	current_entities -= 1 # epic hacky solution
+	entity.set_attributes(entity_attributes)
+	#entity.return_home.connect(_on_entity_returned_home)
+	current_entities_list.append(entity)
+
 
 func _on_resources_received(incoming_resources: Slot):
 	# Add resources to home if possible
@@ -118,9 +133,11 @@ func request_interaction(inc_slot: Slot) -> bool:
 	for type in inc_slot.accepted_types:
 		if type == selected_withdraw_type:
 			var old_val = inc_slot.get_resource_count(type)
+			
 			# Attempt to give resource to interactor:
-			# Add my resources to incoming slot
-			# var overflow = inc_slot.add_resource_overflow_safe(type, slot.get_resource_count(type))
+			# TODO: Do something with the overflow
+			var _overflow = inc_slot.add_resource_overflow_safe(type, slot.get_resource_count(type))
+			
 			# How much did we change by?
 			var exchange = inc_slot.get_resource_count(type) - old_val
 			if exchange > 0:

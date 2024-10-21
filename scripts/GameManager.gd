@@ -42,3 +42,7 @@ func initialize():
 	player = $"../MainScene/%Player"
 	day_manager = $"../MainScene/%DayCycleManager"
 	game_started.emit()
+
+
+func is_tile_accessible(coords: Vector2i):
+	return tilemap_manager.placement_helper.is_tile_accessible(coords)

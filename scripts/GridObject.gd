@@ -65,6 +65,27 @@ func despawn():
 	queue_free()
 
 
+func get_surrounding_tiles():
+	return [
+		grid_coordinates + Vector2i(0, -2),
+		grid_coordinates + Vector2i(0, -1),
+		grid_coordinates + Vector2i(1, 0),
+		grid_coordinates + Vector2i(0, 1), 
+		grid_coordinates + Vector2i(0, 2),
+		grid_coordinates + Vector2i(-1, 1),
+		grid_coordinates + Vector2i(-1, 0),
+		grid_coordinates + Vector2i(-1, -1)
+	]
+
+
+func get_surrounding_free_and_accessible_tiles(include_occupied: bool = false):
+	var surrounding_coords = get_surrounding_tiles()
+	return surrounding_coords.filter(
+		func(coords):
+			return GameManager.tilemap_manager.is_tile_free_and_accessible(coords, include_occupied)
+	)
+
+
 func on_pressed():
 	clicked.emit()
 	on_click()
