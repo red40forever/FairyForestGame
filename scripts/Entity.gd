@@ -154,10 +154,8 @@ func set_selected(new_selected: bool):
 
 
 func despawn():
-	print("despawning ", name)
-	
 	is_despawned = true
-	despawned.emit()	
+	despawned.emit()
 	
 	await _do_despawn_animation()
 

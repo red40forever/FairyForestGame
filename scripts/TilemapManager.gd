@@ -12,10 +12,6 @@ signal grid_object_created(grid_object: GridObject, coords: Vector2i)
 signal grid_object_despawned(grid_object: GridObject, coords: Vector2i)
 
 
-#func _process(_delta):
-	#print(grid_objects)
-
-
 func create_object_at_coords(object_attributes: GridObjectAttributes, coords: Vector2i) -> GridObject:
 	var grid_object = object_attributes.node.instantiate()
 	grid_object.grid_coordinates = coords
@@ -25,8 +21,6 @@ func create_object_at_coords(object_attributes: GridObjectAttributes, coords: Ve
 	grid_object.despawned.connect(_on_grid_object_despawned.bind(grid_object))
 	
 	grid_object_created.emit(grid_object, coords)
-	
-	print("created object ", grid_object.name, " at coords: ", coords)
 	
 	return grid_object
 

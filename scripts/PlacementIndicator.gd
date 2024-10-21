@@ -6,7 +6,6 @@ extends Sprite2D
 func move_to_grid_position(grid_position: Vector2i):
 	var accessible = GameManager.tilemap_manager.placement_helper.is_tile_accessible(grid_position)
 	visible = accessible
-	print("tile at ", grid_position, " is accessible: ", accessible)
 	
 	var placement_indicator_pos = %GroundLayer.to_global(%GroundLayer.map_to_local(grid_position))
 	var tween = get_tree().create_tween()
