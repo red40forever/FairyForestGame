@@ -46,8 +46,8 @@ func initialize_slot():
 	if initial_products > 0:
 		slot.add_resource_overflow_safe(product_type, initial_products)
 
-func _on_day_changed(_count):
-	super(_count)
+func _on_day_changed():
+	super()
 	
 	# New entities created if possible
 	var product_count = slot.get_resource_count(product_type)

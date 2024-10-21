@@ -4,13 +4,13 @@ extends Node2D
 var day_count: int = 0
 var day_changing: bool = false
 
-signal day_changed(day_count: int)
-signal day_ending
+signal day_started_changing
+signal day_changed
 
-func end_day():
-	day_ending.emit()
 
 func next_day():
+	day_started_changing.emit()
+	
 	day_changing = true
 	day_count += 1
 	
@@ -33,7 +33,7 @@ func next_day():
 	await tween.finished
 	
 	day_changing = false
-	day_changed.emit(day_count)
+	day_changed.emit()
 
 
 func _process(_delta):

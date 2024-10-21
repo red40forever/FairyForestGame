@@ -62,10 +62,11 @@ func _on_tile_clicked(coordinates: Vector2i):
 			selected_object.set_new_target_position(coordinates)
 
 
-func _on_day_changed(day: int):
-	if day == 1:
+func _on_day_changed():
+	var day_count = GameManager.day_manager.day_count
+	if day_count == 1:
 		Dialogic.start("BeeFairy2")
-	elif day == 2:
+	elif day_count == 2:
 		Dialogic.start("BeeFairy3")
-	elif day == 3:
+	elif day_count == 3:
 		Dialogic.start("BeeFairy4")

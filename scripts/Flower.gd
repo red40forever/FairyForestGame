@@ -7,7 +7,7 @@ func _ready() -> void:
 
 # TODO add upgrade flag when next to molehill
 # formerly named "upgrade_check" - changed to match new override convetion
-func _on_day_changed(_count):
+func _on_day_changed():
 	var map_pos = grid_coordinates
 	var upgrade_range = [map_pos + Vector2i(0, -2), map_pos + 
 	Vector2i(0, -1), map_pos + Vector2i(1, 0), map_pos + Vector2i(0, 1), 

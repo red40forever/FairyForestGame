@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 	slot = Slot.new(produced_resources, max_storage)
 
-func _on_day_changed(_count):
+func _on_day_changed():
 	for type in produced_resources:
 		slot.add_resource_overflow_safe(type, daily_production)
 

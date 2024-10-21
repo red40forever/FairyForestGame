@@ -28,7 +28,7 @@ func _ready():
 
 
 # Called on day change, override to implement day change logic
-func _on_day_changed(_count):
+func _on_day_changed():
 	pass
 
 

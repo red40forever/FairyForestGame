@@ -6,8 +6,13 @@ extends TextureButton
 
 
 func _ready():
-	GameManager.game_paused.connect(func(): visible = false)
-	GameManager.game_unpaused.connect(func(): visible = true)
+	# Hide the button while dialogue is happening
+	UIManager.dialogue_started.connect(_hide_button)
+	UIManager.dialogue_ended.connect(_show_button)
+	
+	# Hide the button while the day is changing
+	GameManager.day_manager.day_started_changing.connect(_hide_button)
+	GameManager.day_manager.day_changed.connect(_show_button)
 
 
 func _on_pressed() -> void:
@@ -20,3 +25,19 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	scale = original_scale
+
+
+func _show_button():
+	visible = true
+	var tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "scale", original_scale, 0.2)
+
+
+func _hide_button():
+	var tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "scale", Vector2.ZERO, 0.2)
+	tween.tween_callback(func(): visible = false)

@@ -14,10 +14,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PauseMenu" parent="." instance=ExtResource("1_dbow0")]
-unique_name_in_owner = true
-layout_mode = 1
-
 [node name="NewDayButton" type="TextureButton" parent="."]
 texture_filter = 1
 layout_mode = 1
@@ -34,6 +30,10 @@ pivot_offset = Vector2(32, 32)
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("2_nphff")
 script = ExtResource("3_s0xle")
+
+[node name="PauseMenu" parent="." instance=ExtResource("1_dbow0")]
+unique_name_in_owner = true
+layout_mode = 1
 
 [node name="FadeOverlay" parent="." instance=ExtResource("4_ki58v")]
 visible = false

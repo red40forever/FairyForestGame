@@ -32,8 +32,8 @@ func _on_slot_resource_count_updated(_p_resource_type: Slot.ResourceType, _old_c
 	_update_displayed_resources()
 
 
-func _on_day_changed(day_count: int):
-	super(day_count)
+func _on_day_changed():
+	super()
 	_try_create_building_with_items()
 
 
