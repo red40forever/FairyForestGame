@@ -88,7 +88,6 @@ script = ExtResource("4_tjimq")
 main_scene = ExtResource("4_sp4gw")
 root_node = NodePath("../..")
 fade_overlay = NodePath("../../FadeOverlay")
-highlight_tint = Color(1, 1, 0.65098, 1)
 
 [node name="QuitButton" type="Button" parent="Control"]
 layout_mode = 1
@@ -112,7 +111,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_x0s4k")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rkabx")
 icon = ExtResource("3_juoim")
 script = ExtResource("4_pmkuo")
-highlight_tint = Color(1, 1, 0.65098, 1)
+highlight_tint = Color(1, 1, 0.509804, 1)
 
 [node name="FadeOverlay" parent="." instance=ExtResource("7_40tei")]
 visible = false
