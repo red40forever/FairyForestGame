@@ -7,6 +7,8 @@ extends ColorRect
 
 var fade_color: Color = color
 
+var tween: Tween
+
 signal fade_out_complete
 signal fade_in_complete
 
@@ -23,13 +25,17 @@ func _ready():
 
 
 func fade_in():
-	var tween = get_tree().create_tween()
+	tween = get_tree().create_tween()
 	tween.tween_property(self, "color", Color(fade_color, 0), fade_duration)
 	tween.tween_callback(func(): fade_in_complete.emit())
 
 
 func fade_out():
-	var tween = get_tree().create_tween()
+	tween = get_tree().create_tween()
 	tween.tween_property(self, "color", fade_color, fade_duration)
 	tween.tween_interval(wait_time_after_fade)
 	tween.tween_callback(func(): fade_out_complete.emit())
+
+
+func _exit_tree():
+	tween.kill()
