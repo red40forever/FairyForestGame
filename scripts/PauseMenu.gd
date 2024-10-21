@@ -11,22 +11,12 @@ func _ready():
 	# Don't stop processing on pause
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
-	Dialogic.timeline_started.connect(_on_dialogue_started)
-	Dialogic.timeline_ended.connect(_on_dialogue_ended)
-	
 	visible = false
 
 
-func _on_dialogue_started():
-	can_pause = false
-
-
-func _on_dialogue_ended():
-	can_pause = true
-
-
 func _process(_delta):
-	if !can_pause:
+	# If Dialogic is open, we can't pause
+	if UIManager.dialogue_open:
 		return
 	
 	if Input.is_action_just_pressed("pause_game"):
