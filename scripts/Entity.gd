@@ -23,6 +23,9 @@ var target_map_coords: Vector2i
 var home: HomeTile
 var tween: Tween = null
 
+var flipped = false
+var moving = false
+
 signal return_home(entity: Entity, slot: Slot)
 #signal deposit_resources(resources_to_deposit: Slot)
 
@@ -84,12 +87,11 @@ func set_new_target_position(new_target: Vector2i):
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(self, "position", target, tween_duration)
 	tween.finished.connect(_on_tween_finished)
+	moving = true
 	
 	# Visual flip depending on direction
-	if target.x <= position.x:
-		main_sprite.flip_h = true
-	else:
-		main_sprite.flip_h = false
+	flipped = target.x <= position.x
+	main_sprite.flip_h = flipped
 
 func set_home(new_home: HomeTile) -> void:
 	new_home.add_entity(self)
@@ -100,6 +102,7 @@ func set_attributes(new_attributes: EntityAttributes) -> void:
 # When tween is finished, entity has stopped moving.
 func _on_tween_finished():
 	tween = null
+	moving = false
 	grid_coordinates = target_map_coords
 	
 	if GameManager.player.selected_object == self:
