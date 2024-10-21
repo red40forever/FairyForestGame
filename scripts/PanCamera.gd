@@ -25,17 +25,22 @@ signal tile_clicked(coordinates: Vector2i)
 
 
 func _ready():
-	set_zoom_level(0, false)
-
-
-func _process(_delta):
-	if Input.is_action_just_pressed("zoom_in"):
-		zoom_in()
-	elif Input.is_action_just_pressed("zoom_out"):
-		zoom_out()
+	set_zoom_level(1, false)
+	
+	UIManager.dialogue_started.connect(_on_dialogue_started)
 
 
 func _unhandled_input(event):
+	# If Dialogic is open, camera controls are disabled
+	if UIManager.dialogue_open:
+		return
+	
+	# Zoom input
+	if event.is_action_pressed("zoom_in"):
+		zoom_in()
+	elif event.is_action_pressed("zoom_out"):
+		zoom_out()
+	
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			# Select tile on LMB release, not press
@@ -84,6 +89,11 @@ func set_zoom_level(new_magnitude: int, should_animate: bool = true):
 		tween.tween_property(self, "zoom", new_zoom, zoom_animation_time)
 	else:
 		zoom = new_zoom
+
+
+func _on_dialogue_started():
+	# Stop dragging when dialogue starts so player isn't stuck dragging on dialogue close
+	is_dragging = false
 
 
 enum CameraControlMode {
