@@ -147,10 +147,19 @@ func request_interaction(inc_slot: Slot) -> bool:
 
 func get_class_name(): return "HomeTile"
 
-func set_selected(new_selected: bool):
-	super(new_selected)
+
+# TODO: Consolidate hover logic into shared base class
+func on_hover_start():
+	super()
 	if slot_display:
-		slot_display.set_open(new_selected)
+		slot_display.set_open(true)
+
+
+func on_hover_finish():
+	super()
+	if slot_display:
+		slot_display.set_open(false)
+
 
 func add_entity(entity: Entity):
 	var old_home = entity.home

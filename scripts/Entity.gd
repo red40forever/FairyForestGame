@@ -145,16 +145,6 @@ func try_interact_with_object(object: InteractableGridObject) -> bool:
 
 func get_class_name(): return "Entity"
 
-func set_selected(new_selected: bool):
-	super(new_selected)
-	if slot_display:
-		slot_display.set_open(new_selected)
-	
-	#var new_selection = GameManager.player.selected_object
-	#if new_selection is InteractableGridObject:
-		#set_new_target_position(new_selection.grid_coordinates)
-		#GameManager.player.selected_object = null
-
 
 func despawn():
 	is_despawned = true
@@ -163,6 +153,20 @@ func despawn():
 	await _do_despawn_animation()
 
 	queue_free()
+
+
+# TODO: Consolidate hover logic into shared base class
+func on_hover_start():
+	super()
+	if slot_display:
+		slot_display.set_open(true)
+
+
+func on_hover_finish():
+	super()
+	if slot_display:
+		slot_display.set_open(false)
+
 
 func _on_selection_changed(old_selection: GridObject, new_selection: GridObject):
 	if old_selection == self and new_selection is HomeTile:

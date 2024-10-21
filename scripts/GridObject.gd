@@ -92,8 +92,6 @@ func on_pressed():
 
 
 func on_hover_start():
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
-	
 	if selected:
 		return
 	
@@ -102,8 +100,6 @@ func on_hover_start():
 
 
 func on_hover_finish():
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-	
 	if selected:
 		return
 	

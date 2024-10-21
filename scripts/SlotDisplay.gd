@@ -26,9 +26,9 @@ func _ready():
 
 func set_open(new_open: bool):
 	if new_open && !open:
-		animate_display_open()
+		animate_display_open.call_deferred()
 	elif !new_open && open:
-		animate_display_close()
+		animate_display_close.call_deferred()
 	open = new_open
 
 
