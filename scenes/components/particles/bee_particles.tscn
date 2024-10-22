@@ -1,13 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://diyro5bpr0f7v"]
+[gd_scene load_steps=4 format=3 uid="uid://diyro5bpr0f7v"]
 
 [ext_resource type="Texture2D" uid="uid://c5vh0euvdpu4w" path="res://textures/particles/particle-01.png" id="1_vi7gv"]
 
 [sub_resource type="Gradient" id="Gradient_j4lbg"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.85381, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.0469083, 0.727079, 0.82516)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1.00093, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="BeeParticles" type="CPUParticles2D"]
+[sub_resource type="Curve" id="Curve_1u7g8"]
+max_value = 100.0
+_data = [Vector2(0, 18.5725), 0.0, -0.514679, 0, 0, Vector2(0.0684105, 0), -98.4802, 0.0, 0, 1, Vector2(0.301811, 0), 0.0, 9.98644e+06, 1, 1, Vector2(0.301821, 100), 9.98644e+06, 0.0, 1, 0]
+point_count = 4
+
+[node name="Node2D" type="Node2D"]
+
+[node name="PollenParticles" type="CPUParticles2D" parent="."]
+visible = false
+z_index = 1
 texture_filter = 1
 amount = 6
 lifetime = 5.0
@@ -28,4 +36,25 @@ radial_accel_max = -0.9
 tangential_accel_min = 0.5
 tangential_accel_max = 0.8
 color = Color(0.909804, 0.905882, 0.458824, 1)
+color_ramp = SubResource("Gradient_j4lbg")
+
+[node name="HoneyParticles" type="CPUParticles2D" parent="."]
+visible = false
+z_index = -1
+texture_filter = 1
+amount = 2
+lifetime = 2.2
+emission_shape = 5
+emission_points = PackedVector2Array(9, 5, 6, 7, 3, 8, 1, 8, -1, 7, -4, 6, -7, 4)
+emission_normals = PackedVector2Array()
+emission_colors = PackedColorArray()
+direction = Vector2(0, 1)
+spread = 5.0
+gravity = Vector2(0, 40)
+damping_min = 5.0
+damping_max = 5.0
+damping_curve = SubResource("Curve_1u7g8")
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color = Color(0.8, 0.611765, 0.211765, 1)
 color_ramp = SubResource("Gradient_j4lbg")

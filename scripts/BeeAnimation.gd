@@ -7,7 +7,7 @@ extends Sprite2D
 
 @export_group("References")
 @export var parentEntity: Bee
-@export var particles: CPUParticles2D
+@export var particles: Node2D
 
 var tween: Tween
 
@@ -23,7 +23,6 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	particles.scale.x = -1 if parentEntity.flipped else 1
-	particles.lifetime = particle_time_fast if parentEntity.moving else particle_time_slow
 
 func _exit_tree():
 	tween.kill()
