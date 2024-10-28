@@ -47,3 +47,8 @@ func is_tile_free_and_accessible(coordinates: Vector2i, include_occupied: bool =
 func _on_grid_object_despawned(grid_object: GridObject):
 	grid_objects.erase(grid_object)
 	grid_object_despawned.emit(grid_object, grid_object.grid_coordinates)
+
+
+func global_to_grid(global_pos: Vector2) -> Vector2i:
+	var local_pos = ground_layer.to_local(global_pos)
+	return ground_layer.local_to_map(local_pos)

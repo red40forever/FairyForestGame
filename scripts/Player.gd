@@ -27,7 +27,6 @@ signal selection_changed(old_selection: GridObject, new_selection: GridObject)
 func _ready():
 	# HACKY! who cares
 	GameManager.initialize()
-	UIManager.initialize()
 	
 	GameManager.day_manager.day_changed.connect(_on_day_changed)
 	
@@ -70,3 +69,7 @@ func _on_day_changed():
 		Dialogic.start("BeeFairy3")
 	elif day_count == 3:
 		Dialogic.start("BeeFairy4")
+
+
+func _exit_tree():
+	GameManager.deinitialize()

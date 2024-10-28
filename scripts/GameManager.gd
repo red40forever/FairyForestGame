@@ -41,8 +41,12 @@ func initialize():
 	tilemap_manager = $"../MainScene/%Tilemap"
 	player = $"../MainScene/%Player"
 	day_manager = $"../MainScene/%DayCycleManager"
+	UIManager.initialize()
 	game_started.emit()
 
+
+func deinitialize():
+	UIManager.deinitialize()
 
 func is_tile_accessible(coords: Vector2i):
 	return tilemap_manager.placement_helper.is_tile_accessible(coords)
