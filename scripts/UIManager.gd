@@ -4,13 +4,15 @@ extends Control
 @onready var pause_menu: PauseMenu
 @onready var camera: PanCamera
 
+enum interactionStates {SELECTION, MOVEMENT, RESOURCE_TRANSFER}
+
 var dialogue_open: bool = false
 var ingame: bool = false
 
+var curr_interaction_state: interactionStates = interactionStates.SELECTION
+
 signal dialogue_started
 signal dialogue_ended
-
-enum interactivityState {SELECTION, MOVEMENT, RESOURCE_TRANSFER}
 
 var is_dragging: bool
 
@@ -69,15 +71,27 @@ func _on_dialogue_ended():
 	dialogue_ended.emit()
 
 
-func _on_pause():
-	pass
-
-
-func _on_unpause():
-	pass
+func change_interactivity_state(target_state: interactionStates):
+	if curr_interaction_state == interactionStates.MOVEMENT:
+		# TODO turn off arrow
+		pass
+	elif curr_interaction_state == interactionStates.RESOURCE_TRANSFER:
+		pass
+	
+	if target_state == interactionStates.SELECTION:
+		pass
+	elif target_state == interactionStates.MOVEMENT:
+		# TODO turn on arrow
+		curr_interaction_state = interactionStates.MOVEMENT
+	else:
+		pass
 
 
 func _on_grid_object_clicked(target: GridObject):
+	pass
+
+
+func _on_grid_object_released(target: GridObject):
 	pass
 
 
@@ -85,5 +99,13 @@ func _on_base_tile_clicked(target: Vector2i):
 	pass
 
 
+func _on_base_tile_released(target: Vector2i):
+	pass
+
+# "Air" as in empty space around the edges of the screen, neither entity nor tile.
 func _on_air_clicked():
+	pass
+
+
+func _on_air_released():
 	pass

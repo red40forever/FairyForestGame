@@ -71,5 +71,13 @@ func _on_day_changed():
 		Dialogic.start("BeeFairy4")
 
 
+func queue_move(to_move: Entity):
+	pass
+
+
+func try_transfer(destination: GridObject):
+	pass
+
+
 func _exit_tree():
 	GameManager.deinitialize()
