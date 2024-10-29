@@ -8,13 +8,13 @@ extends GridObject
 @export_group("Interactions")
 @export var carryable_resources: Array[Slot.ResourceType]
 @export var max_storage: int = 1
-@export var effortless_tiles: Array = [""] # THESE SHOULD BE STRINGS
 
 @export_group("References")
 @export var slot_display: SlotDisplay
 
-var interactions_completed: int = 0
-var idle: bool = true
+enum activityStates {IDLE, ACTIVE, ASLEEP}
+
+var curr_state: activityStates
 var slot: Slot
 
 # Movement
@@ -25,9 +25,6 @@ var tween: Tween = null
 
 var flipped = false
 var moving = false
-
-signal return_home(entity: Entity, slot: Slot)
-#signal deposit_resources(resources_to_deposit: Slot)
 
 func _ready():
 	super()
@@ -47,10 +44,7 @@ func _ready():
 	_do_spawn_animation()
 
 func _process(_delta: float) -> void:
-	if not idle:
-		if interactions_completed >= entity_attributes.max_interactions:
-			set_new_target_position(home.grid_coordinates)
-		#self.grid_coordinates = GameManager.tilemap_manager.ground_layer.local_to_map(self.position)
+	pass
 
 
 func set_new_target(new_target: InteractableGridObject):
@@ -64,8 +58,6 @@ func set_new_target_position(new_target: Vector2i):
 	var placement = GameManager.tilemap_manager.placement_helper
 	if !placement.is_tile_accessible(new_target):
 		return
-	
-	idle = false
 	
 	# convert tilemap coords into world coords
 	target_map_coords = new_target
@@ -116,32 +108,10 @@ func _on_tween_finished():
 	if len(objects) == 1:
 		interact_with_empty_tile()
 		return
-	
-	# If valid object type, do stuff
-	for object in objects:
-		if object is InteractableGridObject:
-			try_interact_with_object(object)
 
 # override in child classes
 func interact_with_empty_tile():
 	pass
-
-func try_interact_with_object(object: InteractableGridObject) -> bool:
-	if interactions_completed < entity_attributes.max_interactions:
-		var inter = object.request_interaction(slot)
-		if inter:
-			# See if this interaction was effortless
-			var found_match = false
-			for string in effortless_tiles:
-				var obj_string = object.get_class_name()
-				if obj_string == string:
-					found_match = true
-			if not found_match:
-				interactions_completed += 1
-			return true
-	elif object is HomeTile or object.get_class_name() == home_tile_name:
-		return_home.emit(self, slot)
-	return false
 
 func get_class_name(): return "Entity"
 

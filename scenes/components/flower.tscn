@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://db4dyxufox63w"]
 
-[ext_resource type="Material" uid="uid://you2tiklg27t" path="res://materials/mat_sprite_outline.tres" id="1_4un5j"]
+[ext_resource type="Material" path="res://materials/mat_sprite_outline.tres" id="1_4un5j"]
 [ext_resource type="Script" path="res://scripts/Flower.gd" id="1_riqdc"]
 [ext_resource type="Texture2D" uid="uid://be0x5abb78v75" path="res://textures/obj_flowers.png" id="1_t7qlw"]
 [ext_resource type="PackedScene" uid="uid://dcktwik0sg56c" path="res://scenes/components/selection_button.tscn" id="3_0aadk"]
