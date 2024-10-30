@@ -18,7 +18,8 @@ func _ready():
 	position = GameManager.tilemap_manager.ground_layer.map_to_local(grid_coordinates)
 	
 	if selection_button:
-		selection_button.pressed.connect(on_pressed)
+		selection_button.button_down.connect(func(): UIManager._on_grid_object_clicked(self))
+		selection_button.button_up.connect(func(): UIManager._on_grid_object_released(self))
 		selection_button.mouse_entered.connect(on_hover_start)
 		selection_button.mouse_exited.connect(on_hover_finish)
 	else:
@@ -30,15 +31,6 @@ func _ready():
 # Called on day change, override to implement day change logic
 func _on_day_changed():
 	pass
-
-
-# Overridden in inheriting classes
-func on_click():
-	# Select this object when clicked, or deselect if it's already selected
-	if !selected:
-		GameManager.player.selected_object = self
-	else:
-		GameManager.player.selected_object = null
 
 
 func set_selected(new_selected: bool):
@@ -84,11 +76,6 @@ func get_surrounding_free_and_accessible_tiles(include_occupied: bool = false):
 		func(coords):
 			return GameManager.tilemap_manager.is_tile_free_and_accessible(coords, include_occupied)
 	)
-
-
-func on_pressed():
-	clicked.emit()
-	on_click()
 
 
 func on_hover_start():

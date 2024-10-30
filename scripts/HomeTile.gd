@@ -174,6 +174,5 @@ func add_entity(entity: Entity):
 			old_home.current_entities_list.remove_at(index)
 	# update this home
 	current_entities += 1
-	entity.return_home.connect(_on_entity_returned_home)
 	current_entities_list.append(entity)
 	# guh

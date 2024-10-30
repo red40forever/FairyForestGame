@@ -76,12 +76,12 @@ func _unhandled_input(event):
 			
 			# if the player misses the grid, treat as cancelled input
 			if mouse_grid_pos == null:
-				set_interaction_state(interactionStates.SELECTION)
-			
-			if event.is_pressed():
-				_on_base_tile_clicked(mouse_grid_pos)
-			elif event.is_released():
-				_on_base_tile_released(mouse_grid_pos)
+				_on_cancel_input()
+			else:
+				if event.is_pressed():
+					_on_base_tile_clicked(mouse_grid_pos)
+				elif event.is_released():
+					_on_base_tile_released(mouse_grid_pos)
 			
 			get_viewport().set_input_as_handled()
 	
@@ -114,6 +114,7 @@ func _on_dialogue_ended():
 
 # called on state change for visual changes without click context
 func set_interaction_state(target_interaction_state: interactionStates):
+	# deactivating previous interaction state
 	match curr_interaction_state:
 		interactionStates.SELECTION:
 			pass
@@ -126,6 +127,7 @@ func set_interaction_state(target_interaction_state: interactionStates):
 	
 	curr_interaction_state = target_interaction_state
 	
+	# activating new interaction state
 	match target_interaction_state:
 		interactionStates.SELECTION:
 			pass
@@ -139,21 +141,25 @@ func set_interaction_state(target_interaction_state: interactionStates):
 # TODO add _on_resource_clicked() (and maybe _on_resource_released()?)
 
 
-func _on_grid_object_clicked(target_obj: GridObject):
+# TODO ROUTE ALL GRID OBJECT BUTTONS TO CALL BOTH OF THE FOLLOWING
+func _on_grid_object_clicked(target_object: GridObject):
 	match curr_interaction_state:
 		interactionStates.SELECTION:
-			# TODO select grid object
-			# TODO if entity, change to movement interaction state
+			selected_object = target_object
+			if selected_object is Entity:
+				set_interaction_state(interactionStates.MOVEMENT)
 			pass
 		interactionStates.MOVEMENT:
-			# TODO ask Player to try to move selected entity to targ_obj's position
+			# selected object *should* be an entity if the code reaches this point
+			GameManager.player.try_move(selected_object, target_object.grid_coordinates)
+			set_interaction_state(interactionStates.SELECTION)
 			pass
 		interactionStates.RESOURCE_TRANSFER:
 			# this is theoretically unreachable and here for posterity's sake
 			pass
 
 
-func _on_grid_object_released(target_obj: GridObject):
+func _on_grid_object_released(target_object: GridObject):
 	match curr_interaction_state:
 		interactionStates.SELECTION:
 			# do nothing
@@ -169,12 +175,12 @@ func _on_grid_object_released(target_obj: GridObject):
 func _on_base_tile_clicked(target_coords: Vector2i):
 	match curr_interaction_state:
 		interactionStates.SELECTION:
-			# TODO select InteractableGridObject contained on this tile
+			# TODO select InteractableTile contained on this tile
 			pass
 		interactionStates.MOVEMENT:
-			if is_instance_valid(selected_object):
-				if selected_object is Entity:
-					selected_object.set_new_target_position(target_coords)
+			GameManager.player.try_move(selected_object, target_coords)
+			selected_object = null
+			set_interaction_state(interactionStates.SELECTION)
 		interactionStates.RESOURCE_TRANSFER:
 			# this is theoretically unreachable and here for posterity's sake
 			pass

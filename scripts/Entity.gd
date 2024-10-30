@@ -39,8 +39,6 @@ func _ready():
 	else:
 		push_warning("Entity '", name, "' does not have a SlotDisplay.")
 	
-	GameManager.player.selection_changed.connect(_on_selection_changed)
-	
 	_do_spawn_animation()
 
 func _process(_delta: float) -> void:
@@ -92,9 +90,6 @@ func _on_tween_finished():
 	tween = null
 	moving = false
 	grid_coordinates = target_map_coords
-	
-	if GameManager.player.selected_object == self:
-		GameManager.player.selected_object = null
 	
 	# Determine what type of tile we've stopped at, do stuff accordingly
 	var mgr = GameManager.tilemap_manager

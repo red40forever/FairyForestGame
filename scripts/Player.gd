@@ -41,11 +41,13 @@ func _on_day_changed():
 		Dialogic.start("BeeFairy4")
 
 
-func try_move(to_move: Entity):
-	pass
+func try_move(to_move: Entity, dest_tile: Vector2i):
+	# TODO check if tile is full (has 2 entities already on it) and return out if so
+	to_move.set_new_target_position(dest_tile)
 
 
 func try_transfer(destination: GridObject):
+	# TODO
 	pass
 
 
