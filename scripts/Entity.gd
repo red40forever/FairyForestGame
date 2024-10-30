@@ -7,6 +7,8 @@ extends GridObject
 
 enum activityStates {IDLE, ACTIVE, ASLEEP}
 
+@onready var default_scale: Vector2 = scale
+
 var curr_state: activityStates
 
 # Movement
@@ -78,8 +80,6 @@ func _on_tween_finished():
 	moving = false
 	grid_coordinates = target_map_coords
 	
-	set_activity_state(activityStates.ASLEEP)
-	
 	# kind of hacky
 	if curr_state == activityStates.ASLEEP and grid_coordinates == home.grid_coordinates:
 		_do_sleep_animation()
@@ -132,7 +132,7 @@ func _do_wake_animation():
 	var spawn_tween = get_tree().create_tween()
 	spawn_tween.set_ease(Tween.EASE_OUT)
 	spawn_tween.set_trans(Tween.TRANS_CUBIC)
-	spawn_tween.tween_property(self, "scale", scale, 0.25)
+	spawn_tween.tween_property(self, "scale", default_scale, 0.25)
 	scale = Vector2.ZERO
 
 
