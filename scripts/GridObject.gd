@@ -9,6 +9,7 @@ extends Node2D
 var grid_coordinates: Vector2i
 
 var selected: bool = false
+var hovered: bool = false
 var is_despawned: bool = false
 
 signal clicked
@@ -92,6 +93,8 @@ func on_pressed():
 
 
 func on_hover_start():
+	hovered = true
+	
 	if selected:
 		return
 	
@@ -100,6 +103,8 @@ func on_hover_start():
 
 
 func on_hover_finish():
+	hovered = false
+	
 	if selected:
 		return
 	

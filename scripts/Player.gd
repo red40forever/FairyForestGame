@@ -33,6 +33,13 @@ func _ready():
 	
 	camera.tile_clicked.connect(_on_tile_clicked)
 	
+	_initialize_starter_grid_objects()
+	
+	if !GameManager.debug_flags["skip_intro_dialogue"]:
+		Dialogic.start("BeeFairy1")
+
+
+func _initialize_starter_grid_objects():
 	# Create initial tiles
 	var beehive_res = Resources.find("objects")["beehive"]
 	var bee_res = Resources.find("objects")["bee"]
@@ -46,9 +53,6 @@ func _ready():
 	beehive.add_entity(bee2)
 	flower.slot.add_resource(Slot.ResourceType.POLLEN, 1)
 	#item_pile.deposit(Slot.ResourceType.HONEY, 2)
-	
-	if !GameManager.debug_flags["skip_intro_dialogue"]:
-		Dialogic.start("BeeFairy1")
 
 
 func set_target_of_selected_entity(target_object: InteractableGridObject):

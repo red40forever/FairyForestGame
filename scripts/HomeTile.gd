@@ -34,6 +34,10 @@ func _ready() -> void:
 	slot_display.resource_clicked.connect(_on_resource_clicked)
 	if slot_display:
 		slot_display.displayed_slot = slot
+		
+		# TODO: Consolidate hover logic into shared base class
+		slot_display.mouse_entered.connect(on_hover_start)
+		slot_display.mouse_exited.connect(on_hover_finish)
 	else:
 		push_warning("HomeTile '", name, "' does not have a SlotDisplay.")
 

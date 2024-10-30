@@ -1,5 +1,5 @@
 class_name Entity
-extends GridObject
+extends SelectableGridObject
 
 @export_group("Attributes")
 @export var entity_attributes: EntityAttributes
@@ -39,6 +39,10 @@ func _ready():
 	
 	if slot_display:
 		slot_display.displayed_slot = slot
+		
+		# TODO: Consolidate hover logic into shared base class
+		slot_display.mouse_entered.connect(on_hover_start)
+		slot_display.mouse_exited.connect(on_hover_finish)
 	else:
 		push_warning("Entity '", name, "' does not have a SlotDisplay.")
 	

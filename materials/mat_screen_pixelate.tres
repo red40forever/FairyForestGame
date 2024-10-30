@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://drcof3eaclc0c"]
+
+[ext_resource type="Shader" path="res://materials/shaders/shader_screen_pixelate.gdshader" id="1_f15vt"]
+
+[resource]
+shader = ExtResource("1_f15vt")
+shader_parameter/pixel_size = 4
