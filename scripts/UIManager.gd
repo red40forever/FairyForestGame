@@ -104,16 +104,6 @@ func _unhandled_input(event):
 		get_viewport().set_input_as_handled()
 
 
-func _on_dialogue_started():
-	dialogue_open = true
-	dialogue_started.emit()
-
-
-func _on_dialogue_ended():
-	dialogue_open = false
-	dialogue_ended.emit()
-
-
 # called on state change for visual changes without click context
 func set_interaction_state(target_interaction_state: interactionStates):
 	# deactivating previous interaction state
@@ -202,6 +192,21 @@ func _on_base_tile_released(target_coords: Vector2i):
 			pass
 
 
+func _on_cancel_input():
+	selected_object = null
+	set_interaction_state(interactionStates.SELECTION)
+
+
+func _on_dialogue_started():
+	dialogue_open = true
+	dialogue_started.emit()
+
+
+func _on_dialogue_ended():
+	dialogue_open = false
+	dialogue_ended.emit()
+
+
 # TODO energy visual stuff
 func set_energy_display_amount(new_amount: int):
 	pass
@@ -210,7 +215,3 @@ func set_energy_display_amount(new_amount: int):
 # TODO energy visual stuff
 func set_energy_display_max(new_max: int):
 	pass
-
-func _on_cancel_input():
-	selected_object = null
-	set_interaction_state(interactionStates.SELECTION)
