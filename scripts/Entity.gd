@@ -41,6 +41,7 @@ func _ready():
 	
 	_do_spawn_animation()
 
+
 func _process(_delta: float) -> void:
 	pass
 
@@ -70,7 +71,7 @@ func set_new_target_position(new_target: Vector2i):
 	var distance = (target - position).length()
 	tween = get_tree().create_tween()
 	var tween_duration = distance / entity_attributes.speed
-	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_trans(Tween.TRANS_SINE)
 	tween.tween_property(self, "position", target, tween_duration)
 	tween.finished.connect(_on_tween_finished)
 	moving = true
@@ -90,15 +91,6 @@ func _on_tween_finished():
 	tween = null
 	moving = false
 	grid_coordinates = target_map_coords
-	
-	# Determine what type of tile we've stopped at, do stuff accordingly
-	var mgr = GameManager.tilemap_manager
-	var map_coords = grid_coordinates
-	var objects = mgr.get_objects_at(map_coords)
-	
-	if len(objects) == 1:
-		interact_with_empty_tile()
-		return
 
 # override in child classes
 func interact_with_empty_tile():
@@ -127,12 +119,6 @@ func on_hover_finish():
 	super()
 	if slot_display:
 		slot_display.set_open(false)
-
-
-func _on_selection_changed(old_selection: GridObject, new_selection: GridObject):
-	if old_selection == self and new_selection is HomeTile:
-		set_new_target_position(new_selection.grid_coordinates)
-		GameManager.player.selected_object = null
 
 
 func _do_spawn_animation():

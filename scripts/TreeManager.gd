@@ -5,6 +5,7 @@ extends Node2D
 	{ "honey": 3, "pollen": 6, "mushrooms": 0 },
 	{ "honey": 3, "pollen": 12, "mushrooms": 8 }
 ]
+
 static var stage = 0 
 @export var ending_stage = 2 # when the stage becomes this, the player wins
 var slot_honey = Slot

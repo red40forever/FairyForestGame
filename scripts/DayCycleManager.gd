@@ -1,8 +1,13 @@
 class_name DayCycleManager
 extends Node2D
 
+@export var energy_maximums_per_stage: Array = [3, 4]
+
 var day_count: int = 0
 var day_changing: bool = false
+
+
+var curr_energy = 3
 
 signal day_started_changing
 signal day_changed
@@ -32,8 +37,15 @@ func next_day():
 	tween.tween_method(tween_func, 1.0, 0.0, 1.5)
 	await tween.finished
 	
+	curr_energy = energy_maximums_per_stage[TreeManager.stage]
+	
 	day_changing = false
 	day_changed.emit()
+
+
+func decrement_energy():
+	curr_energy -= 1
+	UIManager.set_energy_display_amount(curr_energy)
 
 
 func _process(_delta):

@@ -48,6 +48,8 @@ func initialize	():
 	is_dragging = false
 	ingame = true
 	
+	# TODO connect set_energy_display_max to TreeManager.stage_completed signal
+	
 	Dialogic.timeline_started.connect(_on_dialogue_started)
 	Dialogic.timeline_ended.connect(_on_dialogue_ended)
 
@@ -195,9 +197,19 @@ func _on_base_tile_released(target_coords: Vector2i):
 			# do nothing
 			pass
 		interactionStates.RESOURCE_TRANSFER:
-			# TODO tell player to transfer to above grid object
+			# TODO if InteractableTile at target_coords, ask player to try transfer to that InteractableTile
+			# TODO else, ask player to try drop at those target_coords
 			pass
 
+
+# TODO energy visual stuff
+func set_energy_display_amount(new_amount: int):
+	pass
+
+
+# TODO energy visual stuff
+func set_energy_display_max(new_max: int):
+	pass
 
 func _on_cancel_input():
 	selected_object = null

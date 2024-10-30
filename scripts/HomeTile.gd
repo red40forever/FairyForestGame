@@ -166,13 +166,15 @@ func add_entity(entity: Entity):
 	entity.home = self
 	# update old home
 	if old_home != null:
-		old_home.current_entities -= 1
-		entity.return_home.disconnect(old_home._on_entity_returned_home)
-		var list = old_home.current_entities_list
-		if list.has(entity):
-			var index = list.find(entity)
-			old_home.current_entities_list.remove_at(index)
+		old_home.remove_entity(entity)
 	# update this home
 	current_entities += 1
 	current_entities_list.append(entity)
 	# guh
+
+func remove_entity(entity: Entity):
+	current_entities -= 1
+	entity.return_home.disconnect(_on_entity_returned_home)
+	if current_entities_list.has(entity):
+		var index = current_entities_list.find(entity)
+		current_entities_list.remove_at(index)

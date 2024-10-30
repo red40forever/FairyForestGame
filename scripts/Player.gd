@@ -41,13 +41,28 @@ func _on_day_changed():
 		Dialogic.start("BeeFairy4")
 
 
+# attempt to move entity to a different tile
 func try_move(to_move: Entity, dest_tile: Vector2i):
 	# TODO check if tile is full (has 2 entities already on it) and return out if so
 	to_move.set_new_target_position(dest_tile)
 
 
-func try_transfer(destination: GridObject):
-	# TODO
+# attempt to transfer a resource between two known GridObjects
+func try_transfer(source_object: GridObject, destination_object: GridObject, resource_type: Slot.ResourceType):
+	# TODO if source_object and destination_object match coords,
+	#      and destination_object can take resource_type,
+	#      transfer from slot to slot (remove from source, add to dest)
+	# TODO if transferred from Entity to InteractableTile,
+	#      GameManager.day_manager.decrement_energy(),
+	#      and send_home() the entity
+	pass
+
+
+# attempt to transfer a resource from a known Entity to an empty tile
+func try_drop(source_object: GridObject, destination_tile: Vector2i, resource_type: Slot.ResourceType):
+	# TODO if source_object and destination_tile match coords,
+	#      create ItemPile at coords,
+	#      and transfer from slot to slot (remove from source, add to dest)
 	pass
 
 
