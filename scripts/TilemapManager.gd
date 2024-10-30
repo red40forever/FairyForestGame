@@ -5,6 +5,7 @@ extends Node
 @export var grid_object_container: Node2D
 @export var placement_helper: TilePlacementHelper
 @export var fog_of_war_layer: FogOfWarLayer
+@export var max_entities_per_tile: int = 2
 
 var grid_objects: Array[GridObject] = []
 
@@ -27,10 +28,33 @@ func create_object_at_coords(object_attributes: GridObjectAttributes, coords: Ve
 
 func get_objects_at(coordinates: Vector2i):
 	var objects_at_coords = []
-	for grid_object: GridObject in grid_objects:
+	for grid_object: GridObject in grid_objects: # could become an efficiency concern
 		if grid_object.grid_coordinates == coordinates:
 			objects_at_coords.append(grid_object)
 	return objects_at_coords
+
+
+# only one should ever exist at a given set of coords
+func get_interactable_tile_at(coordinates: Vector2i):
+	var tile_at_coords: InteractableTile
+	for grid_object: GridObject in grid_objects:
+		if grid_object.grid_coordinates == coordinates:
+			if grid_object is InteractableTile:
+				tile_at_coords = grid_object
+				break
+	return tile_at_coords
+
+
+# only two should ever exist at a given set of coords
+func get_entities_at(coordinates: Vector2i):
+	var entities_at_coords: Array[Entity] = []
+	for grid_object: GridObject in grid_objects:
+		if grid_object.grid_coordinates == coordinates:
+			if grid_object is Entity:
+				entities_at_coords.append(grid_object)
+				if entities_at_coords.size() >= max_entities_per_tile:
+					break
+	return entities_at_coords
 
 
 func is_tile_free_and_accessible(coordinates: Vector2i, include_occupied: bool = false):
