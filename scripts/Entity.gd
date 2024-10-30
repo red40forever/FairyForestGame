@@ -5,17 +5,9 @@ extends GridObject
 @export var entity_attributes: EntityAttributes
 @export var home_tile_name: String = "HomeTile"
 
-@export_group("Interactions")
-@export var carryable_resources: Array[Slot.ResourceType]
-@export var max_storage: int = 1
-
-@export_group("References")
-@export var slot_display: SlotDisplay
-
 enum activityStates {IDLE, ACTIVE, ASLEEP}
 
 var curr_state: activityStates
-var slot: Slot
 
 # Movement
 var target: Vector2
@@ -31,15 +23,9 @@ func _ready():
 	
 	target = self.position
 	target_map_coords = grid_coordinates
+	curr_state = activityStates.IDLE
 	
-	slot = Slot.new(carryable_resources, max_storage)
-	
-	if slot_display:
-		slot_display.displayed_slot = slot
-	else:
-		push_warning("Entity '", name, "' does not have a SlotDisplay.")
-	
-	_do_spawn_animation()
+	_do_wake_animation()
 
 
 func _process(_delta: float) -> void:
@@ -91,10 +77,30 @@ func _on_tween_finished():
 	tween = null
 	moving = false
 	grid_coordinates = target_map_coords
+	
+	set_activity_state(activityStates.ASLEEP)
+	
+	# kind of hacky
+	if curr_state == activityStates.ASLEEP and grid_coordinates == home.grid_coordinates:
+		_do_sleep_animation()
 
-# override in child classes
-func interact_with_empty_tile():
-	pass
+
+func set_activity_state(new_state: activityStates):
+	match new_state:
+		activityStates.IDLE:
+			# idk. probably shouldn't happen if this is getting called externally
+			curr_state = activityStates.IDLE
+		activityStates.ACTIVE:
+			# also nothing????  Just needs to 
+			curr_state = activityStates.ACTIVE
+		activityStates.ASLEEP:
+			set_new_target_position(home.grid_coordinates)
+			curr_state = activityStates.ASLEEP
+
+
+func is_awake() -> bool:
+	return not curr_state == activityStates.ASLEEP
+
 
 func get_class_name(): return "Entity"
 
@@ -103,7 +109,7 @@ func despawn():
 	is_despawned = true
 	despawned.emit()
 	
-	await _do_despawn_animation()
+	await _do_sleep_animation()
 
 	queue_free()
 
@@ -121,7 +127,8 @@ func on_hover_finish():
 		slot_display.set_open(false)
 
 
-func _do_spawn_animation():
+func _do_wake_animation():
+	visible = true
 	var spawn_tween = get_tree().create_tween()
 	spawn_tween.set_ease(Tween.EASE_OUT)
 	spawn_tween.set_trans(Tween.TRANS_CUBIC)
@@ -129,10 +136,16 @@ func _do_spawn_animation():
 	scale = Vector2.ZERO
 
 
-func _do_despawn_animation():
+func _do_sleep_animation():
 	var despawn_tween = get_tree().create_tween()
 	despawn_tween.set_ease(Tween.EASE_OUT)
 	despawn_tween.set_trans(Tween.TRANS_QUAD)
 	despawn_tween.tween_property(self, "scale", Vector2.ZERO, 0.25)
+	despawn_tween.tween_callback(func(): visible = false)
 	
 	await despawn_tween.finished
+
+func _on_day_start():
+	super()
+	curr_state = activityStates.IDLE
+	_do_wake_animation()

@@ -6,10 +6,11 @@
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3ed2d"]
 
-[node name="ItemPile" type="Node2D" node_paths=PackedStringArray("slot_display", "selection_button")]
+[node name="ItemPile" type="Node2D" node_paths=PackedStringArray("selection_button", "slot_display")]
 script = ExtResource("1_yymd0")
-slot_display = NodePath("SlotDisplay")
 selection_button = NodePath("SelectionButton")
+max_storage = 2
+slot_display = NodePath("SlotDisplay")
 
 [node name="SlotDisplay" parent="." instance=ExtResource("2_b2rut")]
 

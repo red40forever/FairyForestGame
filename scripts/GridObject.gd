@@ -6,16 +6,27 @@ extends Node2D
 @export var main_sprite: CanvasItem
 @export var selection_button: Button
 
+@export_group("TypeAssignments")
+@export var carryable_resources: Array[Slot.ResourceType]
+
+@export_group("Contraints")
+@export var max_storage: int
+
+@export_group("References")
+@export var slot_display: SlotDisplay
+
 var grid_coordinates: Vector2i
+var slot: Slot
 
 var selected: bool = false
 var is_despawned: bool = false
 
-signal clicked
 signal despawned
 
 func _ready():
 	position = GameManager.tilemap_manager.ground_layer.map_to_local(grid_coordinates)
+	
+	initialize_slot()
 	
 	if selection_button:
 		selection_button.button_down.connect(func(): UIManager._on_grid_object_clicked(self))
@@ -25,11 +36,26 @@ func _ready():
 	else:
 		push_warning("GridObject '", name, "' has no hover area specified.")
 	
-	GameManager.day_manager.day_changed.connect(_on_day_changed)
+	if slot_display:
+		slot_display.displayed_slot = slot
+	else:
+		push_warning("GridObject '", name, "' does not have a SlotDisplay.")
+	
+	GameManager.day_manager.day_starting.connect(_on_day_start)
+	GameManager.day_manager.day_ending.connect(_on_day_end)
 
 
-# Called on day change, override to implement day change logic
-func _on_day_changed():
+func initialize_slot():
+	slot = Slot.new(carryable_resources, max_storage)
+
+
+# Called before day change animation, override to implement day change logic
+func _on_day_end():
+	pass
+
+
+# Called after day change animation, override to implement day change logic
+func _on_day_start():
 	pass
 
 
@@ -49,6 +75,29 @@ func set_selected(new_selected: bool):
 		main_sprite.material.set("shader_parameter/enabled", true)
 	else:
 		main_sprite.material.set("shader_parameter/enabled", false)
+
+
+func _can_recieve_resource(resource_type: Slot.ResourceType) -> bool:
+	if not carryable_resources.has(resource_type):
+		return false
+	if slot.stored_resources.size >= max_storage:
+		return false
+	return true
+
+
+func _can_give_resource(resource_type: Slot.ResourceType) -> bool:
+	return slot.get_resource_count(resource_type) > 0
+
+
+func _give_resource(resource_type: Slot.ResourceType):
+	if _can_give_resource(resource_type):
+		slot.remove_resource(resource_type, 1)
+
+
+func _recieve_resource(resource_type: Slot.ResourceType) -> int:
+	if not _can_recieve_resource(resource_type):
+		return 1
+	return slot.add_resource_overflow_safe(resource_type, 1)
 
 
 func despawn():
@@ -84,6 +133,11 @@ func on_hover_start():
 	
 	if main_sprite:
 		main_sprite.material.set("shader_parameter/enabled", true)
+	
+	# might need to make its way into intermediate class if a
+	# grid objects end up lacking a slot for whatever reason
+	if slot_display:
+		slot_display.set_open(true)
 
 
 func on_hover_finish():
@@ -92,3 +146,8 @@ func on_hover_finish():
 	
 	if main_sprite:
 		main_sprite.material.set("shader_parameter/enabled", false)
+	
+	# might need to make its way into intermediate class if a
+	# grid objects end up lacking a slot for whatever reason
+	if slot_display:
+		slot_display.set_open(false)

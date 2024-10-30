@@ -7,7 +7,8 @@ func _ready():
 	# HACKY! who cares
 	GameManager.initialize()
 	
-	GameManager.day_manager.day_changed.connect(_on_day_changed)
+	GameManager.day_manager.day_ending.connect(_on_day_end)
+	GameManager.day_manager.day_starting.connect(_on_day_start)
 
 	# Create initial tiles
 	var beehive_res = Resources.find("objects")["beehive"]
@@ -31,7 +32,11 @@ func try_move_entity(selected_entity: Entity, target_pos: Vector2i):
 	selected_entity.set_new_target_position(target_pos)
 
 
-func _on_day_changed():
+func _on_day_end():
+	pass
+
+
+func _on_day_start():
 	var day_count = GameManager.day_manager.day_count
 	if day_count == 1:
 		Dialogic.start("BeeFairy2")
@@ -52,9 +57,6 @@ func try_transfer(source_object: GridObject, destination_object: GridObject, res
 	# TODO if source_object and destination_object match coords,
 	#      and destination_object can take resource_type,
 	#      transfer from slot to slot (remove from source, add to dest)
-	# TODO if transferred from Entity to InteractableTile,
-	#      GameManager.day_manager.decrement_energy(),
-	#      and send_home() the entity
 	pass
 
 

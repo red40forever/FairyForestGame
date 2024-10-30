@@ -6,12 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://dcktwik0sg56c" path="res://scenes/components/selection_button.tscn" id="4_mlrpt"]
 [ext_resource type="PackedScene" uid="uid://c7hgnu1uoo1um" path="res://scenes/components/slot_display.tscn" id="4_x23x1"]
 
-[node name="Beehive" type="Node2D" node_paths=PackedStringArray("slot_display", "main_sprite", "selection_button")]
+[node name="Beehive" type="Node2D" node_paths=PackedStringArray("main_sprite", "selection_button", "slot_display")]
 texture_filter = 1
 script = ExtResource("1_2lwvp")
-slot_display = NodePath("SlotDisplay")
 main_sprite = NodePath("Beehive")
 selection_button = NodePath("SelectionButton")
+carryable_resources = Array[int]([0, 1])
+max_storage = 5
+slot_display = NodePath("SlotDisplay")
 
 [node name="Beehive" type="Sprite2D" parent="."]
 material = ExtResource("2_b60kh")

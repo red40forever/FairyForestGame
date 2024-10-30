@@ -7,19 +7,21 @@ func _ready() -> void:
 
 # TODO add upgrade flag when next to molehill
 # formerly named "upgrade_check" - changed to match new override convetion
-func _on_day_changed():
+func _on_day_start():
 	super()
-	var map_pos = grid_coordinates
-	var upgrade_range = [map_pos + Vector2i(0, -2), map_pos + 
-	Vector2i(0, -1), map_pos + Vector2i(1, 0), map_pos + Vector2i(0, 1), 
-	map_pos + Vector2i(0, 2), map_pos + Vector2i(-1, 1), map_pos + 
-	Vector2i(-1, 0), map_pos + Vector2i(-1, -1)]
+	# var map_pos = grid_coordinates
+	
+	# TODO upgrade range can use helper function in tilemapmanager
+	# var upgrade_range = [map_pos + Vector2i(0, -2), map_pos + 
+	# Vector2i(0, -1), map_pos + Vector2i(1, 0), map_pos + Vector2i(0, 1), 
+	# map_pos + Vector2i(0, 2), map_pos + Vector2i(-1, 1), map_pos + 
+	# Vector2i(-1, 0), map_pos + Vector2i(-1, -1)]
 	# check if there is a molehill in upgrade_range
-	for coords in range(upgrade_range.size()):
-		var curr_obj = GameManager.tilemap_manager.get_objects_at(upgrade_range[coords])
-		if curr_obj is MoleHill:
-			upgrade_tier()
-			break
+	# for coords in range(upgrade_range.size()):
+	# 	var curr_obj = GameManager.tilemap_manager.get_objects_at(upgrade_range[coords])
+	# 	if curr_obj is MoleHill:
+	# 		upgrade_tier()
+	# 		break
 
 
 # TODO already called on day change

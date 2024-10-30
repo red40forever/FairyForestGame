@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://d4i2j8ocgcn8d"]
 
-[ext_resource type="Material" uid="uid://you2tiklg27t" path="res://materials/mat_sprite_outline.tres" id="1_4km2t"]
+[ext_resource type="Material" path="res://materials/mat_sprite_outline.tres" id="1_4km2t"]
 [ext_resource type="Script" path="res://scripts/Mole.gd" id="1_tecxf"]
 [ext_resource type="Texture2D" uid="uid://cq7p871s5t4l3" path="res://textures/entity_mole.png" id="1_uhyer"]
 [ext_resource type="Resource" uid="uid://cde0semoj6c4h" path="res://objects/mole_entity_attributes.tres" id="2_7r4el"]
@@ -49,15 +49,15 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Mole" type="Node2D" node_paths=PackedStringArray("slot_display", "main_sprite", "selection_button")]
+[node name="Mole" type="Node2D" node_paths=PackedStringArray("main_sprite", "selection_button", "slot_display")]
 texture_filter = 1
 script = ExtResource("1_tecxf")
 entity_attributes = ExtResource("2_7r4el")
-carryable_resources = Array[int]([2])
-effortless_tiles = ["MoleHill"]
-slot_display = NodePath("SlotDisplay")
 main_sprite = NodePath("AnimatedSprite2D")
 selection_button = NodePath("SelectionButton")
+carryable_resources = Array[int]([2])
+max_storage = 1
+slot_display = NodePath("SlotDisplay")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = ExtResource("1_4km2t")

@@ -8,4 +8,4 @@
 texture = ExtResource("1_1cfwe")
 script = ExtResource("1_13b8u")
 entity_attributes = ExtResource("2_553av")
-effortless_tiles = ["HomeTile"]
+max_storage = 1

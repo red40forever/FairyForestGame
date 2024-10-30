@@ -46,15 +46,25 @@ func get_interactable_tile_at(coordinates: Vector2i):
 
 
 # only two should ever exist at a given set of coords
-func get_entities_at(coordinates: Vector2i):
+func get_entities_at(coordinates: Vector2i, awake_only: bool):
 	var entities_at_coords: Array[Entity] = []
 	for grid_object: GridObject in grid_objects:
 		if grid_object.grid_coordinates == coordinates:
 			if grid_object is Entity:
-				entities_at_coords.append(grid_object)
-				if entities_at_coords.size() >= max_entities_per_tile:
-					break
+				if not awake_only or grid_object.is_awake():
+					entities_at_coords.append(grid_object)
+					if entities_at_coords.size() >= max_entities_per_tile:
+						break
 	return entities_at_coords
+
+
+func get_all_awake_entities():
+	var awake_entities: Array[Entity] = []
+	for grid_object: GridObject in grid_objects:
+		if grid_object is Entity:
+			if grid_object.is_awake():
+				awake_entities.append(grid_object)
+	return awake_entities
 
 
 func is_tile_free_and_accessible(coordinates: Vector2i, include_occupied: bool = false):
@@ -66,6 +76,10 @@ func is_tile_free_and_accessible(coordinates: Vector2i, include_occupied: bool =
 		return false
 	
 	return true
+
+
+func is_tile_accessible(coords: Vector2i):
+	return placement_helper.is_tile_accessible(coords)
 
 
 func _on_grid_object_despawned(grid_object: GridObject):

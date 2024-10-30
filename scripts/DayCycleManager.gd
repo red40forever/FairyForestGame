@@ -9,21 +9,19 @@ var day_changing: bool = false
 
 var curr_energy = 3
 
-signal day_started_changing
-signal day_changed
+signal day_ending
+signal day_starting
 
 
 func next_day():
-	day_started_changing.emit()
+	day_ending.emit()
 	
 	day_changing = true
 	day_count += 1
 	
 	# Call all lingering entities home
-	var grid_objects = GameManager.tilemap_manager.grid_objects
-	var entities = grid_objects.filter(func(entity): return entity is Entity)
-	for entity: Entity in entities:
-		entity.return_home.emit(entity, entity.slot)
+	for entity: Entity in GameManager.tilemap_manager.get_all_awake_entities():
+		entity.set_activity_state(Entity.activityStates.ASLEEP)
 	
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)
@@ -40,7 +38,7 @@ func next_day():
 	curr_energy = energy_maximums_per_stage[TreeManager.stage]
 	
 	day_changing = false
-	day_changed.emit()
+	day_starting.emit()
 
 
 func decrement_energy():

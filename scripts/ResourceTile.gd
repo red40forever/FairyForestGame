@@ -4,8 +4,6 @@ extends InteractableTile
 @export_group("Production")
 @export var produced_resources: Array[Slot.ResourceType]
 @export var daily_production: int = 1
-@export var max_storage: int = 5
-var slot: Slot
 
 @export_group("Tiers")
 @export var sprite_tiers: Array = [Texture2D, Texture2D, Texture2D]
@@ -17,7 +15,7 @@ func _ready() -> void:
 	
 	slot = Slot.new(produced_resources, max_storage)
 
-func _on_day_changed():
+func _on_day_start():
 	for type in produced_resources:
 		slot.add_resource_overflow_safe(type, daily_production)
 

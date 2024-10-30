@@ -32,7 +32,7 @@ func _on_slot_resource_count_updated(_p_resource_type: Slot.ResourceType, _old_c
 	_update_displayed_resources()
 
 
-func _on_day_changed():
+func _on_day_end():
 	super()
 	_try_create_building_with_items()
 

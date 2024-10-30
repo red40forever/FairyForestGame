@@ -47,6 +47,3 @@ func initialize():
 
 func deinitialize():
 	UIManager.deinitialize()
-
-func is_tile_accessible(coords: Vector2i):
-	return tilemap_manager.placement_helper.is_tile_accessible(coords)

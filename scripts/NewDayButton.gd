@@ -11,8 +11,8 @@ func _ready():
 	UIManager.dialogue_ended.connect(_show_button)
 	
 	# Hide the button while the day is changing
-	GameManager.day_manager.day_started_changing.connect(_hide_button)
-	GameManager.day_manager.day_changed.connect(_show_button)
+	GameManager.day_manager.day_ending.connect(_hide_button)
+	GameManager.day_manager.day_starting.connect(_show_button)
 
 
 func _on_pressed() -> void:

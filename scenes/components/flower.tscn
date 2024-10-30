@@ -28,6 +28,7 @@ sprite_tiers = [SubResource("AtlasTexture_2w4fn"), SubResource("AtlasTexture_4im
 max_tier = 1
 main_sprite = NodePath(".")
 selection_button = NodePath("SelectionButton")
+max_storage = 2
 
 [node name="SelectionButton" parent="." instance=ExtResource("3_0aadk")]
 offset_left = -22.0
