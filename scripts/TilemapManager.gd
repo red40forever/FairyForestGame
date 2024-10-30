@@ -49,6 +49,10 @@ func _on_grid_object_despawned(grid_object: GridObject):
 	grid_object_despawned.emit(grid_object, grid_object.grid_coordinates)
 
 
-func global_to_grid(global_pos: Vector2) -> Vector2i:
+func global_to_grid(global_pos: Vector2):
 	var local_pos = ground_layer.to_local(global_pos)
-	return ground_layer.local_to_map(local_pos)
+	var grid_pos = ground_layer.local_to_map(local_pos)
+	if placement_helper.is_tile_accessible(grid_pos):
+		return null
+	else:
+		return grid_pos 

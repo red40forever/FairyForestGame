@@ -21,9 +21,6 @@ var zoom_level_index: int = 0
 
 var is_dragging: bool = false
 
-signal tile_clicked(coordinates: Vector2i)
-
-
 func _ready():
 	set_zoom_level(1, false)
 	

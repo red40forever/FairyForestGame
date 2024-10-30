@@ -1,5 +1,7 @@
 extends Control
 
+@export var time_for_press_to_become_hold: float = 0.1
+
 @onready var ui: Control
 @onready var pause_menu: PauseMenu
 @onready var camera: PanCamera
@@ -10,6 +12,28 @@ var dialogue_open: bool = false
 var ingame: bool = false
 
 var curr_interaction_state: interactionStates = interactionStates.SELECTION
+
+var right_down_timestamp: float
+
+var selected_object: GridObject:
+	set(new_object):
+		if selected_object == new_object:
+			return
+		
+		# We only want to deselect the old object if it isn't null
+		if is_instance_valid(selected_object):
+			selected_object.set_selected(false)
+		
+		# We only want to select the new object if it isn't null
+		if is_instance_valid(new_object):
+			new_object.set_selected(true)
+		
+		var old_selection = selected_object
+		selected_object = new_object
+		
+		selection_changed.emit(old_selection, selected_object)
+
+signal selection_changed(old_selection: GridObject, new_selection: GridObject)
 
 signal dialogue_started
 signal dialogue_ended
@@ -37,25 +61,42 @@ func _unhandled_input(event):
 	if (not ingame) or pause_menu.open or dialogue_open:
 		return
 	
+	
 	# Zoom input
 	if event.is_action_pressed("zoom_in"):
 		camera.zoom_in()
 	elif event.is_action_pressed("zoom_out"):
 		camera.zoom_out()
 	
+	
 	if event is InputEventMouseButton:
+	
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			# Select tile on LMB release, not press
-			if event.is_pressed():
-				return
-
 			var mouse_grid_pos = GameManager.tilemap_manager.global_to_grid(get_global_mouse_position())
-			_on_base_tile_clicked(mouse_grid_pos)
+			
+			# if the player misses the grid, treat as cancelled input
+			if mouse_grid_pos == null:
+				set_interaction_state(interactionStates.SELECTION)
+			
+			if event.is_pressed():
+				_on_base_tile_clicked(mouse_grid_pos)
+			elif event.is_released():
+				_on_base_tile_released(mouse_grid_pos)
 			
 			get_viewport().set_input_as_handled()
+	
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
-			is_dragging = event.is_pressed()
+			is_dragging = false
+			if event.is_pressed():
+				right_down_timestamp = Time.get_ticks_msec()
+				is_dragging = true
+			elif event.is_released():
+				# if right click is released quickly (not a hold) cancel current state
+				if Time.get_ticks_msec() < (right_down_timestamp + (time_for_press_to_become_hold * 1000)):
+					set_interaction_state(interactionStates.SELECTION)
+			
 			get_viewport().set_input_as_handled()
+	
 	elif event is InputEventMouseMotion and is_dragging:
 		camera.pan(event.relative)
 		get_viewport().set_input_as_handled()
@@ -71,41 +112,87 @@ func _on_dialogue_ended():
 	dialogue_ended.emit()
 
 
-func change_interactivity_state(target_state: interactionStates):
-	if curr_interaction_state == interactionStates.MOVEMENT:
-		# TODO turn off arrow
-		pass
-	elif curr_interaction_state == interactionStates.RESOURCE_TRANSFER:
-		pass
+# called on state change for visual changes without click context
+func set_interaction_state(target_interaction_state: interactionStates):
+	match curr_interaction_state:
+		interactionStates.SELECTION:
+			pass
+		interactionStates.MOVEMENT:
+			# TODO turn off arrow
+			pass
+		interactionStates.RESOURCE_TRANSFER:
+			# TODO return grabbed resource to its popup gridobject
+			pass
 	
-	if target_state == interactionStates.SELECTION:
-		pass
-	elif target_state == interactionStates.MOVEMENT:
-		# TODO turn on arrow
-		curr_interaction_state = interactionStates.MOVEMENT
-	else:
-		pass
+	curr_interaction_state = target_interaction_state
+	
+	match target_interaction_state:
+		interactionStates.SELECTION:
+			pass
+		interactionStates.MOVEMENT:
+			# TODO turn on arrow
+			pass
+		interactionStates.RESOURCE_TRANSFER:
+			pass
 
 
-func _on_grid_object_clicked(target: GridObject):
-	pass
+# TODO add _on_resource_clicked() (and maybe _on_resource_released()?)
 
 
-func _on_grid_object_released(target: GridObject):
-	pass
+func _on_grid_object_clicked(target_obj: GridObject):
+	match curr_interaction_state:
+		interactionStates.SELECTION:
+			# TODO select grid object
+			# TODO if entity, change to movement interaction state
+			pass
+		interactionStates.MOVEMENT:
+			# TODO ask Player to try to move selected entity to targ_obj's position
+			pass
+		interactionStates.RESOURCE_TRANSFER:
+			# this is theoretically unreachable and here for posterity's sake
+			pass
 
 
-func _on_base_tile_clicked(target: Vector2i):
-	pass
+func _on_grid_object_released(target_obj: GridObject):
+	match curr_interaction_state:
+		interactionStates.SELECTION:
+			# do nothing
+			pass
+		interactionStates.MOVEMENT:
+			# do nothing
+			pass
+		interactionStates.RESOURCE_TRANSFER:
+			# TODO tell player to try transfer to this grid object
+			pass
 
 
-func _on_base_tile_released(target: Vector2i):
-	pass
+func _on_base_tile_clicked(target_coords: Vector2i):
+	match curr_interaction_state:
+		interactionStates.SELECTION:
+			# TODO select InteractableGridObject contained on this tile
+			pass
+		interactionStates.MOVEMENT:
+			if is_instance_valid(selected_object):
+				if selected_object is Entity:
+					selected_object.set_new_target_position(target_coords)
+		interactionStates.RESOURCE_TRANSFER:
+			# this is theoretically unreachable and here for posterity's sake
+			pass
 
-# "Air" as in empty space around the edges of the screen, neither entity nor tile.
-func _on_air_clicked():
-	pass
+
+func _on_base_tile_released(target_coords: Vector2i):
+	match curr_interaction_state:
+		interactionStates.SELECTION:
+			# do nothing
+			pass
+		interactionStates.MOVEMENT:
+			# do nothing
+			pass
+		interactionStates.RESOURCE_TRANSFER:
+			# TODO tell player to transfer to above grid object
+			pass
 
 
-func _on_air_released():
-	pass
+func _on_cancel_input():
+	selected_object = null
+	set_interaction_state(interactionStates.SELECTION)

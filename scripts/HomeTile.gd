@@ -1,5 +1,5 @@
 class_name HomeTile
-extends InteractableGridObject
+extends InteractableTile
 
 @export_group("Type Assignments")
 @export var entity_grid_object_attributes: GridObjectAttributes

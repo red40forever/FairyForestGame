@@ -1,4 +1,4 @@
-class_name InteractableGridObject
+class_name InteractableTile
 extends GridObject
 
 # InteractableGridObjects are GridObjects that can change/exchange resources

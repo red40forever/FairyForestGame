@@ -1,5 +1,5 @@
 class_name TreeDepositSpot
-extends InteractableGridObject
+extends InteractableTile
 
 var slots
 var types = {"honey": Slot.ResourceType.HONEY, "pollen": Slot.ResourceType.POLLEN, 

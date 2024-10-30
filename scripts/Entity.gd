@@ -47,10 +47,6 @@ func _process(_delta: float) -> void:
 	pass
 
 
-func set_new_target(new_target: InteractableGridObject):
-	set_new_target_position(new_target.grid_coordinates)
-
-
 func set_new_target_position(new_target: Vector2i):
 	if new_target == Vector2i(target_map_coords):
 		return
