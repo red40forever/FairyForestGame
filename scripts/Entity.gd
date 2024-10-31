@@ -1,5 +1,5 @@
 class_name Entity
-extends GridObject
+extends SelectableGridObject
 
 @export_group("Attributes")
 @export var entity_attributes: EntityAttributes
@@ -28,7 +28,6 @@ func _ready():
 	curr_state = activityStates.IDLE
 	
 	_do_wake_animation()
-
 
 func _process(_delta: float) -> void:
 	pass

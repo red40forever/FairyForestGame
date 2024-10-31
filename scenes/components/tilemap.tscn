@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://b573p5aulkgpe"]
+[gd_scene load_steps=15 format=4 uid="uid://b573p5aulkgpe"]
 
 [ext_resource type="Script" path="res://scripts/TilemapManager.gd" id="1_yheyg"]
 [ext_resource type="Material" uid="uid://qkfy6damforr" path="res://materials/mat_sprite_shadowed.tres" id="2_87clq"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/FogOfWarLayer.gd" id="5_v0tbm"]
 [ext_resource type="Texture2D" uid="uid://c68k1b54y31vc" path="res://textures/tile_selection.png" id="6_ourvx"]
 [ext_resource type="Script" path="res://scripts/PlacementIndicator.gd" id="7_grrs5"]
+[ext_resource type="PackedScene" uid="uid://diac5san2agqy" path="res://scenes/components/movement_indicator_arrow.tscn" id="7_xte41"]
 
 [sub_resource type="Resource" id="Resource_nogep"]
 script = ExtResource("5_qh5j2")
@@ -42,6 +43,10 @@ building_recipes = Array[ExtResource("5_qh5j2")]([SubResource("Resource_nogep")]
 tilemap_manager = NodePath("..")
 placement_indicator = NodePath("PlacementIndicator")
 test_object = ExtResource("5_lhdm3")
+
+[node name="MovementIndicatorArrow" parent="TilePlacementHelper" node_paths=PackedStringArray("placement_indicator") instance=ExtResource("7_xte41")]
+scale = Vector2(0.25, 0.25)
+placement_indicator = NodePath("../PlacementIndicator")
 
 [node name="PlacementIndicator" type="Sprite2D" parent="TilePlacementHelper"]
 modulate = Color(1, 1, 1, 0.235294)

@@ -1,6 +1,7 @@
 class_name Beehive
 extends HomeTile
 
+
 func _ready():
 	entity_grid_object_attributes = Resources.find("objects")["bee"]
 	entity_attributes = Resources.find("entity_attributes")["bee"]

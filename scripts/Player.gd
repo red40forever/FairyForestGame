@@ -10,6 +10,13 @@ func _ready():
 	GameManager.day_manager.day_ending.connect(_on_day_end)
 	GameManager.day_manager.day_starting.connect(_on_day_start)
 
+	_initialize_starter_grid_objects()
+	
+	if !GameManager.debug_flags["skip_intro_dialogue"]:
+		Dialogic.start("BeeFairy1")
+
+
+func _initialize_starter_grid_objects():
 	# Create initial tiles
 	var beehive_res = Resources.find("objects")["beehive"]
 	var bee_res = Resources.find("objects")["bee"]
@@ -23,9 +30,6 @@ func _ready():
 	beehive.add_entity(bee2)
 	flower.slot.add_resource(Slot.ResourceType.POLLEN, 1)
 	#item_pile.deposit(Slot.ResourceType.HONEY, 2)
-	
-	if !GameManager.debug_flags["skip_intro_dialogue"]:
-		Dialogic.start("BeeFairy1")
 
 
 func try_move_entity(selected_entity: Entity, target_pos: Vector2i):

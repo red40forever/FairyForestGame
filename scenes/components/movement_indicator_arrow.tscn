@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://diac5san2agqy"]
+
+[ext_resource type="Script" path="res://scripts/MovementIndicatorArrow.gd" id="1_brq02"]
+[ext_resource type="Material" uid="uid://drcof3eaclc0c" path="res://materials/mat_screen_pixelate.tres" id="2_ddqhu"]
+[ext_resource type="Texture2D" uid="uid://23njyeeilw2i" path="res://textures/ui_move_arrowhead.png" id="2_q2wwu"]
+
+[sub_resource type="Gradient" id="Gradient_keuvn"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_25y4m"]
+gradient = SubResource("Gradient_keuvn")
+
+[node name="MovementIndicatorArrow" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_brq02")
+animation_speed = 0.04
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+texture_filter = 1
+material = ExtResource("2_ddqhu")
+
+[node name="ArrowTail" type="Sprite2D" parent="CanvasGroup"]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(128, 0)
+scale = Vector2(1, 20)
+texture = SubResource("GradientTexture1D_25y4m")
+
+[node name="ArrowHead" type="Sprite2D" parent="CanvasGroup"]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(288, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_q2wwu")

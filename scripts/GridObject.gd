@@ -19,6 +19,7 @@ var grid_coordinates: Vector2i
 var slot: Slot
 
 var selected: bool = false
+var hovered: bool = false
 var is_despawned: bool = false
 
 signal despawned
@@ -128,6 +129,8 @@ func get_surrounding_free_and_accessible_tiles(include_occupied: bool = false):
 
 
 func on_hover_start():
+	hovered = true
+	
 	if selected:
 		return
 	
@@ -141,6 +144,8 @@ func on_hover_start():
 
 
 func on_hover_finish():
+	hovered = false
+	
 	if selected:
 		return
 	

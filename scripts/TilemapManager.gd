@@ -82,6 +82,11 @@ func is_tile_accessible(coords: Vector2i):
 	return placement_helper.is_tile_accessible(coords)
 
 
+func map_to_global(coordinates: Vector2i):
+	return ground_layer.to_global(ground_layer.map_to_local(coordinates))
+
+
+
 func _on_grid_object_despawned(grid_object: GridObject):
 	grid_objects.erase(grid_object)
 	grid_object_despawned.emit(grid_object, grid_object.grid_coordinates)
