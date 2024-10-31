@@ -6,12 +6,12 @@ extends Control
 @onready var pause_menu: PauseMenu
 @onready var camera: PanCamera
 
-enum interactionStates {SELECTION, MOVEMENT, RESOURCE_TRANSFER}
+enum InteractionStates {SELECTION, MOVEMENT, RESOURCE_TRANSFER}
 
 var dialogue_open: bool = false
 var ingame: bool = false
 
-var curr_interaction_state: interactionStates = interactionStates.SELECTION
+var curr_interaction_state: InteractionStates = InteractionStates.SELECTION
 
 var right_down_timestamp: float
 
@@ -95,7 +95,7 @@ func _unhandled_input(event):
 			elif event.is_released():
 				# if right click is released quickly (not a hold) cancel current state
 				if Time.get_ticks_msec() < (right_down_timestamp + (time_for_press_to_become_hold * 1000)):
-					set_interaction_state(interactionStates.SELECTION)
+					set_interaction_state(InteractionStates.SELECTION)
 			
 			get_viewport().set_input_as_handled()
 	
@@ -105,15 +105,15 @@ func _unhandled_input(event):
 
 
 # called on state change for visual changes without click context
-func set_interaction_state(target_interaction_state: interactionStates):
+func set_interaction_state(target_interaction_state: InteractionStates):
 	# deactivating previous interaction state
 	match curr_interaction_state:
-		interactionStates.SELECTION:
+		InteractionStates.SELECTION:
 			pass
-		interactionStates.MOVEMENT:
+		InteractionStates.MOVEMENT:
 			# TODO turn off arrow
 			pass
-		interactionStates.RESOURCE_TRANSFER:
+		InteractionStates.RESOURCE_TRANSFER:
 			# TODO return grabbed resource to its popup gridobject
 			pass
 	
@@ -121,72 +121,80 @@ func set_interaction_state(target_interaction_state: interactionStates):
 	
 	# activating new interaction state
 	match target_interaction_state:
-		interactionStates.SELECTION:
+		InteractionStates.SELECTION:
 			pass
-		interactionStates.MOVEMENT:
+		InteractionStates.MOVEMENT:
 			# TODO turn on arrow
 			pass
-		interactionStates.RESOURCE_TRANSFER:
+		InteractionStates.RESOURCE_TRANSFER:
 			pass
 
 
-# TODO add _on_resource_clicked() (and maybe _on_resource_released()?)
+func _on_popup_resource_clicked(slot_display: SlotDisplay, resource_type: Slot.ResourceType):
+	match curr_interaction_state:
+		InteractionStates.SELECTION:
+			set_interaction_state(InteractionStates.SELECTION)
+		InteractionStates.MOVEMENT:
+			# for now just do nothing 
+			pass
+		InteractionStates.RESOURCE_TRANSFER:
+			# this is theoretically unreachable and here for posterity's sake
+			pass
 
 
 # TODO ROUTE ALL GRID OBJECT BUTTONS TO CALL BOTH OF THE FOLLOWING
 func _on_grid_object_clicked(target_object: GridObject):
 	match curr_interaction_state:
-		interactionStates.SELECTION:
+		InteractionStates.SELECTION:
 			selected_object = target_object
 			if selected_object is Entity:
-				set_interaction_state(interactionStates.MOVEMENT)
-			pass
-		interactionStates.MOVEMENT:
+				set_interaction_state(InteractionStates.MOVEMENT)
+		InteractionStates.MOVEMENT:
 			# selected object *should* be an entity if the code reaches this point
 			GameManager.player.try_move(selected_object, target_object.grid_coordinates)
-			set_interaction_state(interactionStates.SELECTION)
+			set_interaction_state(InteractionStates.SELECTION)
 			pass
-		interactionStates.RESOURCE_TRANSFER:
+		InteractionStates.RESOURCE_TRANSFER:
 			# this is theoretically unreachable and here for posterity's sake
 			pass
 
 
 func _on_grid_object_released(target_object: GridObject):
 	match curr_interaction_state:
-		interactionStates.SELECTION:
+		InteractionStates.SELECTION:
 			# do nothing
 			pass
-		interactionStates.MOVEMENT:
+		InteractionStates.MOVEMENT:
 			# do nothing
 			pass
-		interactionStates.RESOURCE_TRANSFER:
+		InteractionStates.RESOURCE_TRANSFER:
 			# TODO tell player to try transfer to this grid object
 			pass
 
 
 func _on_base_tile_clicked(target_coords: Vector2i):
 	match curr_interaction_state:
-		interactionStates.SELECTION:
+		InteractionStates.SELECTION:
 			# TODO select InteractableTile contained on this tile
 			pass
-		interactionStates.MOVEMENT:
+		InteractionStates.MOVEMENT:
 			GameManager.player.try_move(selected_object, target_coords)
 			selected_object = null
-			set_interaction_state(interactionStates.SELECTION)
-		interactionStates.RESOURCE_TRANSFER:
+			set_interaction_state(InteractionStates.SELECTION)
+		InteractionStates.RESOURCE_TRANSFER:
 			# this is theoretically unreachable and here for posterity's sake
 			pass
 
 
 func _on_base_tile_released(target_coords: Vector2i):
 	match curr_interaction_state:
-		interactionStates.SELECTION:
+		InteractionStates.SELECTION:
 			# do nothing
 			pass
-		interactionStates.MOVEMENT:
+		InteractionStates.MOVEMENT:
 			# do nothing
 			pass
-		interactionStates.RESOURCE_TRANSFER:
+		InteractionStates.RESOURCE_TRANSFER:
 			# TODO if InteractableTile at target_coords, ask player to try transfer to that InteractableTile
 			# TODO else, ask player to try drop at those target_coords
 			pass
@@ -194,7 +202,7 @@ func _on_base_tile_released(target_coords: Vector2i):
 
 func _on_cancel_input():
 	selected_object = null
-	set_interaction_state(interactionStates.SELECTION)
+	set_interaction_state(InteractionStates.SELECTION)
 
 
 func _on_dialogue_started():

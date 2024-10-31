@@ -30,8 +30,8 @@ func _ready():
 	initialize_slot()
 	
 	if selection_button:
-		selection_button.button_down.connect(func(): UIManager._on_grid_object_clicked(self))
-		selection_button.button_up.connect(func(): UIManager._on_grid_object_released(self))
+		selection_button.button_down.connect(UIManager._on_grid_object_clicked.bind(self))
+		selection_button.button_up.connect(UIManager._on_grid_object_released.bind(self))
 		selection_button.mouse_entered.connect(on_hover_start)
 		selection_button.mouse_exited.connect(on_hover_finish)
 	else:
