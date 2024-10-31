@@ -39,6 +39,9 @@ func _ready():
 	
 	if slot_display:
 		slot_display.displayed_slot = slot
+
+		slot_display.mouse_entered.connect(on_hover_start)
+		slot_display.mouse_exited.connect(on_hover_finish)
 	else:
 		push_warning("GridObject '", name, "' does not have a SlotDisplay.")
 	
